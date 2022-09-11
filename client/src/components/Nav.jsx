@@ -5,6 +5,9 @@ export default function Nav() {
     <nav className=''>
       <ul className='flex gap-x-6 justify-center'>
         <li>
+          <Link to='/'>Landing</Link>
+        </li>
+        <li>
           <Link to='/home'>Home</Link>
         </li>
         <li>

@@ -5,10 +5,11 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Landing from './pages/Landing'
 import ProtectedRoute from './components/ProtectedRoute'
+import { AuthProvider } from './components/AuthProvider'
 
 export default function App() {
   return (
-    <>
+    <AuthProvider>
       <header>
         <Nav />
       </header>
@@ -20,13 +21,13 @@ export default function App() {
           <Route
             path='/home'
             element={
-              <ProtectedRoute user={null}>
+              <ProtectedRoute>
                 <Home />
               </ProtectedRoute>
             }
           />
         </Routes>
       </main>
-    </>
+    </AuthProvider>
   )
 }

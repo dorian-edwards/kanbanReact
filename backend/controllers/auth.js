@@ -3,12 +3,18 @@ const catchAsync = require('../utils/catchAsync')
 const User = require('../models/User')
 
 const login = catchAsync(async (req, res, next) => {
-  console.log(req.body)
-  res.send('login')
+  console.log('req.body ', req.body)
+  console.log('req.user', req.user)
+  res.send(req.user)
 })
 
 const logout = catchAsync(async (req, res, next) => {
-  res.send('Logout')
+  console.log('is this running')
+  req.logout((err) => {
+    if (err) throw err
+
+    return res.send('User logged out')
+  })
 })
 
 const create = catchAsync(async (req, res, next) => {
@@ -48,7 +54,7 @@ const create = catchAsync(async (req, res, next) => {
 const getUser = catchAsync(async (req, res, next) => {
   if (req.user) return res.send(req.user)
 
-  return res.send('No active user')
+  return res.send(false)
 })
 
 module.exports = {
