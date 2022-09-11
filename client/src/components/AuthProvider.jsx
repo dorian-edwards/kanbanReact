@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (data) => {
     setUser(data)
-    navigate('/home') // <-- replace: true is not an option here
+    navigate('/home') // <-- replace: true is not an option here, why ?
   }
 
   const logout = async () => {
@@ -32,14 +32,16 @@ export const AuthProvider = ({ children }) => {
     getUser()
   }, [])
 
-  const value = useMemo(
-    () => ({
-      user,
-      login,
-      logout,
-    }),
-    [user]
-  )
+  // const value = useMemo(
+  //   () => ({
+  //     user,
+  //     login,
+  //     logout,
+  //   }),
+  //   [user]
+  // )
+
+  const value = { user, login, logout }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

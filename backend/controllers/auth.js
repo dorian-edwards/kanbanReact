@@ -3,13 +3,10 @@ const catchAsync = require('../utils/catchAsync')
 const User = require('../models/User')
 
 const login = catchAsync(async (req, res, next) => {
-  console.log('req.body ', req.body)
-  console.log('req.user', req.user)
   res.send(req.user)
 })
 
 const logout = catchAsync(async (req, res, next) => {
-  console.log('is this running')
   req.logout((err) => {
     if (err) throw err
 
