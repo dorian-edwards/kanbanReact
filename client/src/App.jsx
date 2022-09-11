@@ -1,3 +1,4 @@
+/*
 import { Routes, Route } from 'react-router-dom'
 import Nav from './components/Nav'
 import Home from './pages/Home'
@@ -6,6 +7,7 @@ import Register from './pages/Register'
 import Landing from './pages/Landing'
 import ProtectedRoute from './components/ProtectedRoute'
 import { AuthProvider } from './components/AuthProvider'
+
 
 export default function App() {
   return (
@@ -29,5 +31,19 @@ export default function App() {
         </Routes>
       </main>
     </AuthProvider>
+  )
+}
+*/
+
+import Button from './components/Button'
+
+export default function App() {
+  return (
+    <div className='staging-area bg-white dark:bg-v-dark-gray'>
+      <Button styling='primary-l' text='Button Primary (L)' />
+      <Button styling='primary-s' text='Button Primary (S)' />
+      <Button styling='secondary' text='Button Secondary' />
+      <Button styling='destructive' text='Button Destructive' />
+    </div>
   )
 }

@@ -1,3 +1,80 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  html {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+@layer components {
+  .staging-area {
+    @apply h-full flex flex-col gap-y-2 justify-center items-center;
+  }
+  .heading-xl {
+    @apply font-bold text-[24px] leading-[30px];
+  }
+
+  .heading-l {
+    @apply font-bold text-[18px] leading-[23px];
+  }
+
+  .heading-m {
+    @apply font-bold text-[15px] leading-[19px];
+  }
+
+  .heading-s {
+    @apply font-bold text-[12px] text-med-gray leading-[15px] tracking-[2.4px];
+  }
+
+  .body-l {
+    @apply font-medium text-[13px] text-dark-gray leading-[23px];
+  }
+
+  .body-m {
+    @apply font-bold text-[12px] text-dark-gray leading-[15px];
+  }
+
+  .btn {
+    @apply text-white h-10 w-full rounded-[20px] max-w-[416px] font-bold capitalize;
+  }
+
+  .primary-l {
+    @apply bg-main-purple h-12 hover:bg-main-purple-hover text-[15px] leading-[19px];
+  }
+
+  .primary-s {
+    @apply bg-main-purple hover:bg-main-purple-hover text-[13px] leading-[23px];
+  }
+
+  .secondary {
+    /* Light styling */
+    @apply bg-main-purple-opaque text-main-purple text-[13px] leading-[23px] hover:bg-main-purple-opaque-hover;
+
+    /* Dark styling */
+    @apply dark:bg-white dark:hover:bg-white;
+  }
+
+  .destructive {
+    @apply bg-red text-white text-[13px] leading-[23px] hover:bg-red-hover;
+  }
+}
