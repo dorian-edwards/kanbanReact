@@ -35,15 +35,12 @@ export default function App() {
 }
 */
 
-import Button from './components/Button'
+import Input from './components/Input'
 
 export default function App() {
   return (
     <div className='staging-area bg-white dark:bg-v-dark-gray'>
-      <Button styling='primary-l' text='Button Primary (L)' />
-      <Button styling='primary-s' text='Button Primary (S)' />
-      <Button styling='secondary' text='Button Secondary' />
-      <Button styling='destructive' text='Button Destructive' />
+      <Input />
     </div>
   )
 }

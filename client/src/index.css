@@ -30,6 +30,8 @@
   .staging-area {
     @apply h-full flex flex-col gap-y-2 justify-center items-center;
   }
+
+  /* Typography */
   .heading-xl {
     @apply font-bold text-[24px] leading-[30px];
   }
@@ -54,12 +56,13 @@
     @apply font-bold text-[12px] text-dark-gray leading-[15px];
   }
 
+  /* Buttons */
   .btn {
     @apply text-white h-10 w-full rounded-[20px] max-w-[416px] font-bold capitalize;
   }
 
   .primary-l {
-    @apply bg-main-purple h-12 hover:bg-main-purple-hover text-[15px] leading-[19px];
+    @apply bg-main-purple h-12 hover:bg-main-purple-hover text-[15px] leading-[19px] rounded-3xl;
   }
 
   .primary-s {
@@ -76,5 +79,25 @@
 
   .destructive {
     @apply bg-red text-white text-[13px] leading-[23px] hover:bg-red-hover;
+  }
+
+  /* Inputs */
+
+  .input {
+    /* Box */
+    @apply h-10 block w-full max-w-[416px] rounded-[4px] border-solid border-[1px] border-input-idle outline-none pl-4 relative bg-transparent;
+
+    /* Text */
+    @apply font-medium text-[13px] leading-[23px] text-black placeholder:text-input-place;
+
+    @apply dark:text-white dark:placeholder:text-[white] dark:placeholder:text-opacity-25;
+  }
+
+  .error {
+    @apply relative max-w-[416px] after:content-["Can't_be_empty"] after:absolute after:top-0 after:right-0 after:w-full after:h-full after:flex after:justify-end after:items-center after:pr-4 after:text-red after:font-medium after:text-[13px] after:leading-[23px];
+  }
+
+  .error .input {
+    @apply border-solid border-[1px] border-red;
   }
 }
