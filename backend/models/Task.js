@@ -11,7 +11,7 @@ const taskSchema = new Schema({
     required: true,
   },
   subtasks: [Schema.Types.ObjectId],
-  status: [Schema.Types.ObjectId],
+  status: [Schema.Types.ObjectId], // also column
 })
 
 module.exports = model('Task', taskSchema)

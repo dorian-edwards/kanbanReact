@@ -8,9 +8,10 @@ const MongoStore = require('connect-mongo')
 
 // Middleware imports
 const checkAuth = require('./middleware/checkAuth')
+
 // Route Imports
 const authRouter = require('./routes/auth')
-const workspaceRouter = require('./routes/workspace')
+const boardRouter = require('./routes/board')
 
 // Configuration
 const app = express()
@@ -44,7 +45,8 @@ app.use(passport.session())
 app.get('/', (req, res) => {
   res.send('Hello World')
 })
+
 app.use('/auth', authRouter)
-app.use('/workspace', checkAuth, workspaceRouter)
+app.use('/workspace/board', checkAuth, boardRouter)
 
 module.exports = app
