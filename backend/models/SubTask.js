@@ -7,7 +7,7 @@ const subtaskSchema = new Schema({
     required: true,
   },
   complete: Boolean,
-  parentTask: Schema.Types.ObjectId,
+  parentTask: { type: Schema.Types.ObjectId, ref: 'Task' },
 })
 
-module.exports = model('Subtask', subtaskSchema)
+module.exports = model('SubTask', subtaskSchema)

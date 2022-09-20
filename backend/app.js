@@ -12,6 +12,7 @@ const checkAuth = require('./middleware/checkAuth')
 // Route Imports
 const authRouter = require('./routes/auth')
 const boardRouter = require('./routes/board')
+const taskRouter = require('./routes/task')
 
 // Configuration
 const app = express()
@@ -47,6 +48,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/auth', authRouter)
-app.use('/workspace/board', checkAuth, boardRouter)
+app.use('/board', checkAuth, boardRouter)
+app.use('/task', checkAuth, taskRouter)
 
 module.exports = app

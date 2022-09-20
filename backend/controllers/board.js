@@ -28,7 +28,18 @@ exports.createBoard = catchAsync(async (req, res, next) => {
 exports.getBoard = async (req, res, next) => {
   const { user } = req
   const { id } = req.params
-  const board = await Board.findById(id)
+  const board = await Board.findById(id).populate({
+    path: 'columns',
+    populate: {
+      path: 'tasks',
+      model: 'Task',
+      populate: {
+        path: 'subtasks',
+        model: 'SubTask',
+      },
+    },
+  })
+
   if (board)
     return res.json({
       board,
@@ -44,34 +55,56 @@ exports.getAllBoards = catchAsync(async (req, res, next) => {
 
   // return res.status(401).send('No boards')
 
-  const boards = await Board.find({ userID: req.user.id }).lean()
-  console.log(boards[0]._id)
-  res.send('hey')
+  // Not sure if all this populating is really necessary ??
+  const boards = await Board.find({ userID: req.user.id })
+    .populate({
+      path: 'columns',
+      populate: {
+        path: 'tasks',
+        model: 'Task',
+        populate: {
+          path: 'subtasks',
+          model: 'SubTask',
+        },
+      },
+    })
+    .lean()
+  res.send(boards)
 })
 
+// while named update board this is really for column management...should I rename it then ???
 exports.updateBoard = async (req, res, next) => {
-  const { user } = req
-  const { id } = req.params
   const { title, columns } = req.body
+  const board = await Board.findById(req.params.id)
 
-  // get original board
-  // get list of columns that are not on new board object
-  // delete these columns
+  const newColumns = []
+  const newColumnIds = []
+  const oldColumns = [...board.columns]
 
-  const currentBoardObject = await Board.findById(id).lean()
-  const currentColumnList = [...currentBoardObject.columns]
+  for (let column of columns) {
+    let res = await Column.findOne({ title: column })
+    if (!res)
+      res = await Column.create({
+        title: column,
+        tasks: [],
+      })
 
-  const deletedColumns = currentColumnList.filter(
-    (column) => !columns.includes(column)
-  )
-
-  for (let column of deletedColumns) {
-    await Column.findByIdAndDelete(column)
+    newColumns.push(res)
+    newColumnIds.push(res.id)
   }
 
-  await Board.findByIdAndUpdate(id, { ...req.body })
+  for (let id of oldColumns) {
+    if (!newColumnIds.includes(id.toString())) {
+      await Column.findByIdAndDelete(id)
+    }
+  }
 
-  res.end()
+  const data = await Board.findByIdAndUpdate(req.params.id, {
+    title,
+    columns: newColumns,
+  })
+
+  res.json(data)
 }
 
 exports.deleteBoard = async (req, res, next) => {

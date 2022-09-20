@@ -10,8 +10,17 @@ const boardSchema = new Schema({
   userID: {
     type: Schema.Types.ObjectId,
     required: true,
+    ref: 'User',
   },
-  columns: [Schema.Types.ObjectId],
+  columns: [{ type: Schema.Types.ObjectId, ref: 'Column' }],
+})
+
+boardSchema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
+  },
 })
 
 boardSchema.pre('deleteOne', async function (next) {

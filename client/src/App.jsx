@@ -36,11 +36,13 @@ export default function App() {
 */
 
 import Input from './components/Input'
+import Button from './components/Button'
 
 export default function App() {
   return (
     <div className='staging-area bg-white dark:bg-v-dark-gray'>
       <Input />
+      <Button styling='primary-l' text='test' />
     </div>
   )
 }
