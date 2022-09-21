@@ -93,6 +93,18 @@
     @apply dark:text-white dark:placeholder:text-[white] dark:placeholder:text-opacity-25;
   }
 
+  .input-checkbox {
+    @apply mr-4 h-4 w-4 border-solid border-[1px] border-checkbox-border rounded-[2px] bg-white peer-checked:bg-custom-check peer-checked:bg-main-purple bg-center bg-80% bg-no-repeat;
+
+    @apply dark:bg-dark-gray;
+  }
+
+  .label-text {
+    @apply peer-checked:text-subtask-complete-lght peer-checked:line-through dark:text-white;
+
+    @apply dark:peer-checked:text-subtask-complete-drk;
+  }
+
   .error {
     @apply relative max-w-[416px] after:content-["Can't_be_empty"] after:absolute after:top-0 after:right-0 after:w-full after:h-full after:flex after:justify-end after:items-center after:pr-4 after:text-red after:font-medium after:text-[13px] after:leading-[23px];
   }

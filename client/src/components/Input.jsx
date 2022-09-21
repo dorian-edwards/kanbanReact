@@ -19,7 +19,7 @@ export default function Input() {
       <div className='input-wrapper'>
         <input
           type='text'
-          placeholder='Enter Text'
+          placeholder='Enter Task Name'
           className='input'
           value={text}
           onChange={handleText}
