@@ -35,12 +35,18 @@ export default function App() {
 }
 */
 
-import Checkbox from './components/Checkbox'
+import DropDown from './components/Dropdown'
 
 export default function App() {
   return (
-    <div className='staging-area bg-white dark:bg-dark-gray'>
-      <Checkbox />
+    // Center Display
+    // <div className='staging-area'>
+    //   <DropDown />
+    // </div>
+
+    // Corner display
+    <div className='staging-area-corner'>
+      <DropDown />
     </div>
   )
 }

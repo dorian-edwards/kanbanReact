@@ -28,7 +28,11 @@
 
 @layer components {
   .staging-area {
-    @apply h-full flex flex-col gap-y-2 justify-center items-center;
+    @apply h-full flex flex-col gap-y-2 justify-center items-center bg-white dark:bg-dark-gray;
+  }
+
+  .staging-area-corner {
+    @apply h-full pt-5 pl-5 bg-white dark:bg-dark-gray;
   }
 
   /* Typography */
@@ -111,5 +115,10 @@
 
   .error .input {
     @apply border-solid border-[1px] border-red;
+  }
+
+  /* Dropdown */
+  .dropdown_current {
+    @apply w-full max-w-[416px] h-10 flex justify-between items-center px-4 rounded-[4px] border-solid border-[1px] border-input-idle mb-[7px] body-l;
   }
 }
