@@ -109,6 +109,16 @@
     @apply dark:peer-checked:text-subtask-complete-drk;
   }
 
+  .text-area {
+    /* Box */
+    @apply w-full max-w-[416px] min-h-[112px] px-4 pt-2  border-solid border-[1px] border-input-idle outline-none rounded-[4px] resize-none bg-transparent;
+
+    /* Text */
+    @apply font-medium text-[13px] leading-[23px] text-black placeholder:text-input-place;
+
+    @apply dark:text-white dark:placeholder:text-[white] dark:placeholder:text-opacity-25;
+  }
+
   .error {
     @apply relative max-w-[416px] after:content-["Can't_be_empty"] after:absolute after:top-0 after:right-0 after:w-full after:h-full after:flex after:justify-end after:items-center after:pr-4 after:text-red after:font-medium after:text-[13px] after:leading-[23px];
   }

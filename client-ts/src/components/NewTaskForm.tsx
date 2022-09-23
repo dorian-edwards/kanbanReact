@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import InputField from './InputField'
+import TextArea from './TextArea'
 
 const flashError = (): void => {
   const inputFieldWrapper = document.querySelector('.input-wrapper')
@@ -16,9 +17,16 @@ const flashError = (): void => {
 
 export default function NewTaskForm() {
   const [title, setTitle] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTitle(e.target.value)
+  }
+
+  const handleDescriptionChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ): void => {
+    setDescription(e.target.value)
   }
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
@@ -38,6 +46,12 @@ export default function NewTaskForm() {
           placeholder='e.g. Take a coffee break'
           value={title}
           onChange={handleTitleChange}
+        />
+        <TextArea
+          label='Description'
+          placeholder='e.g. It’s always good to take a break. This 15 minute break will recharge the batteries a little.'
+          value={description}
+          onChange={handleDescriptionChange}
         />
         <button type='submit'>Submit</button>
       </form>
