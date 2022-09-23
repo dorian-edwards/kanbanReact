@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  html {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+@layer components {
+  .staging-area {
+    @apply h-full flex flex-col gap-y-2 justify-center items-center bg-white dark:bg-dark-gray;
+  }
+
+  .staging-area-corner {
+    @apply h-full pt-5 pl-5 bg-white dark:bg-dark-gray;
+  }
+
+  /* Typography */
+  .heading-xl {
+    @apply font-bold text-[24px] leading-[30px];
+  }
+
+  .heading-l {
+    @apply font-bold text-[18px] leading-[23px];
+  }
+
+  .heading-m {
+    @apply font-bold text-[15px] leading-[19px];
+  }
+
+  .heading-s {
+    @apply font-bold text-[12px] text-med-gray leading-[15px] tracking-[2.4px];
+  }
+
+  .body-l {
+    @apply font-medium text-[13px] text-dark-gray leading-[23px];
+  }
+
+  .body-m {
+    @apply font-bold text-[12px] text-dark-gray leading-[15px];
+  }
+
+  /* Buttons */
+  .btn {
+    @apply text-white h-10 w-full rounded-[20px] max-w-[416px] font-bold capitalize;
+  }
+
+  .primary-l {
+    @apply bg-main-purple h-12 hover:bg-main-purple-hover text-[15px] leading-[19px] rounded-3xl;
+  }
+
+  .primary-s {
+    @apply bg-main-purple hover:bg-main-purple-hover text-[13px] leading-[23px];
+  }
+
+  .secondary {
+    /* Light styling */
+    @apply bg-main-purple-opaque text-main-purple text-[13px] leading-[23px] hover:bg-main-purple-opaque-hover;
+
+    /* Dark styling */
+    @apply dark:bg-white dark:hover:bg-white;
+  }
+
+  .destructive {
+    @apply bg-red text-white text-[13px] leading-[23px] hover:bg-red-hover;
+  }
+
+  /* Inputs */
+
+  .input {
+    /* Box */
+    @apply h-10 block w-full max-w-[416px] rounded-[4px] border-solid border-[1px] border-input-idle outline-none pl-4 relative bg-transparent;
+
+    /* Text */
+    @apply font-medium text-[13px] leading-[23px] text-black placeholder:text-input-place;
+
+    @apply dark:text-white dark:placeholder:text-[white] dark:placeholder:text-opacity-25;
+  }
+
+  .input-checkbox {
+    @apply mr-4 h-4 w-4 border-solid border-[1px] border-checkbox-border rounded-[2px] bg-white peer-checked:bg-custom-check peer-checked:bg-main-purple bg-center bg-80% bg-no-repeat;
+
+    @apply dark:bg-dark-gray;
+  }
+
+  .label-text {
+    @apply peer-checked:text-subtask-complete-lght peer-checked:line-through dark:text-white;
+
+    @apply dark:peer-checked:text-subtask-complete-drk;
+  }
+
+  .error {
+    @apply relative max-w-[416px] after:content-["Can't_be_empty"] after:absolute after:top-0 after:right-0 after:w-full after:h-full after:flex after:justify-end after:items-center after:pr-4 after:text-red after:font-medium after:text-[13px] after:leading-[23px];
+  }
+
+  .error .input {
+    @apply border-solid border-[1px] border-red;
+  }
+
+  /* Dropdown */
+  .dropdown_current {
+    @apply w-full max-w-[416px] h-10 flex justify-between items-center px-4 rounded-[4px] border-solid border-[1px] border-input-idle mb-[7px] body-l;
+  }
+}
