@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, createContext, useState, useMemo, useEffect } from 'react'
+import { useContext, createContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
@@ -31,15 +31,6 @@ export const AuthProvider = ({ children }) => {
     }
     getUser()
   }, [])
-
-  // const value = useMemo(
-  //   () => ({
-  //     user,
-  //     login,
-  //     logout,
-  //   }),
-  //   [user]
-  // )
 
   const value = { user, login, logout }
 
