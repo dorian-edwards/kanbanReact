@@ -96,6 +96,10 @@
     @apply disabled:hover:bg-red;
   }
 
+  .add-task-mobile {
+    @apply bg-main-purple h-8 w-12 rounded-[24px] mr-4;
+  }
+
   /* Inputs */
 
   .input {

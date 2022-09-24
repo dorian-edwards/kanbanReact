@@ -23,19 +23,19 @@ export default function BoardDropdown() {
 
   return (
     <div className='dropdown-wrapper'>
-      <h2 className='heading-l text-black dark:text-white'>
-        {board}{' '}
+      <div className='logo-wrapper flex gap-x-2'>
+        <h2 className='heading-l text-black dark:text-white'>{board}</h2>
         <button onClick={toggleActive}>
           <img
             src={isActive ? chevronUp : chevronDown}
             alt='downward chevron'
           />
         </button>
-      </h2>
+      </div>
       {isActive && (
-        <ul className='absolute pl-[57px] w-[260px] top-14 left-0 bg-white rounded-br-md'>
+        <ul className='absolute pl-[57px] w-[260px] top-14 left-0 bg-white dark:bg-dark-gray rounded-br-md'>
           {boards.map((board) => (
-            <li key={board.id} className='mb-3'>
+            <li key={board.id} className='mb-3 dark:text-white'>
               <button
                 className='heading-l'
                 onClick={selectBoard}
