@@ -63,14 +63,20 @@
   /* Buttons */
   .btn {
     @apply text-white h-10 w-full rounded-[20px] max-w-[416px] font-bold capitalize;
+
+    @apply disabled:opacity-25;
   }
 
   .primary-l {
     @apply bg-main-purple h-12 hover:bg-main-purple-hover text-[15px] leading-[19px] rounded-3xl;
+
+    @apply disabled:hover:bg-main-purple;
   }
 
   .primary-s {
     @apply bg-main-purple hover:bg-main-purple-hover text-[13px] leading-[23px];
+    /* Disabled Button */
+    @apply disabled:hover:bg-main-purple;
   }
 
   .secondary {
@@ -79,10 +85,15 @@
 
     /* Dark styling */
     @apply dark:bg-white dark:hover:bg-white;
+
+    /* Disabled styling */
+    @apply disabled:hover:bg-main-purple-opaque;
   }
 
   .destructive {
     @apply bg-red text-white text-[13px] leading-[23px] hover:bg-red-hover;
+    /* Disabled styling */
+    @apply disabled:hover:bg-red;
   }
 
   /* Inputs */
