@@ -34,18 +34,21 @@ export default function App() {
 }
 */
 
-import NewTaskForm from './components/NewTaskForm'
+import ThemeProvider from './components/ThemeProvider'
+import MobileNav from './components/MobileNav'
 
 export default function App() {
   return (
     // Center Display
     // <div className='staging-area'>
-    //   <DropDown />
+    //   Component to build here
     // </div>
 
     // Corner display
-    <div className='staging-area-corner'>
-      <NewTaskForm />
-    </div>
+    <ThemeProvider>
+      <div className='h-full bg-[#F2F2F2] dark:bg-v-dark-gray'>
+        {/* ToDo */}
+      </div>
+    </ThemeProvider>
   )
 }
