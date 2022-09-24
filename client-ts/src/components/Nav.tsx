@@ -1,22 +1,18 @@
-import { Link } from 'react-router-dom'
+import { useTheme } from './ThemeProvider'
+import logoLight from '../assets/logo-light.svg'
+import logoDark from '../assets/logo-dark.svg'
+import logoMobile from '../assets/logo-mobile.svg'
 
 export default function Nav() {
+  const { isMobile, isDarkMode } = useTheme()
+
   return (
-    <nav className=''>
-      <ul className='flex gap-x-6 justify-center'>
-        <li>
-          <Link to='/'>Landing</Link>
-        </li>
-        <li>
-          <Link to='/home'>Home</Link>
-        </li>
-        <li>
-          <Link to='/login'>Login</Link>
-        </li>
-        <li>
-          <Link to='/register'>Register</Link>
-        </li>
-      </ul>
+    <nav className='w-full'>
+      {isMobile ? (
+        <img src={logoMobile} alt='kanban mobile logo' />
+      ) : (
+        <img src={isDarkMode ? logoLight : logoDark} alt='kanban logo' />
+      )}
     </nav>
   )
 }

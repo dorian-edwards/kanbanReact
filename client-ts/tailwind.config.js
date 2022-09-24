@@ -27,6 +27,12 @@ module.exports = {
     extend: {
       backgroundImage: {
         'custom-check': 'url(./assets/icon-check.svg)',
+        'show-sidebar': 'url(./assets/icon-show-sidebar.svg)',
+        'vertical-ellipsis': 'url(./assets/icon-vertical-ellipsis.svg)',
+        board: 'url(./assets/icon-board.svg)',
+        'logo-dark': 'url(./assets/logo-dark.svg)',
+        'logo-light': 'url(./assets/logo-light.svg)',
+        'logo-mobile': 'url(./assets/logo-mobile.svg)',
       },
       backgroundSize: {
         auto: 'auto',
