@@ -1,6 +1,6 @@
 import { ChangeEvent, SyntheticEvent, useState } from 'react'
 import axios from 'axios'
-import { useAuth } from '../components/AuthProvider'
+import { useAuth } from '../components/providers/AuthProvider'
 
 const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 console.log(baseUrl)

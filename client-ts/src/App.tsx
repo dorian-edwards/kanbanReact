@@ -34,8 +34,8 @@ export default function App() {
 }
 */
 
-import ThemeProvider from './components/ThemeProvider'
-import MobileNav from './components/MobileNav'
+import NewBoardForm from './components/NewBoardForm'
+import ThemeProvider from './components/providers/ThemeProvider'
 
 export default function App() {
   return (
@@ -47,7 +47,7 @@ export default function App() {
     // Corner display
     <ThemeProvider>
       <div className='h-full bg-[#F2F2F2] dark:bg-v-dark-gray'>
-        {/* ToDo */}
+        <NewBoardForm />
       </div>
     </ThemeProvider>
   )

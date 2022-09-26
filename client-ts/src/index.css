@@ -109,7 +109,7 @@
     /* Text */
     @apply font-medium text-[13px] leading-[23px] text-black placeholder:text-input-place;
 
-    @apply dark:text-white dark:placeholder:text-[white] dark:placeholder:text-opacity-25;
+    @apply dark:text-white dark:placeholder:text-white dark:placeholder:text-opacity-25;
   }
 
   .input-checkbox {
@@ -145,5 +145,11 @@
   /* Dropdown */
   .dropdown_current {
     @apply w-full max-w-[416px] h-10 flex justify-between items-center px-4 rounded-[4px] border-solid border-[1px] border-input-idle mb-[7px] body-l;
+  }
+
+  /* Forms */
+
+  .new-board-form {
+    @apply px-6 py-6 rounded-md;
   }
 }

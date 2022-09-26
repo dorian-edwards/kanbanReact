@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import InputField from './InputField'
-import TextArea from './TextArea'
+import InputField from './inputs/InputField'
+import TextArea from './inputs/TextArea'
 
 const flashError = (): void => {
   const inputFieldWrapper = document.querySelector('.input-wrapper')

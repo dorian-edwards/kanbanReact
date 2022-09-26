@@ -11,7 +11,12 @@ export default function Nav() {
         <BoardDropdown />
       </div>
       <div className='flex items-center'>
-        <Button styling='add-task-mobile' text={'+'} disabled={false} />
+        <Button
+          styling='add-task-mobile'
+          text={'+'}
+          disabled={false}
+          onClick={(e) => console.log(e)}
+        />
         {/* Not sure what this button will do yet*/}
         <button>
           <img src={verticalEllipses} alt='vertical ellipses' />

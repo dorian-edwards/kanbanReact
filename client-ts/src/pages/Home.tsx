@@ -1,4 +1,4 @@
-import { useAuth } from '../components/AuthProvider'
+import { useAuth } from '../components/providers/AuthProvider'
 
 export default function Home() {
   const { logout, user } = useAuth()
