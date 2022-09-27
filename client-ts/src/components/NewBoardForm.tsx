@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import InputField from './inputs/InputField'
 import Button from './Button'
 import cross from '../assets/icon-cross.svg'
+
+const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 
 export default function NewBoardForm() {
   const [title, setTitle] = useState<string>('')
@@ -24,9 +27,23 @@ export default function NewBoardForm() {
     setColumnInputs([...columnInputs, ''])
   }
 
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>): void => {
+  const handleDeleteColumnInput = (index: number): void => {
+    const editedColumnInputs = columnInputs.filter((column, i) => index !== i)
+    setColumnInputs(editedColumnInputs)
+  }
+
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('submit form')
+    const board = {
+      title,
+      columnInputs,
+    }
+
+    const res = await axios.post(`${baseUrl}board/new`, board, {
+      withCredentials: true,
+    })
+
+    console.log(res)
   }
 
   return (
@@ -57,7 +74,7 @@ export default function NewBoardForm() {
                 onChange={(e) => handleColumnInputChange(e, index)}
                 optionalStyling={'w-full'}
               />
-              <button>
+              <button onClick={() => handleDeleteColumnInput(index)}>
                 <img src={cross} alt='' className='block' />
               </button>
             </div>
