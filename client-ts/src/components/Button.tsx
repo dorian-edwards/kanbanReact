@@ -2,7 +2,7 @@ export interface ButtonProps {
   styling: string
   text: string
   disabled: boolean
-  onClick: (e: React.SyntheticEvent<HTMLButtonElement>) => void
+  onClick?: (e: React.SyntheticEvent<HTMLButtonElement>) => void
   type?: 'button' | 'submit' | 'reset' | undefined
 }
 
