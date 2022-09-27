@@ -5,7 +5,7 @@ import Button from './Button'
 
 export default function Nav() {
   return (
-    <nav className='flex items-center justify-between px-4 w-full bg-white dark:bg-dark-gray h-16'>
+    <nav className='flex items-center justify-between px-4 w-full bg-white dark:bg-dark-gray h-16 absolute top-0'>
       <div className='flex items-center'>
         <img className='mr-4' src={logoMobile} alt='kanban mobile logo' />
         <BoardDropdown />

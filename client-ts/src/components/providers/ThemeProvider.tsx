@@ -3,6 +3,7 @@ import React, { useContext, createContext, useState, useEffect } from 'react'
 export interface ThemeContextInterface {
   isMobile: boolean
   isDarkMode: boolean
+  toggleDark: Function
 }
 
 const ThemeContext = createContext<ThemeContextInterface | null>(null)
@@ -19,9 +20,12 @@ export default function ThemeProvider({
   children: React.ReactNode
 }) {
   const [isMobile, setMobile] = useState<boolean>(window.innerWidth <= 375)
-  const [isDarkMode, setDarkMode] = useState<boolean>(
-    window.matchMedia('(prefers-color-scheme: dark)').matches
-  )
+  const [isDarkMode, setDarkMode] = useState<boolean>(false)
+
+  const toggleDark = () => {
+    window.document.querySelector('html')?.classList.toggle('dark')
+    setDarkMode(!isDarkMode)
+  }
 
   useEffect(() => {
     window
@@ -42,6 +46,7 @@ export default function ThemeProvider({
   const value = {
     isMobile,
     isDarkMode,
+    toggleDark,
   }
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
