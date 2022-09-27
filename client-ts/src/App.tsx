@@ -34,20 +34,22 @@ export default function App() {
 }
 */
 
-import NewBoardForm from './components/NewBoardForm'
 import ThemeProvider from './components/providers/ThemeProvider'
+import DesktopNav from './components/DesktopNav'
 
 export default function App() {
   return (
     // Center Display
-    // <div className='staging-area'>
-    //   Component to build here
-    // </div>
+    // <ThemeProvider>
+    //   <div className='staging-area bg-[#F2F2F2] dark:bg-v-dark-gray dark:text-white'>
+    //     <DesktopNav />
+    //   </div>
+    // </ThemeProvider>
 
     // Corner display
     <ThemeProvider>
-      <div className='h-full bg-[#F2F2F2] dark:bg-v-dark-gray'>
-        <NewBoardForm />
+      <div className='h-full bg-light-gray-bg dark:bg-v-dark-gray'>
+        <DesktopNav />
       </div>
     </ThemeProvider>
   )
