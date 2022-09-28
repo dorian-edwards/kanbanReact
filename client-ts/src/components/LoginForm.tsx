@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import InputField from './inputs/InputField'
 import Button from './Button'
+import { useAuth } from './providers/AuthProvider'
+
+const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 
 export default function LoginForm() {
+  const { login } = useAuth()
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
@@ -15,8 +20,26 @@ export default function LoginForm() {
     setPassword(e.target.value)
   }
 
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>): void => {
-    // todo
+  const clearInput = (): void => {
+    setEmail('')
+    setPassword('')
+  }
+
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault()
+      const { data } = await axios.post(
+        `${baseUrl}auth/login`,
+        { email, password },
+        { withCredentials: true }
+      )
+      console.log(data)
+      await login(data)
+      clearInput()
+    } catch (err) {
+      console.log(err)
+      clearInput()
+    }
   }
 
   return (

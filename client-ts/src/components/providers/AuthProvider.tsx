@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const getUser = async () => {
-      const { data } = await axios.get(`${baseUrl}/user`, {
+      const { data } = await axios.get(`${baseUrl}auth/user`, {
         withCredentials: true,
       })
       if (data) return setUser(data)
