@@ -1,3 +1,14 @@
-export default function Register() {
-  return <div>Registration Screen</div>
+import RegistrationForm from '../components/RegistrationForm'
+import { Navigate } from 'react-router-dom'
+import { useAuth } from '../components/providers/AuthProvider'
+
+export default function Login() {
+  const { user } = useAuth()
+  if (user) return <Navigate to='/home' replace={true} />
+
+  return (
+    <div className='login-form-wrapper pt-40 px-4'>
+      <RegistrationForm />
+    </div>
+  )
 }
