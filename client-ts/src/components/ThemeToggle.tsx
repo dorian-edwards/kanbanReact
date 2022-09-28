@@ -6,8 +6,8 @@ export default function ThemeToggle() {
   const { toggleDark, isDarkMode } = useTheme()
 
   return (
-    <div className='dark-toggle h-12 w-full max-w-[251px] bg-light-gray-bg dark:bg-v-dark-gray mx-auto rounded-md mb-[22px] flex gap-x-6 justify-center py-[14px]'>
-      <img src={lightTheme} alt='' />
+    <div className='dark-toggle h-12 w-[95%] max-w-[251px] bg-light-gray-bg dark:bg-v-dark-gray mx-auto rounded-md mb-[22px] flex gap-x-6 justify-center py-[14px]'>
+      <img src={lightTheme} alt='sun symbol' />
       <button onClick={() => toggleDark()}>
         <div className='toggle-wrapper w-10 h-5 bg-main-purple rounded-full relative flex items-center'>
           <div
@@ -17,7 +17,7 @@ export default function ThemeToggle() {
           ></div>
         </div>
       </button>
-      <img src={darkTheme} alt='' />
+      <img src={darkTheme} alt='moon and starr' />
     </div>
   )
 }

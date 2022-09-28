@@ -13,11 +13,11 @@ export default function DesktopNav() {
   const toggleSidePanel = () => setSidePanel(!sidePanel)
 
   return (
-    <nav className='desktop-nav flex h-[97px]'>
+    <div className=''>
       <div
-        className={`side-panel h-[100vh] bg-white dark:bg-dark-gray border-solid border-r-[1px] border-light-gray dark:border-lines-dark w-full max-w-[300px] relative ${
-          sidePanel ? '' : 'w-0 overflow-hidden'
-        }`}
+        className={`side-panel h-[100vh] bg-white dark:bg-dark-gray border-solid border-r-[1px] border-light-gray dark:border-lines-dark max-w-[300px] relative ${
+          sidePanel ? 'w-[40vw]' : 'w-0 overflow-hidden'
+        } float-left`}
       >
         <img
           className='pt-[32.78px] mb-[54px] pl-[34px] pr-3'
@@ -32,7 +32,7 @@ export default function DesktopNav() {
         <div className='control-panel absolute bottom-[47px] w-full'>
           <ThemeToggle />
           <button
-            className='hide-btn flex items-center gap-x-[15px] pl-[31px] w-[156px]'
+            className='hide-btn flex items-center gap-x-[15px] pl-[31px] w-full min-w-[150px]'
             onClick={toggleSidePanel}
           >
             <img
@@ -44,25 +44,29 @@ export default function DesktopNav() {
           </button>
         </div>
       </div>
+      <nav className='desktop-nav flex h-[97px]'>
+        {!sidePanel && (
+          <div className='logo-wrapper w-[200px] border-solid border-r-[1px] border-b-[1px] border-light-gray dark:border-lines-dark h-[97px] bg-white dark:bg-dark-gray flex items-center px-6'>
+            <img
+              src={isDarkMode ? logoLight : logoDark}
+              alt='kanban logo'
+            ></img>
+          </div>
+        )}
 
-      {!sidePanel && (
-        <div className='logo-wrapper w-[200px] border-solid border-r-[1px] border-b-[1px] border-light-gray dark:border-lines-dark h-[97px] bg-white dark:bg-dark-gray flex items-center px-6'>
-          <img src={isDarkMode ? logoLight : logoDark} alt='kanban logo'></img>
+        <div className='top-bar text-black dark:text-white bg-white dark:bg-dark-gray w-full h-[97px] border-solid border-b-[1px] border-light-gray dark:border-lines-dark flex items-center px-6'>
+          <h1 className='heading-xl'>Platform Launch</h1>
         </div>
-      )}
 
-      <div className='top-bar text-black dark:text-white bg-white dark:bg-dark-gray w-full h-[97px] border-solid border-b-[1px] border-light-gray dark:border-lines-dark flex items-center px-6'>
-        <h1 className='heading-xl'>Platform Launch</h1>
-      </div>
-
-      {!sidePanel && (
-        <button
-          className='absolute bottom-0 bg-main-purple w-14 h-12 rounded-tr-full rounded-br-full pl-[18px] mb-8'
-          onClick={toggleSidePanel}
-        >
-          <img src={showSidebar} alt='' />
-        </button>
-      )}
-    </nav>
+        {!sidePanel && (
+          <button
+            className='absolute bottom-0 bg-main-purple w-14 h-12 rounded-tr-full rounded-br-full pl-[18px] mb-8'
+            onClick={toggleSidePanel}
+          >
+            <img src={showSidebar} alt='open eye icon' />
+          </button>
+        )}
+      </nav>
+    </div>
   )
 }

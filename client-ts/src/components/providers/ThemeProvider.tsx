@@ -39,7 +39,7 @@ export default function ThemeProvider({
       })
 
     window.addEventListener('resize', () => {
-      return window.innerWidth <= 375 ? setMobile(true) : setMobile(false)
+      return window.innerWidth <= 550 ? setMobile(true) : setMobile(false)
     })
   }, [])
 
