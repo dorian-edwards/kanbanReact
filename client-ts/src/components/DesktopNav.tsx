@@ -1,23 +1,25 @@
 import { useState } from 'react'
 import { useTheme } from './providers/ThemeProvider'
+import Button from './Button'
 import ThemeToggle from './ThemeToggle'
 import logoLight from '../assets/logo-light.svg'
 import logoDark from '../assets/logo-dark.svg'
 import hideSidebar from '../assets/icon-hide-sidebar.svg'
 import showSidebar from '../assets/icon-show-sidebar.svg'
+import verticalEllipses from '../assets/icon-vertical-ellipsis.svg'
 
 export default function DesktopNav() {
   const [sidePanel, setSidePanel] = useState<boolean>(true)
-  const { isDarkMode, isMobile } = useTheme()
+  const { isDarkMode } = useTheme()
 
   const toggleSidePanel = () => setSidePanel(!sidePanel)
 
   return (
     <div className=''>
       <div
-        className={`side-panel h-[100vh] bg-white dark:bg-dark-gray border-solid border-r-[1px] border-light-gray dark:border-lines-dark max-w-[300px] relative ${
+        className={`side-panel ${
           sidePanel ? 'w-[40vw]' : 'w-0 overflow-hidden'
-        } float-left`}
+        }`}
       >
         <img
           className='pt-[32.78px] mb-[54px] pl-[34px] pr-3'
@@ -46,21 +48,26 @@ export default function DesktopNav() {
       </div>
       <nav className='desktop-nav flex h-[97px]'>
         {!sidePanel && (
-          <div className='logo-wrapper w-[200px] border-solid border-r-[1px] border-b-[1px] border-light-gray dark:border-lines-dark h-[97px] bg-white dark:bg-dark-gray flex items-center px-6'>
-            <img
-              src={isDarkMode ? logoLight : logoDark}
-              alt='kanban logo'
-            ></img>
+          <div className='logo-wrapper h-full'>
+            <img src={isDarkMode ? logoLight : logoDark} alt='kanban logo' />
           </div>
         )}
 
-        <div className='top-bar text-black dark:text-white bg-white dark:bg-dark-gray w-full h-[97px] border-solid border-b-[1px] border-light-gray dark:border-lines-dark flex items-center px-6'>
+        <div className='top-bar flex justify-between items-center'>
           <h1 className='heading-xl'>Platform Launch</h1>
+          <div className='flex items-center gap-x-6'>
+            <Button
+              styling='btn primary-l w-[164px] heading-m'
+              text='+Add New Task'
+              disabled={false}
+            />
+            <img src={verticalEllipses} alt='vertical ellipsis' />
+          </div>
         </div>
 
         {!sidePanel && (
           <button
-            className='absolute bottom-0 bg-main-purple w-14 h-12 rounded-tr-full rounded-br-full pl-[18px] mb-8'
+            className='absolute bottom-0 left-0 bg-main-purple w-14 h-12 rounded-tr-full rounded-br-full pl-[18px] mb-8'
             onClick={toggleSidePanel}
           >
             <img src={showSidebar} alt='open eye icon' />

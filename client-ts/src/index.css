@@ -152,4 +152,17 @@
   .new-board-form {
     @apply px-6 py-6 rounded-md;
   }
+
+  /* Nav Menu Styling */
+  .side-panel {
+    @apply h-[100vh] bg-white dark:bg-dark-gray border-solid border-r-[1px] border-light-gray dark:border-lines-dark max-w-[300px] relative float-left;
+  }
+
+  .logo-wrapper {
+    @apply w-[200px] border-solid border-r-[1px] border-b-[1px] border-light-gray dark:border-lines-dark h-[66px] bg-white dark:bg-dark-gray flex items-center px-6;
+  }
+
+  .top-bar {
+    @apply text-black dark:text-white bg-white dark:bg-dark-gray w-full h-[97px] border-solid border-b-[1px] border-light-gray dark:border-lines-dark flex items-center px-6;
+  }
 }

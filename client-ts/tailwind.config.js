@@ -44,7 +44,7 @@ module.exports = {
     },
     screens: {
       mobile: '375px',
-      tablet: '768px',
+      tablet: '550px',
       desktop: '1440px',
     },
   },
