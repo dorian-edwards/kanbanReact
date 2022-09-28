@@ -20,7 +20,7 @@ export default function DesktopNav() {
         }`}
       >
         <img
-          className='pt-[32.78px] mb-[54px] pl-[34px]'
+          className='pt-[32.78px] mb-[54px] pl-[34px] pr-3'
           src={isDarkMode ? logoLight : logoDark}
           alt='kanban logo'
         />

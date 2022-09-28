@@ -56,6 +56,7 @@ export default function NewBoardForm() {
           label='Board Name'
           placeholder='e.g. Web Design'
           value={title}
+          type='text'
           onChange={handleTitleChange}
           optionalStyling={'mb-6'}
         />
@@ -71,6 +72,7 @@ export default function NewBoardForm() {
               <InputField
                 placeholder='e.g Done'
                 value={columnInputs[index]}
+                type='text'
                 onChange={(e) => handleColumnInputChange(e, index)}
                 optionalStyling={'w-full'}
               />

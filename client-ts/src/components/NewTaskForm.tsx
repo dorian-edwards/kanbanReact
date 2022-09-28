@@ -45,6 +45,7 @@ export default function NewTaskForm() {
           label='Title'
           placeholder='e.g. Take a coffee break'
           value={title}
+          type='text'
           onChange={handleTitleChange}
         />
         <TextArea

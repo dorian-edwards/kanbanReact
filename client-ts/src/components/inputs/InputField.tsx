@@ -3,13 +3,14 @@ import React from 'react'
 export interface InputProps {
   label?: string
   placeholder: string
+  type: string
   value: string
   optionalStyling?: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function InputField(props: InputProps): React.ReactElement {
-  const { label, placeholder, value, onChange, optionalStyling } = props
+  const { label, placeholder, type, value, onChange, optionalStyling } = props
 
   return (
     <div className={`input-component-wrapper ${optionalStyling}`}>
@@ -18,7 +19,7 @@ export default function InputField(props: InputProps): React.ReactElement {
       )}
       <div className='input-wrapper'>
         <input
-          type='text'
+          type={type}
           className={`input ${optionalStyling}`}
           placeholder={placeholder}
           value={value}

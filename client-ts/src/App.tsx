@@ -36,8 +36,13 @@ export default function App() {
 
 import ThemeProvider from './components/providers/ThemeProvider'
 import DesktopNav from './components/DesktopNav'
+import MobileNav from './components/MobileNav'
+import LoginForm from './components/LoginForm'
+import { useTheme } from './components/providers/ThemeProvider'
 
 export default function App() {
+  const { isMobile } = useTheme()
+
   return (
     // Center Display
     // <ThemeProvider>
@@ -47,10 +52,9 @@ export default function App() {
     // </ThemeProvider>
 
     // Corner display
-    <ThemeProvider>
-      <div className='h-full bg-light-gray-bg dark:bg-v-dark-gray'>
-        <DesktopNav />
-      </div>
-    </ThemeProvider>
+
+    <div className='h-full bg-light-gray-bg dark:bg-v-dark-gray'>
+      {isMobile ? <MobileNav /> : <DesktopNav />}
+    </div>
   )
 }
