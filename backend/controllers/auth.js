@@ -38,14 +38,17 @@ const create = catchAsync(async (req, res, next) => {
   const newUser = new User({ ...req.body })
   const results = await newUser.save()
 
-  return res.status(201).json({
-    status: 'Success',
-    data: {
+  req.login(
+    {
       id: results.id,
       username: results.username,
       email: results.email,
     },
-  })
+    (err) => {
+      if (err) throw err
+      res.send(req.user)
+    }
+  )
 })
 
 const getUser = catchAsync(async (req, res, next) => {
