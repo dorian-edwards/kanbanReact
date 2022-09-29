@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   const logout = async () => {
-    await axios.delete(`${baseUrl}/logout`, { withCredentials: true })
+    await axios.delete(`${baseUrl}auth/logout`, { withCredentials: true })
     setUser(null)
     navigate('/')
   }

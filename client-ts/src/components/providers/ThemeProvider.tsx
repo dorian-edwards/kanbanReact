@@ -39,7 +39,12 @@ export default function ThemeProvider({
       })
 
     window.addEventListener('resize', () => {
-      return window.innerWidth <= 550 ? setMobile(true) : setMobile(false)
+      if (window.innerWidth <= 550) {
+        setMobile(true)
+        return document.querySelector('html')?.classList.add('scroll-lock')
+      }
+      setMobile(false)
+      document.querySelector('html')?.classList.remove('scroll-lock')
     })
   }, [])
 

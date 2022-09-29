@@ -166,3 +166,12 @@
     @apply text-black dark:text-white bg-white dark:bg-dark-gray w-full h-[97px] border-solid border-b-[1px] border-light-gray dark:border-lines-dark flex items-center px-6;
   }
 }
+
+/* Random Pure Css */
+html {
+  overflow-y: hidden;
+}
+
+html.scroll-lock {
+  overflow-y: scroll;
+}

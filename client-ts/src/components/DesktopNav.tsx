@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useTheme } from './providers/ThemeProvider'
+import { useAuth } from './providers/AuthProvider'
 import Button from './Button'
 import ThemeToggle from './ThemeToggle'
 import logoLight from '../assets/logo-light.svg'
@@ -11,6 +12,7 @@ import verticalEllipses from '../assets/icon-vertical-ellipsis.svg'
 export default function DesktopNav() {
   const [sidePanel, setSidePanel] = useState<boolean>(true)
   const { isDarkMode } = useTheme()
+  const { logout } = useAuth()
 
   const toggleSidePanel = () => setSidePanel(!sidePanel)
 
@@ -61,7 +63,9 @@ export default function DesktopNav() {
               text='+Add New Task'
               disabled={false}
             />
-            <img src={verticalEllipses} alt='vertical ellipsis' />
+            <button onClick={logout}>
+              <img src={verticalEllipses} alt='vertical ellipsis' />
+            </button>
           </div>
         </div>
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import InputField from './inputs/InputField'
 import Button from './Button'
@@ -7,11 +8,15 @@ import { useAuth } from './providers/AuthProvider'
 const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 
 export default function RegistrationForm() {
-  const { login } = useAuth()
+  const { user, login } = useAuth()
+  const navigate = useNavigate()
+
   const [username, setUsername] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [confirmPassword, setConfirmPassword] = useState<string>('')
+
+  if (user) return <Navigate to='/login' replace={true} />
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
     setUsername(e.target.value)
@@ -29,13 +34,37 @@ export default function RegistrationForm() {
   const clearInput = (): void => {
     setEmail('')
     setPassword('')
+    setUsername('')
+    setConfirmPassword('')
   }
 
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     try {
       e.preventDefault()
-      // todod
+
+      const cleanUsername = username.trim()
+      const cleanEmail = email.trim()
+      const cleanPassword = password.trim()
+      const cleanConfirm = confirmPassword.trim()
+
+      if (!cleanUsername || !cleanEmail || !cleanPassword || !cleanConfirm)
+        return
+
+      if (cleanPassword !== cleanConfirm) return
+
+      const user = {
+        email: cleanEmail,
+        username: cleanUsername,
+        password: cleanPassword,
+      }
+
       clearInput()
+
+      const { data } = await axios.post(`${baseUrl}auth/register`, user, {
+        withCredentials: true,
+      })
+
+      login(data)
     } catch (err) {
       console.log(err)
       clearInput()
