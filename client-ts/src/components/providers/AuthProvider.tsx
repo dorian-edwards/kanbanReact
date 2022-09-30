@@ -21,12 +21,21 @@ export interface AuthContextInterface {
   login: (data: User) => void
   logout: () => void
   user: User | null
+  boards: Board[] | [] | null
+}
+
+export interface Board {
+  id: string
+  title: string
+  userID: string
+  columns: [string] | []
 }
 
 const AuthContext = createContext<AuthContextInterface | undefined>(undefined)
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null)
+  const [boards, setBoards] = useState<Board[] | null>(null)
   const navigate = useNavigate()
 
   const login = async (data: User) => {
@@ -50,13 +59,25 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     getUser()
   }, [])
 
+  useEffect(() => {
+    const getBoards = async () => {
+      const { data } = await axios.get(`${baseUrl}/board`, {
+        withCredentials: true,
+      })
+      if (data) return setBoards(data)
+    }
+
+    getBoards()
+  }, [])
+
   const value = useMemo(
     () => ({
       user,
       login,
       logout,
+      boards,
     }),
-    [user]
+    [user, boards]
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

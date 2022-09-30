@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from './providers/AuthProvider'
 import BoardIcon from './BoardIcon'
 import axios from 'axios'
 
@@ -13,27 +14,15 @@ export interface BoardInterface {
 }
 
 export default function BoardsListing() {
-  const [boards, setBoards] = useState<BoardInterface[]>([])
-
-  useEffect(() => {
-    const getBoards = async () => {
-      const { data } = await axios.get(`${baseUrl}/board/`, {
-        withCredentials: true,
-      })
-
-      console.log(data)
-    }
-
-    getBoards()
-  }, [])
+  const { boards } = useAuth()
 
   return (
     <div className='boards-listing'>
       <h3 className='heading-s pl-8 mb-[19px] min-w-[150px]'>
-        All Boards &#40;{boards.length}&#41;
+        All Boards &#40;{boards?.length}&#41;
       </h3>
       <ul>
-        {boards.map((board, index) => (
+        {boards?.map((board, index) => (
           <li key={board.id}>
             <Link
               to='/'
