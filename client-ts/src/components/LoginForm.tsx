@@ -30,7 +30,7 @@ export default function LoginForm() {
     try {
       e.preventDefault()
       const { data } = await axios.post(
-        `${baseUrl}auth/login`,
+        `${baseUrl}/auth/login`,
         { email, password },
         { withCredentials: true }
       )

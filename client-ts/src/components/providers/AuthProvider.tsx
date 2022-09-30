@@ -35,14 +35,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   const logout = async () => {
-    await axios.delete(`${baseUrl}auth/logout`, { withCredentials: true })
+    await axios.delete(`${baseUrl}/auth/logout`, { withCredentials: true })
     setUser(null)
     navigate('/')
   }
 
   useEffect(() => {
     const getUser = async () => {
-      const { data } = await axios.get(`${baseUrl}auth/user`, {
+      const { data } = await axios.get(`${baseUrl}/auth/user`, {
         withCredentials: true,
       })
       if (data) return setUser(data)
