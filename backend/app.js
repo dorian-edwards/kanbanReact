@@ -33,12 +33,7 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.URI }),
   })
 )
-// app.use(
-//   cors({
-//     origin: 'http://localhost:3000',
-//     credentials: true,
-//   })
-// )
+app.use(express.static('build'))
 
 // will need to change names later
 app.use(
