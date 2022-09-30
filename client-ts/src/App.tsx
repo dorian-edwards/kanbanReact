@@ -12,7 +12,7 @@ export default function App() {
       <header>
         <Navigation />
       </header>
-      <main className='bg-light-gray dark:bg-v-dark-gray h-full'>
+      <main className='bg-light-gray dark:bg-v-dark-gray h-full tablet:h-[calc(100vh-97px)]'>
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/login' element={<Login />} />

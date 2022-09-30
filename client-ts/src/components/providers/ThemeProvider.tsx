@@ -38,14 +38,7 @@ export default function ThemeProvider({
         }
       })
 
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= 550) {
-        setMobile(true)
-        return document.querySelector('html')?.classList.add('scroll-lock')
-      }
-      setMobile(false)
-      document.querySelector('html')?.classList.remove('scroll-lock')
-    })
+    window.addEventListener('resize', () => setMobile(window.innerWidth <= 550))
   }, [])
 
   const value = {

@@ -167,15 +167,7 @@
   }
 }
 
-/* Random Pure Css */
-html {
-  overflow-y: hidden;
-}
-
-html.scroll-lock {
-  overflow-y: scroll;
-}
-
+/* SVG styling */
 .currentColor {
   fill: currentColor;
 }

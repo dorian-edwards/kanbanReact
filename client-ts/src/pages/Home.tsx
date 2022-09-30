@@ -1,7 +1,11 @@
 import { useAuth } from '../components/providers/AuthProvider'
 
 export default function Home() {
-  const { logout, user } = useAuth()
+  const { logout, user, boards } = useAuth()
 
-  return <div>Hello {user?.username}</div>
+  return (
+    <div className='flex items-center justify-center h-full'>
+      Hello {user?.username}
+    </div>
+  )
 }
