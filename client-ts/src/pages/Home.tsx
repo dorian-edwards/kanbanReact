@@ -4,7 +4,7 @@ import Button from '../components/Button'
 
 export default function Home() {
   const { logout, user, boards } = useAuth()
-  console.log(boards)
+
   return (
     <div className='flex items-center justify-center h-full'>
       <div>

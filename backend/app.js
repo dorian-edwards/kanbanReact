@@ -33,12 +33,26 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.URI }),
   })
 )
+// app.use(
+//   cors({
+//     origin: 'http://localhost:3000',
+//     credentials: true,
+//   })
+// )
+
+// will need to change names later
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:5000',
+      'https://intense-eyrie-46657.herokuapp.com/',
+    ],
     credentials: true,
+    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type, Accept'],
   })
 )
+
 app.use(passport.initialize())
 app.use(passport.session())
 

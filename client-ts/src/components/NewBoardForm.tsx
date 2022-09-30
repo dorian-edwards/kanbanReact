@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { useAuth } from '../components/providers/AuthProvider'
 import InputField from './inputs/InputField'
 import Button from './Button'
 import cross from '../assets/icon-cross.svg'
@@ -9,6 +11,8 @@ const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 export default function NewBoardForm() {
   const [title, setTitle] = useState<string>('')
   const [columnInputs, setColumnInputs] = useState<string[]>([])
+  const navigate = useNavigate()
+  const { updateBoards } = useAuth()
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTitle(e.target.value)
@@ -34,16 +38,17 @@ export default function NewBoardForm() {
 
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault()
+
     const board = {
       title,
       columnInputs,
     }
 
-    const res = await axios.post(`${baseUrl}board/new`, board, {
+    const { data } = await axios.post(`${baseUrl}/board`, board, {
       withCredentials: true,
     })
 
-    console.log(res)
+    updateBoards(data)
   }
 
   return (

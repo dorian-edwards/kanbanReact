@@ -1,10 +1,6 @@
-import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from './providers/AuthProvider'
 import BoardIcon from './BoardIcon'
-import axios from 'axios'
-
-const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 
 export interface BoardInterface {
   id: string
@@ -23,7 +19,7 @@ export default function BoardsListing() {
       </h3>
       <ul>
         {boards?.map((board, index) => (
-          <li key={board.id}>
+          <li key={board._id}>
             <Link
               to='/'
               className={`board-listing flex gap-x-4 h-12 w-full max-w-[276px] items-center rounded-tr-full rounded-br-full pl-8 ${

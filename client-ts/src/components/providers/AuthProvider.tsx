@@ -22,9 +22,11 @@ export interface AuthContextInterface {
   logout: () => void
   user: User | null
   boards: Board[] | [] | null
+  updateBoards: (data: Board) => void
 }
 
 export interface Board {
+  _id?: string
   id: string
   title: string
   userID: string
@@ -35,7 +37,7 @@ const AuthContext = createContext<AuthContextInterface | undefined>(undefined)
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null)
-  const [boards, setBoards] = useState<Board[] | null>(null)
+  const [boards, setBoards] = useState<Board[] | []>([])
   const navigate = useNavigate()
 
   const login = async (data: User) => {
@@ -47,6 +49,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     await axios.delete(`${baseUrl}/auth/logout`, { withCredentials: true })
     setUser(null)
     navigate('/')
+  }
+
+  const updateBoards = (board: Board) => {
+    setBoards([...boards, board])
+    navigate('/home')
   }
 
   useEffect(() => {
@@ -76,6 +83,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       login,
       logout,
       boards,
+      updateBoards,
     }),
     [user, boards]
   )
