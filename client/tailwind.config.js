@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     colors: {
@@ -27,6 +28,12 @@ module.exports = {
     extend: {
       backgroundImage: {
         'custom-check': 'url(./assets/icon-check.svg)',
+        'show-sidebar': 'url(./assets/icon-show-sidebar.svg)',
+        'vertical-ellipsis': 'url(./assets/icon-vertical-ellipsis.svg)',
+        board: 'url(./assets/icon-board.svg)',
+        'logo-dark': 'url(./assets/logo-dark.svg)',
+        'logo-light': 'url(./assets/logo-light.svg)',
+        'logo-mobile': 'url(./assets/logo-mobile.svg)',
       },
       backgroundSize: {
         auto: 'auto',
@@ -34,6 +41,11 @@ module.exports = {
         contain: 'contain',
         '80%': '80%',
       },
+    },
+    screens: {
+      mobile: '375px',
+      tablet: '550px',
+      desktop: '1440px',
     },
   },
   plugins: [],
