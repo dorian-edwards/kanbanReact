@@ -49,13 +49,6 @@ exports.getBoard = async (req, res, next) => {
 }
 
 exports.getAllBoards = catchAsync(async (req, res, next) => {
-  // const { user } = req
-  // const boards = await Board.find({ userID: user.id })
-  // if (boards) return res.json(boards)
-
-  // return res.status(401).send('No boards')
-
-  // Not sure if all this populating is really necessary ??
   const boards = await Board.find({ userID: req.user.id })
     .populate({
       path: 'columns',

@@ -11,13 +11,13 @@ import axios from 'axios'
 
 const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 
-interface User {
+export interface User {
   id: string
   username: string
   email: string
 }
 
-interface AuthContextInterface {
+export interface AuthContextInterface {
   login: (data: User) => void
   logout: () => void
   user: User | null
