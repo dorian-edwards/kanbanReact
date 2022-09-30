@@ -175,3 +175,7 @@ html {
 html.scroll-lock {
   overflow-y: scroll;
 }
+
+.currentColor {
+  fill: currentColor;
+}

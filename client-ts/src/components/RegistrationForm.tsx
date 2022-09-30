@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import InputField from './inputs/InputField'
 import Button from './Button'
@@ -122,9 +122,9 @@ export default function RegistrationForm() {
           />
         </form>
       </div>
-      <a href='/login' className='block text-center text-main-purple heading-s'>
-        Login
-      </a>
+      <div className='block text-center text-main-purple heading-s'>
+        <Link to='/login'>Login</Link>
+      </div>
     </div>
   )
 }
