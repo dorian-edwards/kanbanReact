@@ -36,12 +36,14 @@ export default function BoardsListing() {
           </li>
         ))}
         <li>
-          <button
-            className={`flex gap-x-4 h-12 w-full max-w-[276px] items-center rounded-tr-full rounded-br-full pl-8 text-main-purple`}
-          >
-            <BoardIcon />
-            <p className='heading-m'>+ Create New Board</p>
-          </button>
+          <Link to='/newboard'>
+            <button
+              className={`flex gap-x-4 h-12 w-full max-w-[276px] items-center rounded-tr-full rounded-br-full pl-8 text-main-purple`}
+            >
+              <BoardIcon />
+              <p className='heading-m'>+ Create New Board</p>
+            </button>
+          </Link>
         </li>
       </ul>
     </div>

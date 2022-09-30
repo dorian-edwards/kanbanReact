@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import { AuthProvider } from './components/providers/AuthProvider'
 import ProtectedRoute from './components/ProtectedRoute'
 import Register from './pages/Register'
+import NewBoard from './pages/NewBoard'
 
 export default function App() {
   return (
@@ -22,6 +23,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/newboard'
+            element={
+              <ProtectedRoute>
+                <NewBoard />
               </ProtectedRoute>
             }
           />

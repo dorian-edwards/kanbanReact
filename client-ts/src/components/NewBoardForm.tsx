@@ -47,7 +47,7 @@ export default function NewBoardForm() {
   }
 
   return (
-    <div className='new-board-form bg-white w-full max-w-[480px] mx-auto relative dark:bg-dark-gray top-[279px]'>
+    <div className='new-board-form bg-white w-[90%] max-w-[480px] dark:bg-dark-gray'>
       <form onSubmit={handleSubmit}>
         <h2 className='heading-l mb-6 text-black dark:text-white'>
           Add New Board
@@ -92,7 +92,7 @@ export default function NewBoardForm() {
         <Button
           styling='primary-s'
           text='Create New Board'
-          disabled={false}
+          disabled={!title.trim()}
           type='submit'
         />
       </form>

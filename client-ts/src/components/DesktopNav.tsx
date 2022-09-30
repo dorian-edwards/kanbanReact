@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useTheme } from './providers/ThemeProvider'
 import { useAuth } from './providers/AuthProvider'
 
@@ -26,11 +27,13 @@ export default function DesktopNav() {
           sidePanel ? 'w-[40vw]' : 'w-0 overflow-hidden'
         }`}
       >
-        <img
-          className='pt-[32.78px] mb-[54px] pl-[34px] pr-3'
-          src={isDarkMode ? logoLight : logoDark}
-          alt='kanban logo'
-        />
+        <Link to='/'>
+          <img
+            className='pt-[32.78px] mb-[54px] pl-[34px] pr-3'
+            src={isDarkMode ? logoLight : logoDark}
+            alt='kanban logo'
+          />
+        </Link>
         <BoardsListing />
         <div className='control-panel absolute bottom-[47px] w-full'>
           <ThemeToggle />
