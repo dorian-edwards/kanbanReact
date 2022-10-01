@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useTheme } from './providers/ThemeProvider'
 import { useAuth } from './providers/AuthProvider'
@@ -13,12 +13,27 @@ import hideSidebar from '../assets/icon-hide-sidebar.svg'
 import showSidebar from '../assets/icon-show-sidebar.svg'
 import verticalEllipses from '../assets/icon-vertical-ellipsis.svg'
 
+import { useLocation } from 'react-router-dom'
+
 export default function DesktopNav() {
   const [sidePanel, setSidePanel] = useState<boolean>(true)
+  const [currentBoard, setCurrentBoard] = useState<string>('')
   const { isDarkMode } = useTheme()
-  const { logout } = useAuth()
+  const { logout, boards } = useAuth()
 
   const toggleSidePanel = () => setSidePanel(!sidePanel)
+  const id = useLocation().pathname.split('/home/')[1]
+
+  useEffect(() => {
+    if (id) {
+      const board = boards.find((board) => board._id === id)
+      if (board) {
+        setCurrentBoard(board.title)
+      }
+    }
+  }, [id])
+
+  console.log(currentBoard)
 
   return (
     <div>
@@ -58,7 +73,7 @@ export default function DesktopNav() {
         )}
 
         <div className='top-bar flex justify-between items-center'>
-          <h1 className='heading-xl'>Platform Launch</h1>
+          <h1 className='heading-xl'>{currentBoard || ''}</h1>
           <div className='flex items-center gap-x-6'>
             <Button
               styling='btn primary-l w-[164px] heading-m'
