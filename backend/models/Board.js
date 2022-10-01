@@ -15,13 +15,13 @@ const boardSchema = new Schema({
   columns: [{ type: Schema.Types.ObjectId, ref: 'Column' }],
 })
 
-boardSchema.set('toJSON', {
-  transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString()
-    delete returnedObject._id
-    delete returnedObject.__v
-  },
-})
+// boardSchema.set('toJSON', {
+//   transform: (document, returnedObject) => {
+//     returnedObject.id = returnedObject._id.toString()
+//     delete returnedObject._id
+//     delete returnedObject.__v
+//   },
+// })
 
 boardSchema.pre('deleteOne', async function (next) {
   const board = this
