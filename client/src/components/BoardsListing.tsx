@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useAuth } from './providers/AuthProvider'
 import BoardIcon from './BoardIcon'
 
@@ -20,26 +20,28 @@ export default function BoardsListing() {
       <ul>
         {boards?.map((board, index) => (
           <li key={board._id}>
-            <Link
+            <NavLink
               to={`/home/${board._id}`}
-              className={`board-listing flex gap-x-4 h-12 w-full max-w-[276px] items-center rounded-tr-full rounded-br-full pl-8 ${
-                index === 0 ? 'text-white bg-main-purple' : 'text-med-gray'
-              }`}
+              className={({ isActive }) =>
+                `board-listing ${
+                  isActive ? 'text-white bg-main-purple' : 'text-med-gray'
+                }`
+              }
             >
               <BoardIcon />
               <p className='heading-m'>{board.title}</p>
-            </Link>
+            </NavLink>
           </li>
         ))}
         <li>
-          <Link to='/newboard'>
+          <NavLink to='/newboard'>
             <button
               className={`flex gap-x-4 h-12 w-full max-w-[276px] items-center rounded-tr-full rounded-br-full pl-8 text-main-purple`}
             >
               <BoardIcon />
               <p className='heading-m'>+ Create New Board</p>
             </button>
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </div>

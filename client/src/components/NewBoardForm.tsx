@@ -41,7 +41,7 @@ export default function NewBoardForm() {
 
     const board = {
       title,
-      columnInputs,
+      columns: columnInputs,
     }
 
     const { data } = await axios.post(`${baseUrl}/board`, board, {
