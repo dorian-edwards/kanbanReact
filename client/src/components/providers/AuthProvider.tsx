@@ -21,7 +21,7 @@ export interface AuthContextInterface {
   login: (data: User) => void
   logout: () => void
   user: User | null
-  boards: Board[] | [] | null
+  boards: Board[] | []
   updateBoards: (data: Board) => void
 }
 

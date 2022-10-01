@@ -21,7 +21,7 @@ export default function BoardsListing() {
         {boards?.map((board, index) => (
           <li key={board._id}>
             <Link
-              to='/'
+              to={`/home/${board._id}`}
               className={`board-listing flex gap-x-4 h-12 w-full max-w-[276px] items-center rounded-tr-full rounded-br-full pl-8 ${
                 index === 0 ? 'text-white bg-main-purple' : 'text-med-gray'
               }`}
