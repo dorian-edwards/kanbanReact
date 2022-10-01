@@ -22,7 +22,7 @@ exports.createBoard = catchAsync(async (req, res, next) => {
   }
 
   await board.save()
-  res.status(201).json({ board })
+  res.send(board)
 })
 
 exports.getBoard = async (req, res, next) => {

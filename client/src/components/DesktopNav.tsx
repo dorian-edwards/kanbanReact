@@ -62,7 +62,7 @@ export default function DesktopNav() {
           <div className='flex items-center gap-x-6'>
             <Button
               styling='btn primary-l w-[164px] heading-m'
-              text='+Add New Task'
+              text='+ Add New Task'
               disabled={false}
             />
             <button onClick={logout}>
