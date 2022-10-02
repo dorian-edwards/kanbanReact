@@ -19,7 +19,7 @@ export default function ThemeProvider({
 }: {
   children: React.ReactNode
 }) {
-  const [isMobile, setMobile] = useState<boolean>(window.innerWidth <= 375)
+  const [isMobile, setMobile] = useState<boolean>(window.innerWidth <= 550)
   const [isDarkMode, setDarkMode] = useState<boolean>(false)
 
   const toggleDark = () => {

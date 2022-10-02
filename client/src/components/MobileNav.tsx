@@ -4,7 +4,7 @@ import logoMobile from '../assets/logo-mobile.svg'
 import verticalEllipses from '../assets/icon-vertical-ellipsis.svg'
 import Button from './Button'
 
-export default function Nav() {
+export default function Nav({ currentBoard }: { currentBoard: string }) {
   return (
     <nav className='flex items-center justify-between px-4 w-full bg-white dark:bg-dark-gray h-16 absolute top-0'>
       <div className='flex items-center'>

@@ -13,27 +13,12 @@ import hideSidebar from '../assets/icon-hide-sidebar.svg'
 import showSidebar from '../assets/icon-show-sidebar.svg'
 import verticalEllipses from '../assets/icon-vertical-ellipsis.svg'
 
-import { useLocation } from 'react-router-dom'
-
-export default function DesktopNav() {
+export default function DesktopNav({ currentBoard }: { currentBoard: string }) {
   const [sidePanel, setSidePanel] = useState<boolean>(true)
-  const [currentBoard, setCurrentBoard] = useState<string>('')
   const { isDarkMode } = useTheme()
   const { logout, boards } = useAuth()
 
   const toggleSidePanel = () => setSidePanel(!sidePanel)
-  const id = useLocation().pathname.split('/home/')[1]
-
-  useEffect(() => {
-    if (id) {
-      const board = boards.find((board) => board._id === id)
-      if (board) {
-        setCurrentBoard(board.title)
-      }
-    }
-  }, [id])
-
-  console.log(currentBoard)
 
   return (
     <div>
