@@ -6,12 +6,12 @@ import Button from './Button'
 
 export default function Nav({ currentBoard }: { currentBoard: string }) {
   return (
-    <nav className='flex items-center justify-between px-4 w-full bg-white dark:bg-dark-gray h-16 absolute top-0'>
+    <nav className='flex items-center justify-between px-4 w-full bg-white dark:bg-dark-gray h-16'>
       <div className='flex items-center'>
         <Link to='/'>
           <img className='mr-4' src={logoMobile} alt='kanban mobile logo' />
         </Link>
-        <BoardDropdown />
+        <BoardDropdown currentBoard={currentBoard} />
       </div>
       <div className='flex items-center'>
         <Button
