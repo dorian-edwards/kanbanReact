@@ -1,4 +1,9 @@
-const { Schema, model } = require('mongoose')
+const {
+  Schema: {
+    Types: { ObjectId },
+  },
+  model,
+} = require('mongoose')
 
 const subtaskSchema = new Schema({
   content: {
@@ -7,7 +12,8 @@ const subtaskSchema = new Schema({
     required: true,
   },
   complete: Boolean,
-  parentTask: { type: Schema.Types.ObjectId, ref: 'Task' },
+  parentTask: { type: ObjectId, required: true, ref: 'Task' },
+  userId: { type: ObjectId, required: true, ref: 'User' },
 })
 
 module.exports = model('Subtask', subtaskSchema)

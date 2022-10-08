@@ -1,4 +1,9 @@
-const { Schema, model } = require('mongoose')
+const {
+  Schema: {
+    Types: { ObjectId },
+  },
+  model,
+} = require('mongoose')
 const Task = require('../models/Task')
 
 const columnSchema = new Schema({
@@ -6,16 +11,9 @@ const columnSchema = new Schema({
     type: String,
     required: true,
   },
-  boardID: { type: Schema.Types.ObjectId, ref: 'Board' },
-  tasks: [{ type: Schema.Types.ObjectId, ref: 'Task' }],
-})
-
-columnSchema.set('toJSON', {
-  transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString()
-    delete returnedObject._id
-    delete returnedObject.__v
-  },
+  tasks: [{ type: ObjectId, ref: 'Task' }],
+  boardId: { type: ObjectId, required: true, ref: 'Board' },
+  userId: { type: ObjectId, required: true, ref: 'User' },
 })
 
 columnSchema.pre('deleteMany', async function (next) {
