@@ -3,7 +3,7 @@ const catchAsync = require('../utils/catchAsync')
 
 const Task = require('../models/Task')
 const Column = require('../models/Column')
-const SubTask = require('../models/SubTask')
+const Subtask = require('../models/Subtask')
 
 exports.getTask = catchAsync(async (req, res, next) => {
   const { id } = req.params
@@ -33,12 +33,12 @@ exports.createTask = catchAsync(async (req, res, next) => {
 
   if (subtasks.length !== 0) {
     for (let subtask of subtasks) {
-      const newSubTask = await SubTask.create({
+      const newSubtask = await Subtask.create({
         content: subtask,
         completed: false,
         parentTask: task._id,
       })
-      task.subtasks.push(newSubTask.id)
+      task.subtasks.push(newSubtask.id)
     }
   }
 

@@ -35,7 +35,7 @@ exports.getBoard = async (req, res, next) => {
       model: 'Task',
       populate: {
         path: 'subtasks',
-        model: 'SubTask',
+        model: 'Subtask',
       },
     },
   })
@@ -57,7 +57,7 @@ exports.getAllBoards = catchAsync(async (req, res, next) => {
         model: 'Task',
         populate: {
           path: 'subtasks',
-          model: 'SubTask',
+          model: 'Subtask',
         },
       },
     })

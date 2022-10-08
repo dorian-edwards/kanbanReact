@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose')
-const SubTask = require('../models/SubTask')
+const Subtask = require('../models/Subtask')
 
 const taskSchema = new Schema({
   title: {
@@ -11,13 +11,13 @@ const taskSchema = new Schema({
     type: String,
     required: true,
   },
-  subtasks: [{ type: Schema.Types.ObjectId, ref: 'SubTask' }],
+  subtasks: [{ type: Schema.Types.ObjectId, ref: 'Subtask' }],
   status: { type: Schema.Types.ObjectId, ref: 'Column' },
 })
 
 taskSchema.pre('deleteMany', async function (next) {
   const task = this
-  await SubTask.deleteMany({ parentTask: task.id })
+  await Subtask.deleteMany({ parentTask: task.id })
   next()
 })
 

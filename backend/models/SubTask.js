@@ -10,4 +10,4 @@ const subtaskSchema = new Schema({
   parentTask: { type: Schema.Types.ObjectId, ref: 'Task' },
 })
 
-module.exports = model('SubTask', subtaskSchema)
+module.exports = model('Subtask', subtaskSchema)
