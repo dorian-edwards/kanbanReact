@@ -17,9 +17,9 @@ const taskSchema = new Schema({
     type: String,
     required: true,
   },
-  status: { type: ObjectId, ref: 'Column' },
+  status: { type: ObjectId, required: true, ref: 'Column' },
   subtasks: [{ type: ObjectId, ref: 'Subtask' }],
-  userId: { type: ObjectId, ref: 'User' },
+  userId: { type: ObjectId, required: true, ref: 'User' },
 })
 
 taskSchema.pre('deleteMany', async function (next) {
