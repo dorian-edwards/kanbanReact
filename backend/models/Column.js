@@ -18,10 +18,4 @@ const columnSchema = new Schema({
   userId: { type: ObjectId, required: true, ref: 'User' },
 })
 
-columnSchema.pre('deleteMany', async function (next) {
-  const column = this
-  await Task.deleteMany({ status: column.id })
-  next()
-})
-
 module.exports = model('Column', columnSchema)

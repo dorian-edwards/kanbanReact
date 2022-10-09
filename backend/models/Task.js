@@ -22,18 +22,4 @@ const taskSchema = new Schema({
   userId: { type: ObjectId, required: true, ref: 'User' },
 })
 
-taskSchema.pre('deleteMany', async function (next) {
-  const task = this
-  await Subtask.deleteMany({ parentTask: task.id })
-  next()
-})
-
-taskSchema.set('toJSON', {
-  transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString()
-    delete returnedObject._id
-    delete returnedObject.__v
-  },
-})
-
 module.exports = model('Task', taskSchema)

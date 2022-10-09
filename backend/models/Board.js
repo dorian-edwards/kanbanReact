@@ -21,10 +21,4 @@ const boardSchema = new Schema({
   },
 })
 
-boardSchema.pre('deleteOne', async function (next) {
-  const board = this
-  await Column.deleteMany({ boardID: board.id })
-  next()
-})
-
 module.exports = model('Board', boardSchema)
