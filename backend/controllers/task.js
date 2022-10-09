@@ -12,6 +12,7 @@ exports.getTask = catchAsync(async (req, res, next) => {
   return res.json(task)
 })
 
+// modify getAllTask to get only tasks belonging to user
 exports.getAllTasks = catchAsync(async (req, res, next) => {
   const tasks = await Task.find({})
   res.json(tasks)
@@ -35,7 +36,9 @@ exports.createTask = catchAsync(async (req, res, next) => {
         content: subtask,
         completed: false,
         parentTask: task._id,
+        userId: req.user.id,
       })
+
       task.subtasks.push(newSubtask.id)
     }
   }
@@ -43,7 +46,7 @@ exports.createTask = catchAsync(async (req, res, next) => {
   column.tasks.push(task.id)
   await column.save()
   await task.save()
-  res.send('create tasks')
+  res.send(task)
 })
 
 exports.update = catchAsync(async (req, res, next) => {
