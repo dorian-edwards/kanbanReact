@@ -27,3 +27,15 @@ exports.create = catchAsync(async (req, res, next) => {
   await board.save()
   res.send(column)
 })
+
+exports.delete = catchAsync(async (req, res, next) => {
+  const { id } = req.params
+  const column = await Column.findById(id)
+  const board = await Board.findById(column.boardId)
+
+  board.columns = board.columns.filter((column) => column._id !== id)
+  await board.save()
+  await Column.findByIdAndDelete(id)
+
+  res.send(true)
+})
