@@ -27,7 +27,7 @@ exports.createBoard = catchAsync(async (req, res, next) => {
   res.send(board)
 })
 
-exports.getBoard = async (req, res, next) => {
+exports.getBoard = catchAsync(async (req, res, next) => {
   const { user } = req
   const { id } = req.params
   const board = await Board.findById(id).populate({
@@ -48,7 +48,7 @@ exports.getBoard = async (req, res, next) => {
     })
 
   return res.status(401).send('No Data')
-}
+})
 
 exports.getAllBoards = catchAsync(async (req, res, next) => {
   const boards = await Board.find({ userId: req.user.id })
@@ -68,7 +68,7 @@ exports.getAllBoards = catchAsync(async (req, res, next) => {
 })
 
 // while named update board this is really for column management...should I rename it then ???
-exports.updateBoard = async (req, res, next) => {
+exports.updateBoard = catchAsync(async (req, res, next) => {
   const { title, columns } = req.body
   const board = await Board.findById(req.params.id)
 
@@ -100,11 +100,11 @@ exports.updateBoard = async (req, res, next) => {
   })
 
   res.json(data)
-}
+})
 
-exports.deleteBoard = async (req, res, next) => {
+exports.deleteBoard = catchAsync(async (req, res, next) => {
   const { user } = req
   const { id } = req.params
   await Board.deleteOne({ _id: id })
   res.send('Board Deleted')
-}
+})
