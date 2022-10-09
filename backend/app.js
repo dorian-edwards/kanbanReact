@@ -14,6 +14,7 @@ const authRouter = require('./routes/auth')
 const boardRouter = require('./routes/board')
 const taskRouter = require('./routes/task')
 const subtaskRouter = require('./routes/subtask')
+const columnRouter = require('./routes/column')
 
 // Configuration
 const app = express()
@@ -61,5 +62,6 @@ app.use('/auth', authRouter)
 app.use('/board', checkAuth, boardRouter)
 app.use('/task', checkAuth, taskRouter)
 app.use('/subtask', checkAuth, subtaskRouter)
+app.use('/column', checkAuth, columnRouter)
 
 module.exports = app
