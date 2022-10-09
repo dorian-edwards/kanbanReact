@@ -105,6 +105,7 @@ exports.updateBoard = catchAsync(async (req, res, next) => {
 exports.deleteBoard = catchAsync(async (req, res, next) => {
   const { user } = req
   const { id } = req.params
-  await Board.deleteOne({ _id: id })
+  const board = await Board.findById(req.params.id)
+  await board.deleteOne()
   res.send('Board Deleted')
 })
