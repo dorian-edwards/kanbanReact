@@ -6,7 +6,7 @@ exports.createBoard = catchAsync(async (req, res, next) => {
   const { user } = req
   const { title, columns } = req.body
   const board = new Board({
-    userID: user.id,
+    userId: user.id,
     title,
     columns: [],
   })
@@ -16,6 +16,8 @@ exports.createBoard = catchAsync(async (req, res, next) => {
       const createdColumn = await Column.create({
         title: column,
         tasks: [],
+        boardId: board._id,
+        userId: user.id,
       })
       board.columns.push(createdColumn.id)
     }
@@ -49,7 +51,7 @@ exports.getBoard = async (req, res, next) => {
 }
 
 exports.getAllBoards = catchAsync(async (req, res, next) => {
-  const boards = await Board.find({ userID: req.user.id })
+  const boards = await Board.find({ userId: req.user.id })
     .populate({
       path: 'columns',
       populate: {

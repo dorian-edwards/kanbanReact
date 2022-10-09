@@ -5,7 +5,7 @@ import BoardIcon from './BoardIcon'
 export interface BoardInterface {
   id: string
   title: string
-  userID: string
+  userId: string
   columns: [string] | []
 }
 

@@ -1,5 +1,6 @@
 const Column = require('./Column')
 const {
+  Schema,
   Schema: {
     Types: { ObjectId },
   },

@@ -1,4 +1,5 @@
 const {
+  Schema,
   Schema: {
     Types: { ObjectId },
   },

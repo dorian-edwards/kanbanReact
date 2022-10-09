@@ -29,7 +29,7 @@ export interface Board {
   _id?: string
   id: string
   title: string
-  userID: string
+  userId: string
   columns: [string] | []
 }
 
