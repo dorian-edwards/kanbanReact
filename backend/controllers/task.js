@@ -35,7 +35,7 @@ exports.createTask = catchAsync(async (req, res, next) => {
     for (let subtask of subtasks) {
       const newSubtask = await Subtask.create({
         content: subtask,
-        completed: false,
+        complete: false,
         parentTask: task._id,
         userId: req.user.id,
       })
