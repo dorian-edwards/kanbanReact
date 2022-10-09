@@ -1,6 +1,4 @@
-const express = require('express')
 const catchAsync = require('../utils/catchAsync')
-
 const Task = require('../models/Task')
 const Column = require('../models/Column')
 const Subtask = require('../models/Subtask')
