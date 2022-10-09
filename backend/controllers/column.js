@@ -1,6 +1,6 @@
 const catchAsync = require('../utils/catchAsync')
 const Column = require('../models/Column')
-const Task = require('../models/Task')
+const Board = require('../models/Board')
 
 exports.getAll = catchAsync(async (req, res, next) => {
   const columns = await Column.find({ userId: req.user.id })
@@ -14,6 +14,7 @@ exports.get = catchAsync(async (req, res, next) => {
 
 exports.create = catchAsync(async (req, res, next) => {
   const { title, boardId, tasks } = req.body
+  const board = await Board.findById(boardId)
 
   const column = await Column.create({
     title: title,
@@ -22,5 +23,7 @@ exports.create = catchAsync(async (req, res, next) => {
     userId: req.user.id,
   })
 
+  board.columns.push(column.id)
+  await board.save()
   res.send(column)
 })
