@@ -18,4 +18,13 @@ const columnSchema = new Schema({
   userId: { type: ObjectId, required: true, ref: 'User' },
 })
 
+columnSchema.pre(
+  'deleteOne',
+  { document: true, query: false },
+  function (next) {
+    console.log(this)
+    next()
+  }
+)
+
 module.exports = model('Column', columnSchema)

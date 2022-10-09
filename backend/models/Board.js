@@ -25,7 +25,10 @@ boardSchema.pre(
   'deleteOne',
   { document: true, query: false },
   async function () {
-    await Column.deleteMany({ boardId: this.id })
+    for (let { _id } of this.columns) {
+      const col = await Column.findById(_id)
+      await col.deleteOne()
+    }
   }
 )
 
