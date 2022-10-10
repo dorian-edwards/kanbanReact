@@ -14,7 +14,7 @@ exports.getTask = catchAsync(async (req, res, next) => {
 
 // modify getAllTask to get only tasks belonging to user
 exports.getAllTasks = catchAsync(async (req, res, next) => {
-  const tasks = await Task.findOne({ userId: req.user.id })
+  const tasks = await Task.find({ userId: req.user.id })
   res.json(tasks)
 })
 
