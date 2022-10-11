@@ -35,7 +35,7 @@ exports.delete = catchAsync(async (req, res, next) => {
 
   board.columns = board.columns.filter((column) => column._id !== id)
   await board.save()
-  await Column.findByIdAndDelete(id)
+  await column.deleteOne()
 
   res.send(true)
 })

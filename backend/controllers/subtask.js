@@ -26,7 +26,7 @@ exports.deleteSubtask = catchAsync(async (req, res, next) => {
   const { parentTask } = subtask
   const task = await Task.findById(parentTask)
   task.subtasks = task.subtasks.filter(
-    (subtaskID) => subtaskID.toString() !== subtask.id
+    (subtaskID) => subtaskID._id !== subtask.id
   )
 
   await subtask.deleteOne()
