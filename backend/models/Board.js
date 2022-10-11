@@ -27,7 +27,7 @@ boardSchema.pre(
   async function () {
     const columns = await Column.find({ boardId: this.id })
     for (let column of columns) {
-      await column.delete()
+      await column.deleteOne()
     }
   }
 )

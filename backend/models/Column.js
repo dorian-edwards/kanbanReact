@@ -21,9 +21,11 @@ const columnSchema = new Schema({
 columnSchema.pre(
   'deleteOne',
   { document: true, query: false },
-  function (next) {
-    console.log(this)
-    next()
+  async function () {
+    const tasks = await Task.find({ status: this.id })
+    for (let task of tasks) {
+      await task.deleteOne()
+    }
   }
 )
 
