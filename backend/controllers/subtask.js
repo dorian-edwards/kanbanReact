@@ -1,4 +1,5 @@
 const Subtask = require('../models/Subtask')
+const Task = require('../models/Task')
 const catchAsync = require('../utils/catchAsync')
 
 exports.getAllSubtasks = catchAsync(async (req, res, next) => {
@@ -19,5 +20,17 @@ exports.toggleComplete = catchAsync(async (req, res, next) => {
 })
 
 exports.deleteSubtask = catchAsync(async (req, res, next) => {
+  const subtask = await Subtask.findById(req.params.id)
+  if (!subtask) return res.status(401).end()
+
+  const { parentTask } = subtask
+  const task = await Task.findById(parentTask)
+  task.subtasks = task.subtasks.filter(
+    (subtaskID) => subtaskID.toString() !== subtask.id
+  )
+
+  await subtask.deleteOne()
+  await task.save()
+
   res.send('deleting a route')
 })
