@@ -37,5 +37,5 @@ exports.delete = catchAsync(async (req, res, next) => {
   await board.save()
   await column.deleteOne()
 
-  res.send(true)
+  res.status(204).send(true)
 })

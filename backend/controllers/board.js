@@ -107,5 +107,5 @@ exports.deleteBoard = catchAsync(async (req, res, next) => {
   const { id } = req.params
   const board = await Board.findById(req.params.id)
   await board.deleteOne()
-  res.send('Board Deleted')
+  res.status(204).send(true)
 })

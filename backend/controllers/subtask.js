@@ -32,5 +32,5 @@ exports.deleteSubtask = catchAsync(async (req, res, next) => {
   await subtask.deleteOne()
   await task.save()
 
-  res.send('deleting a route')
+  res.status(204).send(true)
 })

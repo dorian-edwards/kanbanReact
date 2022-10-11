@@ -69,5 +69,5 @@ exports.delete = catchAsync(async (req, res, next) => {
   await task.deleteOne()
   await column.save()
 
-  res.send('task deleted')
+  res.status(204).send(true)
 })
