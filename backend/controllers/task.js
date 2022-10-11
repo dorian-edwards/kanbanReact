@@ -56,3 +56,20 @@ exports.update = catchAsync(async (req, res, next) => {
 
   if (!task) return res.status(401).send(false)
 })
+
+exports.delete = catchAsync(async (req, res, next) => {
+  const task = await Task.findById(req.params.id)
+  if (!task) return res.status(401).end()
+
+  const { status: taskId } = task
+  const column = await Column.findById(taskId)
+
+  console.log(column.tasks)
+  column.tasks = column.tasks.filter((taskId) => taskId.toString() !== task.id)
+  console.log(column.tasks)
+
+  await task.deleteOne()
+  await column.save()
+
+  res.send('task deleted')
+})
