@@ -2,9 +2,8 @@ const Subtask = require('../models/Subtask')
 const catchAsync = require('../utils/catchAsync')
 
 exports.getAllSubtasks = catchAsync(async (req, res, next) => {
-  const { parentTaskId } = req.body
-  const subtasks = await Subtask
-  res.send('get all subtasks')
+  const subtasks = await Subtask.find({ userId: req.user.id })
+  res.send(subtasks)
 })
 
 exports.getSubtask = catchAsync(async (req, res, next) => {
