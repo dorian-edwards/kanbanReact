@@ -31,8 +31,22 @@ exports.createSubtask = catchAsync(async (req, res, next) => {
   res.send(subtask)
 })
 
+exports.update = catchAsync(async (req, res, next) => {
+  const subtask = await Subtask.findById(req.params.id)
+  if (!subtask) return res.status(401).end()
+
+  subtask.content = req.body.content
+  await subtask.save()
+  res.send(subtask)
+})
+
 exports.toggleComplete = catchAsync(async (req, res, next) => {
-  res.send(`Toggle complete boolean value of task: ${req.params.id}`)
+  const subtask = await Subtask.findById(req.params.id)
+  if (!subtask) return res.status(401).end()
+
+  subtask.complete = !subtask.complete
+  await subtask.save()
+  res.send(subtask)
 })
 
 exports.deleteSubtask = catchAsync(async (req, res, next) => {

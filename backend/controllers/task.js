@@ -14,6 +14,8 @@ exports.getTask = catchAsync(async (req, res, next) => {
 
 exports.getAllTasks = catchAsync(async (req, res, next) => {
   const tasks = await Task.find({ userId: req.user.id })
+    .populate('subtasks')
+    .lean()
   res.json(tasks)
 })
 
