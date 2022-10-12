@@ -8,11 +8,27 @@ exports.getAllSubtasks = catchAsync(async (req, res, next) => {
 })
 
 exports.getSubtask = catchAsync(async (req, res, next) => {
-  res.send(`get single subtask: ${req.params.id}`)
+  const subtask = await Subtask.findById(req.params.id)
+  if (!subtask) return res.status(401).end()
+
+  res.send(subtask)
 })
 
 exports.createSubtask = catchAsync(async (req, res, next) => {
-  res.send('create a new subtask')
+  const { content, parentTask } = req.body
+  if (!content || !content.trim()) return res.status(400).end()
+  const subtask = new Subtask({
+    content,
+    complete: false,
+    parentTask,
+    userId: req.user.id,
+  })
+
+  const task = await Task.findById(parentTask)
+  task.subtasks = [...task.subtasks, subtask.id]
+  await subtask.save()
+  await task.save()
+  res.send(subtask)
 })
 
 exports.toggleComplete = catchAsync(async (req, res, next) => {
