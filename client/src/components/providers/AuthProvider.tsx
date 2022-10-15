@@ -8,36 +8,19 @@ import React, {
 } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import {
+  AuthContextInterface,
+  BoardInterface,
+  User,
+} from '../Interfaces/ObjectInterfaces'
 
 const baseUrl = process.env.REACT_APP_BASE_URL_DEV
-
-export interface User {
-  id: string
-  username: string
-  email: string
-}
-
-export interface AuthContextInterface {
-  login: (data: User) => void
-  logout: () => void
-  user: User | null
-  boards: Board[] | []
-  updateBoards: (data: Board) => void
-}
-
-export interface Board {
-  _id?: string
-  id: string
-  title: string
-  userId: string
-  columns: [string] | []
-}
 
 const AuthContext = createContext<AuthContextInterface | undefined>(undefined)
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null)
-  const [boards, setBoards] = useState<Board[] | []>([])
+  const [boards, setBoards] = useState<BoardInterface[] | []>([])
   const navigate = useNavigate()
 
   const login = async (data: User) => {
@@ -51,7 +34,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     navigate('/')
   }
 
-  const updateBoards = (board: Board) => {
+  const updateBoards = (board: BoardInterface) => {
     setBoards([...boards, board])
     navigate('/home')
   }
@@ -67,6 +50,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, [])
 
   useEffect(() => {
+    if (!user) return
     const getBoards = async () => {
       const { data } = await axios.get(`${baseUrl}/board`, {
         withCredentials: true,
@@ -75,7 +59,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     getBoards()
-  }, [])
+  }, [user])
 
   const value = useMemo(
     () => ({

@@ -24,6 +24,8 @@ module.exports = {
       'input-place': 'rgba(0, 0, 18, 0.25)',
       transparent: 'transparent',
       'checkbox-border': 'rgba(130, 143, 163, 0.248914)',
+      teal: '#49C4E5',
+      'aqua-green': '#67E2AE',
     },
     extend: {
       backgroundImage: {
