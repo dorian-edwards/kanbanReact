@@ -18,9 +18,7 @@ export function Column({
   return (
     <div className='column-wrapper w-full max-w-[280px]'>
       <div className='column-header flex gap-3 items-center mb-6'>
-        <div
-          className={`bauble w-[15px] h-[15px] rounded-full bg-${color}`}
-        ></div>
+        <div className={`bauble w-[15px] h-[15px] rounded-full ${color}`}></div>
         <div className='column-title uppercase heading-s'>{column.title}</div>
       </div>
       <ul className='task-wrapper'>
@@ -52,7 +50,7 @@ export function SubtaskSummary({ subtasks }: { subtasks: SubtaskInterface[] }) {
 
 export function Task({ task }: { task: TaskInterface }) {
   return (
-    <div className='task bg-white px-4 py-[23px] w-full rounded-lg'>
+    <div className='task bg-white dark:bg-dark-gray dark:text-white px-4 py-[23px] w-full rounded-lg'>
       <h3 className='heading-m mb-2'>{task.title}</h3>
       <SubtaskSummary subtasks={task.subtasks} />
     </div>
@@ -67,7 +65,7 @@ export default function Board() {
   )
 
   //cycles through colors for column icons
-  const colorMap = ['teal', 'main-purple', 'aqua-green']
+  const colorMap = ['bg-teal', 'bg-main-purple', 'bg-aqua-green']
   let color = 2
   const incrementIconColor = (): void => {
     if (color === 2) {

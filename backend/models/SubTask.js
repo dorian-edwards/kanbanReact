@@ -9,7 +9,6 @@ const {
 const subtaskSchema = new Schema({
   content: {
     type: String,
-    unique: true,
     required: true,
   },
   complete: Boolean,

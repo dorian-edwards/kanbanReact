@@ -34,7 +34,6 @@ export default function LoginForm() {
         { email, password },
         { withCredentials: true }
       )
-      console.log(data)
       await login(data)
       clearInput()
     } catch (err) {
