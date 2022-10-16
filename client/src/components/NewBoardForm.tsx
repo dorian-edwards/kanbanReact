@@ -11,7 +11,6 @@ const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 export default function NewBoardForm() {
   const [title, setTitle] = useState<string>('')
   const [columnInputs, setColumnInputs] = useState<string[]>([])
-  const navigate = useNavigate()
   const { updateBoards } = useAuth()
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -31,7 +30,7 @@ export default function NewBoardForm() {
     setColumnInputs([...columnInputs, ''])
   }
 
-  const handleDeleteColumnInput = (index: number): void => {
+  const deleteColumnInput = (index: number): void => {
     const editedColumnInputs = columnInputs.filter((column, i) => index !== i)
     setColumnInputs(editedColumnInputs)
   }
@@ -81,8 +80,8 @@ export default function NewBoardForm() {
                 onChange={(e) => handleColumnInputChange(e, index)}
                 optionalStyling={'w-full'}
               />
-              <button onClick={() => handleDeleteColumnInput(index)}>
-                <img src={cross} alt='' className='block' />
+              <button onClick={() => deleteColumnInput(index)}>
+                <img src={cross} alt='x icon' className='block' />
               </button>
             </div>
           )

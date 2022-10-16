@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useTheme } from './providers/ThemeProvider'
 import { useAuth } from './providers/AuthProvider'
+import Overlay from './Overlay'
+import NewTaskForm from './NewTaskForm'
 
 import Button from './Button'
 import ThemeToggle from './ThemeToggle'
@@ -15,6 +17,7 @@ import verticalEllipses from '../assets/icon-vertical-ellipsis.svg'
 
 export default function DesktopNav({ currentBoard }: { currentBoard: string }) {
   const [sidePanel, setSidePanel] = useState<boolean>(true)
+  const [fullscreenOpen, setFullscreenOpen] = useState(false)
   const { isDarkMode } = useTheme()
   const { logout, boards } = useAuth()
 
@@ -64,6 +67,7 @@ export default function DesktopNav({ currentBoard }: { currentBoard: string }) {
               styling='btn primary-l w-[164px] heading-m'
               text='+ Add New Task'
               disabled={false}
+              onClick={() => setFullscreenOpen(true)}
             />
             <button onClick={logout}>
               <img src={verticalEllipses} alt='vertical ellipsis' />
@@ -80,6 +84,9 @@ export default function DesktopNav({ currentBoard }: { currentBoard: string }) {
           </button>
         )}
       </nav>
+      <Overlay open={fullscreenOpen}>
+        <NewTaskForm />
+      </Overlay>
     </div>
   )
 }
