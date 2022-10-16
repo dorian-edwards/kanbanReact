@@ -169,6 +169,11 @@
   .board-listing {
     @apply flex gap-x-4 h-12 w-full max-w-[276px] items-center rounded-tr-full rounded-br-full pl-8;
   }
+
+  /* Overlay */
+  .overlay-blur {
+    @apply backdrop-blur-[4rem];
+  }
 }
 
 /* SVG styling */

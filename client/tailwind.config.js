@@ -26,6 +26,7 @@ module.exports = {
       'checkbox-border': 'rgba(130, 143, 163, 0.248914)',
       teal: '#49C4E5',
       'aqua-green': '#67E2AE',
+      overlay: 'rgb(0, 0, 0, 0.25);',
     },
     extend: {
       backgroundImage: {
