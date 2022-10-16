@@ -154,7 +154,7 @@
   }
 
   .new-task-form-wrapper {
-    @apply bg-white border-solid border-[1px] border-black w-full max-w-[480px] rounded-[6px] p-8;
+    @apply bg-white w-full max-w-[480px] rounded-[6px] p-8;
 
     @apply dark:bg-dark-gray dark:text-white;
   }

@@ -4,6 +4,8 @@ import TextArea from './inputs/TextArea'
 import Button from './Button'
 
 import cross from '../assets/icon-cross.svg'
+import BoardDropdown from './BoardDropdown'
+import { BoardInterface } from './Interfaces/ObjectInterfaces'
 
 // for now this seems to cover only title. It'll need some tweaking later
 const flashError = (): void => {
@@ -19,7 +21,11 @@ const flashError = (): void => {
   }
 }
 
-export default function NewTaskForm() {
+export default function NewTaskForm({
+  currentBoard,
+}: {
+  currentBoard: BoardInterface | undefined
+}) {
   const [title, setTitle] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const [subtaskInputs, setSubtaskInputs] = useState<string[] | []>([])

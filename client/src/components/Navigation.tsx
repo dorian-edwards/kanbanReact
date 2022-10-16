@@ -6,10 +6,13 @@ import { useTheme } from './providers/ThemeProvider'
 import { useAuth } from './providers/AuthProvider'
 import logoDark from '../assets/logo-dark.svg'
 import logoLight from '../assets/logo-light.svg'
+import { BoardInterface } from './Interfaces/ObjectInterfaces'
 
 export default function Navigation() {
   const { isMobile, isDarkMode } = useTheme()
-  const [currentBoard, setCurrentBoard] = useState<string>('')
+  const [currentBoard, setCurrentBoard] = useState<BoardInterface | undefined>(
+    undefined
+  )
   const { user, boards } = useAuth()
 
   const id = useLocation().pathname.split('/home/')[1]
@@ -18,7 +21,7 @@ export default function Navigation() {
     if (id) {
       const board = boards.find((board) => board._id === id)
       if (board) {
-        setCurrentBoard(board.title)
+        setCurrentBoard(board)
       }
     }
   }, [id, boards])

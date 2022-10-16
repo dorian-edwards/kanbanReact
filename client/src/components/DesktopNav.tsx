@@ -14,8 +14,13 @@ import logoDark from '../assets/logo-dark.svg'
 import hideSidebar from '../assets/icon-hide-sidebar.svg'
 import showSidebar from '../assets/icon-show-sidebar.svg'
 import verticalEllipses from '../assets/icon-vertical-ellipsis.svg'
+import { BoardInterface } from './Interfaces/ObjectInterfaces'
 
-export default function DesktopNav({ currentBoard }: { currentBoard: string }) {
+export default function DesktopNav({
+  currentBoard,
+}: {
+  currentBoard: BoardInterface | undefined
+}) {
   const [sidePanel, setSidePanel] = useState<boolean>(true)
   const [fullscreenOpen, setFullscreenOpen] = useState(false)
   const { isDarkMode } = useTheme()
@@ -61,7 +66,7 @@ export default function DesktopNav({ currentBoard }: { currentBoard: string }) {
         )}
 
         <div className='top-bar flex justify-between items-center'>
-          <h1 className='heading-xl'>{currentBoard || ''}</h1>
+          <h1 className='heading-xl'>{currentBoard?.title || ''}</h1>
           <div className='flex items-center gap-x-6'>
             <Button
               styling='btn primary-l w-[164px] heading-m'
@@ -85,7 +90,7 @@ export default function DesktopNav({ currentBoard }: { currentBoard: string }) {
         )}
       </nav>
       <Overlay open={fullscreenOpen}>
-        <NewTaskForm />
+        <NewTaskForm currentBoard={currentBoard} />
       </Overlay>
     </div>
   )

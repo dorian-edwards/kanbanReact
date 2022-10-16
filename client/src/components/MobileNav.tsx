@@ -3,15 +3,20 @@ import BoardDropdown from './BoardDropdown'
 import logoMobile from '../assets/logo-mobile.svg'
 import verticalEllipses from '../assets/icon-vertical-ellipsis.svg'
 import Button from './Button'
+import { BoardInterface } from './Interfaces/ObjectInterfaces'
 
-export default function Nav({ currentBoard }: { currentBoard: string }) {
+export default function Nav({
+  currentBoard,
+}: {
+  currentBoard: BoardInterface | undefined
+}) {
   return (
     <nav className='flex items-center justify-between px-4 w-full bg-white dark:bg-dark-gray h-16'>
       <div className='flex items-center'>
         <Link to='/'>
           <img className='mr-4' src={logoMobile} alt='kanban mobile logo' />
         </Link>
-        <BoardDropdown currentBoard={currentBoard} />
+        <BoardDropdown currentBoard={currentBoard?.title || ''} />
       </div>
       <div className='flex items-center'>
         <Button
