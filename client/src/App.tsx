@@ -13,7 +13,7 @@ export default function App() {
       <header>
         <Navigation />
       </header>
-      <main className='bg-light-gray dark:bg-v-dark-gray h-full tablet:h-[calc(100vh-97px)] float-left overflow-x-scroll w-[calc(100%-300px)]'>
+      <main className='bg-light-gray-bg dark:bg-v-dark-gray h-full tablet:h-[calc(100vh-97px)] float-left overflow-x-scroll w-[calc(100%-300px)]'>
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/login' element={<Login />} />

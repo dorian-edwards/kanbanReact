@@ -30,7 +30,7 @@ export default function Board() {
   }, [boardId, boards])
 
   return (
-    <div className='board flex gap-x-6 p-6 w-[100vw]'>
+    <div className='board flex gap-x-6 p-6 w-[100vw] bg-light-gray-bg'>
       {currentBoard &&
         currentBoard.columns.map((column) => {
           incrementIconColor()
