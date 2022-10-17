@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import InputField from './inputs/InputField'
 import TextArea from './inputs/TextArea'
 import Button from './Button'
 
+import chevronDown from '../assets/icon-chevron-down.svg'
+import chevronUp from '../assets/icon-chevron-up.svg'
 import cross from '../assets/icon-cross.svg'
-import BoardDropdown from './BoardDropdown'
-import { BoardInterface } from './Interfaces/ObjectInterfaces'
+
+import { BoardInterface, ColumnInterface } from './Interfaces/ObjectInterfaces'
 
 // for now this seems to cover only title. It'll need some tweaking later
 const flashError = (): void => {
@@ -20,15 +22,25 @@ const flashError = (): void => {
     }, 3000)
   }
 }
-
+// ************************ End of Error Handling ************************ //
 export default function NewTaskForm({
   currentBoard,
+  close,
 }: {
   currentBoard: BoardInterface | undefined
+  close: () => void
 }) {
   const [title, setTitle] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const [subtaskInputs, setSubtaskInputs] = useState<string[] | []>([])
+  const [isActive, setIsActive] = useState<boolean>(false)
+  const [selectedColumn, setSelectedColumn] = useState<
+    ColumnInterface | undefined
+  >(undefined)
+
+  useEffect(() => {
+    setSelectedColumn(currentBoard?.columns[0])
+  }, [currentBoard])
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTitle(e.target.value)
@@ -60,8 +72,15 @@ export default function NewTaskForm({
     setSubtaskInputs(data)
   }
 
+  const toggleActive = () => setIsActive(!isActive)
+
+  const handleColumnSelect = (column: ColumnInterface): void => {
+    setSelectedColumn(column)
+    toggleActive()
+  }
+
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    //e.preventDefault()
+    // e.preventDefault()
     if (!title.trim()) {
       return flashError()
     }
@@ -69,7 +88,12 @@ export default function NewTaskForm({
 
   return (
     <div className='new-task-form-wrapper'>
-      <h2 className='heading-l mb-6'>Add New Task</h2>
+      <div className='new-task-header flex justify-between items-center mb-6'>
+        <h2 className='heading-l'>Add New Task</h2>
+        <button type='button' onClick={close}>
+          <img src={cross} alt='cross icon' />
+        </button>{' '}
+      </div>
       <form onSubmit={handleSubmit}>
         <InputField
           label='Title'
@@ -110,6 +134,51 @@ export default function NewTaskForm({
           onClick={createNewSubtaskInput}
           type='button'
         />
+        <h2 className='body-m text-med-gray mb-2 dark:text-white'>Status</h2>
+        <div className={`status-dropdown mb-6`}>
+          <div
+            className={`status-dropdown-wrapper ${
+              isActive
+                ? 'border-solid border-[1px] border-input-idle rounded'
+                : ''
+            }`}
+          >
+            <div
+              className={`flex justify-between items-center input px-4 rounded ${
+                isActive ? 'border-none' : ''
+              }`}
+            >
+              <p className='body-l text-black dark:text-white'>
+                {selectedColumn?.title}
+              </p>
+              <button type='button' onClick={toggleActive}>
+                <img
+                  src={isActive ? chevronUp : chevronDown}
+                  alt='downward chevron'
+                />
+              </button>
+            </div>
+            {isActive && (
+              <ul className='px-4 w-[260px]bg-white dark:bg-dark-gray rounded-br-md'>
+                {currentBoard?.columns
+                  .filter((column) => column._id !== selectedColumn?._id)
+                  .map((column) => (
+                    <li
+                      key={column._id}
+                      className='dark:text-white body-l py-[8.5px]'
+                    >
+                      <button
+                        type='button'
+                        onClick={() => handleColumnSelect(column)}
+                      >
+                        {column.title}
+                      </button>
+                    </li>
+                  ))}
+              </ul>
+            )}
+          </div>
+        </div>
         <Button
           styling='primary-s'
           text='Create Task'

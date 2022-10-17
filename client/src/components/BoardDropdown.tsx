@@ -11,13 +11,13 @@ export default function BoardDropdown({
 }: {
   currentBoard: string
 }) {
-  const [isActive, setActive] = useState<boolean>(false)
+  const [isActive, setIsActive] = useState<boolean>(false)
   const { boards } = useAuth()
 
-  const toggleActive = () => setActive(!isActive)
+  const toggleActive = () => setIsActive(!isActive)
 
   useEffect(() => {
-    setActive(false)
+    setIsActive(false)
   }, [currentBoard])
 
   return (
