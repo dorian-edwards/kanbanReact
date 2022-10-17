@@ -186,3 +186,8 @@
 .currentColor {
   fill: currentColor;
 }
+
+/* Misc */
+html {
+  overflow: hidden;
+}

@@ -50,7 +50,7 @@ export function SubtaskSummary({ subtasks }: { subtasks: SubtaskInterface[] }) {
 
 export function Task({ task }: { task: TaskInterface }) {
   return (
-    <div className='task bg-white dark:bg-dark-gray dark:text-white px-4 py-[23px] w-full rounded-lg'>
+    <div className='task bg-white dark:bg-dark-gray dark:text-white px-4 py-[23px] w-full min-w-[280px] rounded-lg'>
       <h3 className='heading-m mb-2'>{task.title}</h3>
       <SubtaskSummary subtasks={task.subtasks} />
     </div>
@@ -81,7 +81,7 @@ export default function Board() {
   }, [boardId, boards])
 
   return (
-    <div className='board flex gap-x-6 p-6'>
+    <div className='board flex gap-x-6 p-6 w-[100vw]'>
       {currentBoard &&
         currentBoard.columns.map((column) => {
           incrementIconColor()

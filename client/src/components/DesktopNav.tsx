@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTheme } from './providers/ThemeProvider'
 import { useAuth } from './providers/AuthProvider'
@@ -24,12 +24,12 @@ export default function DesktopNav({
   const [sidePanel, setSidePanel] = useState<boolean>(true)
   const [fullscreenOpen, setFullscreenOpen] = useState(false)
   const { isDarkMode } = useTheme()
-  const { logout, boards } = useAuth()
+  const { logout } = useAuth()
 
   const toggleSidePanel = () => setSidePanel(!sidePanel)
 
   return (
-    <div>
+    <>
       <div
         className={`side-panel ${
           sidePanel ? 'w-[40vw]' : 'w-0 overflow-hidden'
@@ -95,6 +95,6 @@ export default function DesktopNav({
           close={() => setFullscreenOpen(false)}
         />
       </Overlay>
-    </div>
+    </>
   )
 }

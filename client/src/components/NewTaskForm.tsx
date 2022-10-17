@@ -88,7 +88,7 @@ export default function NewTaskForm({
 
   return (
     <div className='new-task-form-wrapper'>
-      <div className='new-task-header flex justify-between items-center mb-6'>
+      <div className='new-task-form-header flex justify-between items-center mb-6'>
         <h2 className='heading-l'>Add New Task</h2>
         <button type='button' onClick={close}>
           <img src={cross} alt='cross icon' />

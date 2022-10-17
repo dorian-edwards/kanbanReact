@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useAuth } from '../components/providers/AuthProvider'
 import InputField from './inputs/InputField'
@@ -8,7 +7,7 @@ import cross from '../assets/icon-cross.svg'
 
 const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 
-export default function NewBoardForm() {
+export default function NewBoardForm({ close }: { close: () => void }) {
   const [title, setTitle] = useState<string>('')
   const [columnInputs, setColumnInputs] = useState<string[]>([])
   const { updateBoards } = useAuth()
@@ -53,9 +52,14 @@ export default function NewBoardForm() {
   return (
     <div className='new-board-form bg-white w-[90%] max-w-[480px] dark:bg-dark-gray'>
       <form onSubmit={handleSubmit}>
-        <h2 className='heading-l mb-6 text-black dark:text-white'>
-          Add New Board
-        </h2>
+        <div className='new-board-form-header flex justify-between items-center mb-6'>
+          <h2 className='heading-l text-black dark:text-white'>
+            Add New Board
+          </h2>
+          <button type='button' onClick={close}>
+            <img src={cross} alt='cross icon' />
+          </button>{' '}
+        </div>
         <InputField
           label='Board Name'
           placeholder='e.g. Web Design'

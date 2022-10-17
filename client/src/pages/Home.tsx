@@ -1,4 +1,4 @@
-import { Link, useParams, Outlet, Navigate, redirect } from 'react-router-dom'
+import { Link, useParams, Outlet, Navigate } from 'react-router-dom'
 import { useAuth } from '../components/providers/AuthProvider'
 import Button from '../components/Button'
 
@@ -33,9 +33,3 @@ export default function Home() {
     </>
   )
 }
-
-/**
- * no boards => blank home create board
- * boards but no id => first board ? redirect or navigate??
- * boards and id => board w/id
- */
