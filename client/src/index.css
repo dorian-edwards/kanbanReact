@@ -7,6 +7,8 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    overflow: hidden;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
   html,
@@ -21,8 +23,9 @@
     box-sizing: inherit;
   }
 
-  html {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+  /* SVG styling */
+  .currentColor {
+    fill: currentColor;
   }
 }
 
@@ -180,14 +183,4 @@
   .overlay-blur {
     @apply backdrop-blur-[4rem];
   }
-}
-
-/* SVG styling */
-.currentColor {
-  fill: currentColor;
-}
-
-/* Misc */
-html {
-  overflow: hidden;
 }
