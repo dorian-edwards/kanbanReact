@@ -6,6 +6,7 @@ import { useTheme } from '../providers/ThemeProvider'
 import { BoardInterface } from '../Interfaces/ObjectInterfaces'
 import { useAuth } from '../providers/AuthProvider'
 import NavigationBoiler from '../components/NavigationBoiler'
+import DesktopNavFull from '../components/DesktopNavFull'
 
 export default function NavigationOverlay({
   children,
@@ -40,7 +41,11 @@ export default function NavigationOverlay({
   return (
     <>
       <header>
-        <NavigationBoiler />
+        {!user ? (
+          <NavigationBoiler />
+        ) : (
+          <DesktopNavFull currentBoard={currentBoard} />
+        )}
       </header>
       <main className='bg-light-gray-bg dark:bg-v-dark-gray h-full tablet:h-[calc(100vh-97px)] overflow-x-scroll'>
         {children}
@@ -48,3 +53,9 @@ export default function NavigationOverlay({
     </>
   )
 }
+
+/**
+ * Scenario 2: user present
+ * ext - user present no side panel => mobile : desktop
+ * ext - user present w/side panel => mobile : desktop
+ */

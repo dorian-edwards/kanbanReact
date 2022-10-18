@@ -168,7 +168,11 @@
   }
 
   .logo-wrapper {
-    @apply w-[200px] border-solid border-r-[1px] border-b-[1px] border-light-gray dark:border-lines-dark h-[66px] bg-white dark:bg-dark-gray flex items-center px-6;
+    @apply w-[200px] border-solid border-r-[1px] border-light-gray dark:border-lines-dark h-[66px] bg-white dark:bg-dark-gray flex items-center px-6;
+  }
+
+  .logo-wrapper-full {
+    @apply w-[200px] border-solid border-r-[1px] border-light-gray dark:border-lines-dark h-[66px] bg-white dark:bg-dark-gray flex items-center px-6;
   }
 
   .top-bar {
