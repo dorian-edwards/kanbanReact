@@ -7,13 +7,12 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Register from './pages/Register'
 import Board from './pages/Board'
 
+import NavigationOverlay from './Overlays/NavigationOverlay'
+
 export default function App() {
   return (
     <AuthProvider>
-      <header>
-        <Navigation />
-      </header>
-      <main className='bg-light-gray-bg dark:bg-v-dark-gray h-full tablet:h-[calc(100vh-97px)] float-left overflow-x-scroll w-[calc(100%-300px)]'>
+      <NavigationOverlay>
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/login' element={<Login />} />
@@ -37,7 +36,7 @@ export default function App() {
             />
           </Route>
         </Routes>
-      </main>
+      </NavigationOverlay>
     </AuthProvider>
   )
 }
