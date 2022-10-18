@@ -1,12 +1,18 @@
+// import core
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+
+// import contexts
+import { useAuth } from '../providers/AuthProvider'
 import { useTheme } from '../providers/ThemeProvider'
 
-// interfaces
+// importinterfaces
 import { BoardInterface } from '../Interfaces/ObjectInterfaces'
-import { useAuth } from '../providers/AuthProvider'
-import NavigationBoiler from '../components/NavigationBoiler'
+
+// import components
 import DesktopNavFull from '../components/DesktopNavFull'
+import MobileNav from '../components/MobileNav'
+import NavigationBoiler from '../components/NavigationBoiler'
 
 export default function NavigationOverlay({
   children,
@@ -44,7 +50,13 @@ export default function NavigationOverlay({
         {!user ? (
           <NavigationBoiler />
         ) : (
-          <DesktopNavFull currentBoard={currentBoard} />
+          <>
+            {isMobile ? (
+              <MobileNav currentBoard={currentBoard} />
+            ) : (
+              <DesktopNavFull currentBoard={currentBoard} />
+            )}
+          </>
         )}
       </header>
       <main className='bg-light-gray-bg dark:bg-v-dark-gray h-full tablet:h-[calc(100vh-97px)] overflow-x-scroll'>

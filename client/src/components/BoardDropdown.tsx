@@ -22,7 +22,7 @@ export default function BoardDropdown({
 
   return (
     <div className='dropdown-wrapper'>
-      <div className='logo-wrapper flex gap-x-2'>
+      <div className='logo-wrapper-full border-none pl-0 flex gap-x-2'>
         <h2 className='heading-l text-black dark:text-white'>{currentBoard}</h2>
         <button onClick={toggleActive}>
           <img
