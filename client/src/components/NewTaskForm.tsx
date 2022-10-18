@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import InputField from './inputs/InputField'
-import TextArea from './inputs/TextArea'
+import InputField from '../inputs/InputField'
+import TextArea from '../inputs/TextArea'
 import Button from './Button'
 
 import chevronDown from '../assets/icon-chevron-down.svg'
 import chevronUp from '../assets/icon-chevron-up.svg'
 import cross from '../assets/icon-cross.svg'
 
-import { BoardInterface, ColumnInterface } from './Interfaces/ObjectInterfaces'
+import { BoardInterface, ColumnInterface } from '../Interfaces/ObjectInterfaces'
 
 // for now this seems to cover only title. It'll need some tweaking later
 const flashError = (): void => {

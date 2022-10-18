@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useAuth } from '../components/providers/AuthProvider'
-import InputField from './inputs/InputField'
+import { useAuth } from '../providers/AuthProvider'
+import InputField from '../inputs/InputField'
 import Button from './Button'
 import cross from '../assets/icon-cross.svg'
 

@@ -3,7 +3,7 @@ import BoardDropdown from './BoardDropdown'
 import logoMobile from '../assets/logo-mobile.svg'
 import verticalEllipses from '../assets/icon-vertical-ellipsis.svg'
 import Button from './Button'
-import { BoardInterface } from './Interfaces/ObjectInterfaces'
+import { BoardInterface } from '../Interfaces/ObjectInterfaces'
 
 export default function Nav({
   currentBoard,

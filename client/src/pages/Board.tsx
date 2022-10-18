@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useAuth } from '../components/providers/AuthProvider'
+import { useAuth } from '../providers/AuthProvider'
 import Column from '../components/Column'
 
-import { BoardInterface } from '../components/Interfaces/ObjectInterfaces'
+import { BoardInterface } from '../Interfaces/ObjectInterfaces'
 import NewBoardButton from '../components/NewBoardButton'
 
 export default function Board() {

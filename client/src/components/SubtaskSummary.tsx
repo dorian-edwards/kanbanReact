@@ -1,4 +1,4 @@
-import { SubtaskInterface } from './Interfaces/ObjectInterfaces'
+import { SubtaskInterface } from '../Interfaces/ObjectInterfaces'
 
 export default function SubtaskSummary({
   subtasks,

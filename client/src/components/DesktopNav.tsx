@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useTheme } from './providers/ThemeProvider'
-import { useAuth } from './providers/AuthProvider'
-import Overlay from './Overlay'
+import { useTheme } from '../providers/ThemeProvider'
+import { useAuth } from '../providers/AuthProvider'
+import Overlay from '../Overlays/Overlay'
 import NewTaskForm from './NewTaskForm'
 
 import Button from './Button'
@@ -14,7 +14,7 @@ import logoDark from '../assets/logo-dark.svg'
 import hideSidebar from '../assets/icon-hide-sidebar.svg'
 import showSidebar from '../assets/icon-show-sidebar.svg'
 import verticalEllipses from '../assets/icon-vertical-ellipsis.svg'
-import { BoardInterface } from './Interfaces/ObjectInterfaces'
+import { BoardInterface } from '../Interfaces/ObjectInterfaces'
 
 export default function DesktopNav({
   currentBoard,

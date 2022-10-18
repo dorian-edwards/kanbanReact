@@ -1,5 +1,5 @@
 import { Link, useParams, Outlet, Navigate } from 'react-router-dom'
-import { useAuth } from '../components/providers/AuthProvider'
+import { useAuth } from '../providers/AuthProvider'
 import Button from '../components/Button'
 
 export default function Home() {

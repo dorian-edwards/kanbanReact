@@ -1,4 +1,4 @@
-import { ColumnInterface, TaskInterface } from './Interfaces/ObjectInterfaces'
+import { ColumnInterface, TaskInterface } from '../Interfaces/ObjectInterfaces'
 import Task from './Task'
 
 export default function Column({

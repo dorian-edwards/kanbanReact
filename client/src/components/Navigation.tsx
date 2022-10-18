@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import MobileNav from './MobileNav'
 import DesktopNav from './DesktopNav'
-import { useTheme } from './providers/ThemeProvider'
-import { useAuth } from './providers/AuthProvider'
+import { useTheme } from '../providers/ThemeProvider'
+import { useAuth } from '../providers/AuthProvider'
 import logoDark from '../assets/logo-dark.svg'
 import logoLight from '../assets/logo-light.svg'
-import { BoardInterface } from './Interfaces/ObjectInterfaces'
+import { BoardInterface } from '../Interfaces/ObjectInterfaces'
 
 export default function Navigation() {
   const { isMobile, isDarkMode } = useTheme()

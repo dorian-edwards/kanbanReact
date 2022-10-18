@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import Overlay from './Overlay'
-import { useAuth } from './providers/AuthProvider'
+import Overlay from '../Overlays/Overlay'
+import { useAuth } from '../providers/AuthProvider'
 import BoardIcon from './BoardIcon'
 import NewBoardForm from './NewBoardForm'
 

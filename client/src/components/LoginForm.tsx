@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import InputField from './inputs/InputField'
+import InputField from '../inputs/InputField'
 import Button from './Button'
-import { useAuth } from './providers/AuthProvider'
+import { useAuth } from '../providers/AuthProvider'
 
 const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 

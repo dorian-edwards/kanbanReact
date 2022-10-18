@@ -1,5 +1,5 @@
 import SubtaskSummary from './SubtaskSummary'
-import { TaskInterface } from './Interfaces/ObjectInterfaces'
+import { TaskInterface } from '../Interfaces/ObjectInterfaces'
 
 export default function Task({ task }: { task: TaskInterface }) {
   return (

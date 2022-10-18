@@ -1,6 +1,6 @@
 import RegistrationForm from '../components/RegistrationForm'
 import { Navigate } from 'react-router-dom'
-import { useAuth } from '../components/providers/AuthProvider'
+import { useAuth } from '../providers/AuthProvider'
 
 export default function Login() {
   const { user } = useAuth()

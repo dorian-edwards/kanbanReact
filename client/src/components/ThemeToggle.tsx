@@ -1,6 +1,6 @@
 import lightTheme from '../assets/icon-light-theme.svg'
 import darkTheme from '../assets/icon-dark-theme.svg'
-import { useTheme } from '../components/providers/ThemeProvider'
+import { useTheme } from '../providers/ThemeProvider'
 
 export default function ThemeToggle() {
   const { toggleDark, isDarkMode } = useTheme()
