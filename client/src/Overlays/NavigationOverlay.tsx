@@ -5,6 +5,7 @@ import { useTheme } from '../providers/ThemeProvider'
 // interfaces
 import { BoardInterface } from '../Interfaces/ObjectInterfaces'
 import { useAuth } from '../providers/AuthProvider'
+import NavigationBoiler from '../components/NavigationBoiler'
 
 export default function NavigationOverlay({
   children,
@@ -39,7 +40,7 @@ export default function NavigationOverlay({
   return (
     <>
       <header>
-        <div>Navigation</div>
+        <NavigationBoiler />
       </header>
       <main className='bg-light-gray-bg dark:bg-v-dark-gray h-full tablet:h-[calc(100vh-97px)] overflow-x-scroll'>
         {children}
