@@ -22,7 +22,7 @@ export default function NavigationOverlay({
 }) {
   const [sidePanel, setSidePanel] = useState<boolean>(true)
   // import themes
-  const { isMobile, isDarkMode } = useTheme()
+  const { isMobile } = useTheme()
 
   // Get board id if applicable
   const id = useLocation().pathname.split('/home/')[1]

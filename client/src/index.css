@@ -150,6 +150,11 @@
     @apply flex gap-x-4 h-12 w-full max-w-[276px] items-center rounded-tr-full rounded-br-full pl-8;
   }
 
+  /* Non-active links */
+  .inactive-board {
+    @apply text-med-gray hover:bg-main-purple-opaque dark:hover:bg-white;
+  }
+
   /* Main */
 
   .stage {
@@ -193,6 +198,6 @@
   }
 
   .body-m {
-    @apply font-bold text-[12px] text-dark-gray leading-[15px];
+    @apply font-bold text-[12px] leading-[15px];
   }
 }

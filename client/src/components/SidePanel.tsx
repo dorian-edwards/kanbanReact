@@ -9,7 +9,6 @@ import BoardsListing from './BoardsListing'
 import ThemeToggle from './ThemeToggle'
 
 // import images
-import hideSidebar from '../assets/icon-hide-sidebar.svg'
 import logoLight from '../assets/logo-light.svg'
 import logoDark from '../assets/logo-dark.svg'
 

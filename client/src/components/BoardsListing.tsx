@@ -16,6 +16,7 @@ export default function BoardsListing() {
   const { boards } = useAuth()
   const [fullscreenOpen, setFullscreenOpen] = useState<boolean>(false)
 
+  // todo add styling for hover effects
   return (
     <>
       <div className='boards-listing'>
@@ -29,12 +30,16 @@ export default function BoardsListing() {
                 to={`/home/${board._id}`}
                 className={({ isActive }) =>
                   `board-listing ${
-                    isActive ? 'text-white bg-main-purple' : 'text-med-gray'
+                    isActive
+                      ? 'text-white bg-main-purple'
+                      : 'inactive-board group'
                   }`
                 }
               >
                 <BoardIcon />
-                <p className='heading-m'>{board.title}</p>
+                <p className='heading-m group-hover:text-main-purple'>
+                  {board.title}
+                </p>
               </NavLink>
             </li>
           ))}
