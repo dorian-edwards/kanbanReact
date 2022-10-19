@@ -13,12 +13,14 @@ import { BoardInterface } from '../Interfaces/ObjectInterfaces'
 import DesktopNavFull from '../components/DesktopNavFull'
 import MobileNav from '../components/MobileNav'
 import NavigationBoiler from '../components/NavigationBoiler'
+import SidePanel from '../components/SidePanel'
 
 export default function NavigationOverlay({
   children,
 }: {
   children: JSX.Element
 }) {
+  const [sidePanel, setSidePanel] = useState<boolean>(true)
   // import themes
   const { isMobile, isDarkMode } = useTheme()
 
@@ -41,8 +43,7 @@ export default function NavigationOverlay({
     }
   }, [id, boards])
 
-  // Next steps
-  // 1) build generic nav bar for when user is not logged in
+  const toggleSidePanel = () => setSidePanel(!sidePanel)
 
   return (
     <>
@@ -65,9 +66,3 @@ export default function NavigationOverlay({
     </>
   )
 }
-
-/**
- * Scenario 2: user present
- * ext - user present no side panel => mobile : desktop
- * ext - user present w/side panel => mobile : desktop
- */

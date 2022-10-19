@@ -32,7 +32,11 @@ export default function DesktopNavFull({
       <nav className='desktop-nav flex h-[97px]'>
         <div className='top-bar flex'>
           <div className='logo-wrapper-full h-full'>
-            <img src={isDarkMode ? logoLight : logoDark} alt='kanban logo' />
+            <img
+              src={isDarkMode ? logoLight : logoDark}
+              alt='kanban logo'
+              className='pb-[5px]'
+            />
           </div>
           <div className='flex w-full pl-8 justify-between items-center'>
             <h1 className='heading-xl'>{currentBoard?.title || ''}</h1>
