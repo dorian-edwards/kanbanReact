@@ -23,7 +23,7 @@ export default function DesktopNavFull({
   sidePanel,
 }: {
   currentBoard: BoardInterface | undefined
-  sidePanel: boolean
+  sidePanel?: boolean
 }) {
   const [fullscreenOpen, setFullscreenOpen] = useState(false)
   const { isDarkMode } = useTheme()

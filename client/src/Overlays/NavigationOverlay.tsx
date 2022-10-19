@@ -12,7 +12,6 @@ import { BoardInterface } from '../Interfaces/ObjectInterfaces'
 // import components
 import DesktopNavFull from '../components/DesktopNavFull'
 import MobileNav from '../components/MobileNav'
-import NavigationBoiler from '../components/NavigationBoiler'
 import SidePanel from '../components/SidePanel'
 import LoggedOut from '../pages/LoggedOut'
 
@@ -47,41 +46,44 @@ export default function NavigationOverlay({
   const toggleSidePanel = () => setSidePanel(!sidePanel)
 
   return (
-    /*
     <>
-      <header>
-        {!user ? (
-          <NavigationBoiler />
-        ) : (
-          <>
-            {isMobile ? (
+      {!user ? (
+        <LoggedOut>{children}</LoggedOut>
+      ) : (
+        <>
+          {isMobile ? (
+            <>
               <MobileNav currentBoard={currentBoard} />
-            ) : (
-              <DesktopNavFull currentBoard={currentBoard} />
-            )}
-          </>
-        )}
-      </header>
-      <main className='bg-light-gray-bg dark:bg-v-dark-gray h-full tablet:h-[calc(100vh-97px)] overflow-x-scroll'>
-        {children}
-      </main>
-    </>
-    */
-
-    // <>{!user ? <LoggedOut>{children}</LoggedOut> : (
-    //   <>
-    //   {!sidePanel ? (<></>):(<div>brah</div>)}
-    //   </>
-    // )}</>
-
-    <>
-      <div className='stage flex'>
-        <SidePanel />
-        <div className='w-[79%] overflow-x-hidden flex-grow'>
-          <DesktopNavFull currentBoard={currentBoard} sidePanel={sidePanel} />
-          <main className='overflow-x-scroll h-full'>{children}</main>
-        </div>
-      </div>
+              <main className='stage flex'>{children}</main>
+            </>
+          ) : (
+            <div className='stage flex'>
+              {sidePanel ? (
+                <>
+                  <SidePanel />
+                  <div className='w-[79%] overflow-x-hidden flex-grow'>
+                    <DesktopNavFull
+                      currentBoard={currentBoard}
+                      sidePanel={sidePanel}
+                    />
+                    <main className='overflow-x-scroll h-full'>{children}</main>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className='w-[79%] overflow-x-hidden flex-grow'>
+                    <DesktopNavFull
+                      currentBoard={currentBoard}
+                      sidePanel={false}
+                    />
+                    <main className='overflow-x-scroll h-full'>{children}</main>
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+        </>
+      )}
     </>
   )
 }
