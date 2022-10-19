@@ -30,39 +30,6 @@
 }
 
 @layer components {
-  .staging-area {
-    @apply h-full flex flex-col gap-y-2 justify-center items-center bg-white dark:bg-dark-gray;
-  }
-
-  .staging-area-corner {
-    @apply h-full pt-5 pl-5 bg-white dark:bg-dark-gray;
-  }
-
-  /* Typography */
-  .heading-xl {
-    @apply font-bold text-[24px] leading-[30px];
-  }
-
-  .heading-l {
-    @apply font-bold text-[18px] leading-[23px];
-  }
-
-  .heading-m {
-    @apply font-bold text-[15px] leading-[19px];
-  }
-
-  .heading-s {
-    @apply font-bold text-[12px] text-med-gray leading-[15px] tracking-[2.4px];
-  }
-
-  .body-l {
-    @apply font-medium text-[13px] text-dark-gray leading-[23px];
-  }
-
-  .body-m {
-    @apply font-bold text-[12px] text-dark-gray leading-[15px];
-  }
-
   /* Buttons */
   .btn {
     @apply text-white h-10 w-full rounded-[20px] max-w-[416px] font-bold capitalize;
@@ -164,7 +131,7 @@
 
   /* Nav Menu Styling */
   .side-panel {
-    @apply h-[100vh] bg-white dark:bg-dark-gray border-solid border-r-[1px] border-light-gray dark:border-lines-dark max-w-[300px] relative float-left;
+    @apply h-[100vh] bg-white dark:bg-dark-gray border-solid border-r-[1px] border-light-gray dark:border-lines-dark max-w-[300px] relative w-[21%];
   }
 
   .logo-wrapper {
@@ -183,8 +150,49 @@
     @apply flex gap-x-4 h-12 w-full max-w-[276px] items-center rounded-tr-full rounded-br-full pl-8;
   }
 
+  /* Main */
+
+  .stage {
+    @apply bg-light-gray-bg dark:bg-v-dark-gray h-full overflow-x-scroll;
+  }
+
   /* Overlay */
   .overlay-blur {
     @apply backdrop-blur-[4rem];
+  }
+}
+
+@layer utilities {
+  .staging-area {
+    @apply h-full flex flex-col gap-y-2 justify-center items-center bg-white dark:bg-dark-gray;
+  }
+
+  .staging-area-corner {
+    @apply h-full pt-5 pl-5 bg-white dark:bg-dark-gray;
+  }
+
+  /* Typography */
+  .heading-xl {
+    @apply font-bold text-[24px] leading-[30px];
+  }
+
+  .heading-l {
+    @apply font-bold text-[18px] leading-[23px];
+  }
+
+  .heading-m {
+    @apply font-bold text-[15px] leading-[19px];
+  }
+
+  .heading-s {
+    @apply font-bold text-[12px] text-med-gray leading-[15px] tracking-[2.4px];
+  }
+
+  .body-l {
+    @apply font-medium text-[13px] text-dark-gray leading-[23px];
+  }
+
+  .body-m {
+    @apply font-bold text-[12px] text-dark-gray leading-[15px];
   }
 }

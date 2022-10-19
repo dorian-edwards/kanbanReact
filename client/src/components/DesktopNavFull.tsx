@@ -20,8 +20,10 @@ import logoDark from '../assets/logo-dark.svg'
 
 export default function DesktopNavFull({
   currentBoard,
+  sidePanel,
 }: {
   currentBoard: BoardInterface | undefined
+  sidePanel: boolean
 }) {
   const [fullscreenOpen, setFullscreenOpen] = useState(false)
   const { isDarkMode } = useTheme()
@@ -29,15 +31,18 @@ export default function DesktopNavFull({
 
   return (
     <>
-      <nav className='desktop-nav flex h-[97px]'>
+      <nav className='desktop-nav flex h-[97px] sticky top-0 z-50 w-[100%]'>
         <div className='top-bar flex'>
-          <div className='logo-wrapper-full h-full'>
-            <img
-              src={isDarkMode ? logoLight : logoDark}
-              alt='kanban logo'
-              className='pb-[5px]'
-            />
-          </div>
+          {!sidePanel && (
+            <div className='logo-wrapper-full h-full'>
+              <img
+                src={isDarkMode ? logoLight : logoDark}
+                alt='kanban logo'
+                className='pb-[5px]'
+              />
+            </div>
+          )}
+
           <div className='flex w-full pl-8 justify-between items-center'>
             <h1 className='heading-xl'>{currentBoard?.title || ''}</h1>
             <div className='flex items-center gap-x-6'>

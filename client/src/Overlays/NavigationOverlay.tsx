@@ -14,6 +14,7 @@ import DesktopNavFull from '../components/DesktopNavFull'
 import MobileNav from '../components/MobileNav'
 import NavigationBoiler from '../components/NavigationBoiler'
 import SidePanel from '../components/SidePanel'
+import LoggedOut from '../pages/LoggedOut'
 
 export default function NavigationOverlay({
   children,
@@ -46,6 +47,7 @@ export default function NavigationOverlay({
   const toggleSidePanel = () => setSidePanel(!sidePanel)
 
   return (
+    /*
     <>
       <header>
         {!user ? (
@@ -63,6 +65,23 @@ export default function NavigationOverlay({
       <main className='bg-light-gray-bg dark:bg-v-dark-gray h-full tablet:h-[calc(100vh-97px)] overflow-x-scroll'>
         {children}
       </main>
+    </>
+    */
+
+    // <>{!user ? <LoggedOut>{children}</LoggedOut> : (
+    //   <>
+    //   {!sidePanel ? (<></>):(<div>brah</div>)}
+    //   </>
+    // )}</>
+
+    <>
+      <div className='stage flex'>
+        <SidePanel />
+        <div className='w-[79%] overflow-x-hidden flex-grow'>
+          <DesktopNavFull currentBoard={currentBoard} sidePanel={sidePanel} />
+          <main className='overflow-x-scroll h-full'>{children}</main>
+        </div>
+      </div>
     </>
   )
 }

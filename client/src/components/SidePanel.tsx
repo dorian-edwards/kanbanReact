@@ -17,7 +17,7 @@ export default function SidePanel() {
   const { isDarkMode } = useTheme()
 
   return (
-    <div className='side-panel w-[40vw]'>
+    <nav className='side-panel w-[40vw]'>
       <Link to='/'>
         <img
           className='pt-[32.78px] mb-[54px] pl-[34px] pr-3'
@@ -40,6 +40,6 @@ export default function SidePanel() {
           <span className='heading-m text-med-gray'>Hide Sidebar</span>
         </button>
       </div>
-    </div>
+    </nav>
   )
 }
