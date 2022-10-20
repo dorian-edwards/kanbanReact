@@ -13,7 +13,7 @@ exports.get = catchAsync(async (req, res, next) => {
 })
 
 exports.create = catchAsync(async (req, res, next) => {
-  const { title, boardId, tasks } = req.body
+  const { title, boardId } = req.body
   const board = await Board.findById(boardId)
 
   const column = await Column.create({

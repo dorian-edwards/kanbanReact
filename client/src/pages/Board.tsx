@@ -6,20 +6,21 @@ import { useParams } from 'react-router-dom'
 import { useAuth } from '../providers/AuthProvider'
 
 // import interfaces
-import { BoardInterface } from '../Interfaces/ObjectInterfaces'
+import { BoardInterface, ColumnInterface } from '../Interfaces/ObjectInterfaces'
 
 // import componentes
 import Button from '../components/Button'
 import Column from '../components/Column'
-import NewBoardButton from '../components/NewBoardButton'
 import Overlay from '../Overlays/Overlay'
 import NewColumnForm from '../components/NewColumnForm'
+import NewColumnButton from '../components/NewColumnButton'
 
 export default function Board() {
   const { boards } = useAuth()
   const { boardId } = useParams()
 
   const [fullscreenOpen, setFullscreenOpen] = useState<boolean>(false)
+  const [columns, setColumns] = useState<ColumnInterface[] | []>([])
   const [currentBoard, setCurrentBoard] = useState<BoardInterface | undefined>(
     undefined
   )
@@ -36,15 +37,26 @@ export default function Board() {
 
   useEffect(() => {
     const board = boards.find((board: BoardInterface) => board._id === boardId)
-    if (board) return setCurrentBoard(board)
+    if (board) {
+      setColumns(board.columns)
+      return setCurrentBoard(board)
+    }
   }, [boardId, boards])
+
+  const updateColumns = (column: ColumnInterface): void => {
+    return setColumns([...columns, column])
+  }
 
   return (
     <>
       <Overlay open={fullscreenOpen}>
-        <NewColumnForm />
+        <NewColumnForm
+          board={boardId}
+          close={() => setFullscreenOpen(false)}
+          updateColumns={updateColumns}
+        />
       </Overlay>
-      {currentBoard?.columns.length === 0 ? (
+      {columns.length === 0 ? (
         <div className='flex items-center justify-center flex-col h-[calc(100vh-97px)]'>
           <h2 className='heading-l text-med-gray mb-8'>
             This board is empty. Create a new column to get started
@@ -59,7 +71,7 @@ export default function Board() {
       ) : (
         <div className='board flex gap-x-6 p-6 w-[100vw] bg-light-gray-bg dark:bg-v-dark-gray h-full'>
           {currentBoard &&
-            currentBoard.columns.map((column) => {
+            columns.map((column) => {
               incrementIconColor()
               return (
                 <Column
@@ -69,7 +81,7 @@ export default function Board() {
                 />
               )
             })}
-          <NewBoardButton />
+          <NewColumnButton onClick={() => setFullscreenOpen(true)} />
         </div>
       )}
     </>
