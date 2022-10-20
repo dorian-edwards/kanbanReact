@@ -22,7 +22,7 @@ export default function Nav({
         <Button
           styling='add-task-mobile'
           text={'+'}
-          disabled={false}
+          disabled={!currentBoard}
           onClick={(e) => console.log(e)}
         />
         {/* Not sure what this button will do yet*/}

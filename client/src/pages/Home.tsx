@@ -10,7 +10,7 @@ export default function Home() {
     <>
       {!boardId ? (
         boards.length === 0 ? (
-          <div className='flex items-center justify-center h-full'>
+          <div className='flex items-center justify-center h-full w-full'>
             <div>
               <p className='heading-l text-med-gray mb-8'>
                 Create a board to get started
