@@ -17,6 +17,7 @@ import Overlay from '../Overlays/Overlay'
 import verticalEllipses from '../assets/icon-vertical-ellipsis.svg'
 import logoLight from '../assets/logo-light.svg'
 import logoDark from '../assets/logo-dark.svg'
+import EditPanel from './EditPanel'
 
 export default function DesktopNavFull({
   currentBoard,
@@ -25,9 +26,9 @@ export default function DesktopNavFull({
   currentBoard: BoardInterface | undefined
   sidePanel?: boolean
 }) {
-  const [fullscreenOpen, setFullscreenOpen] = useState(false)
+  const [fullscreenOpen, setFullscreenOpen] = useState<boolean>(false)
+  const [editPanelOpen, setEditPanelOpen] = useState<boolean>(false)
   const { isDarkMode } = useTheme()
-  const { logout } = useAuth()
 
   return (
     <>
@@ -52,9 +53,20 @@ export default function DesktopNavFull({
                 disabled={!currentBoard}
                 onClick={() => setFullscreenOpen(true)}
               />
-              <button onClick={logout}>
-                <img src={verticalEllipses} alt='vertical ellipsis' />
-              </button>
+              <div className='relative'>
+                <button onClick={() => setEditPanelOpen(!editPanelOpen)}>
+                  <img src={verticalEllipses} alt='vertical ellipsis' />
+                </button>
+                {editPanelOpen ? (
+                  <EditPanel
+                    target='Board'
+                    id={currentBoard?._id || ''}
+                    close={() => setEditPanelOpen(false)}
+                  />
+                ) : (
+                  ''
+                )}
+              </div>
             </div>
           </div>
         </div>

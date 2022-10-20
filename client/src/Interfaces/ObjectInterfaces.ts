@@ -51,3 +51,9 @@ export interface ColumnInterface {
   boardId: string
   userId: string
 }
+
+export interface EditPanelProps {
+  target: string
+  id: string
+  close: () => void
+}

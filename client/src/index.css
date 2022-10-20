@@ -194,7 +194,7 @@
   }
 
   .body-l {
-    @apply font-medium text-[13px] text-dark-gray leading-[23px];
+    @apply font-medium text-[13px] leading-[23px];
   }
 
   .body-m {
