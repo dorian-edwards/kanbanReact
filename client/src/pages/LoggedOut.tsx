@@ -6,7 +6,7 @@ export default function LoggedOut({ children }: { children: JSX.Element }) {
       <header>
         <NavigationBoiler />
       </header>
-      <main className='main'>{children}</main>
+      <main className='stage'>{children}</main>
     </>
   )
 }

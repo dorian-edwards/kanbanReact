@@ -5,6 +5,7 @@ import Column from '../components/Column'
 
 import { BoardInterface } from '../Interfaces/ObjectInterfaces'
 import NewBoardButton from '../components/NewBoardButton'
+import Button from '../components/Button'
 
 export default function Board() {
   const { boards } = useAuth()
@@ -13,7 +14,6 @@ export default function Board() {
     undefined
   )
 
-  //cycles through colors for column icons
   const colorMap = ['bg-teal', 'bg-main-purple', 'bg-aqua-green']
   let color = 2
   const incrementIconColor = (): void => {
@@ -30,15 +30,34 @@ export default function Board() {
   }, [boardId, boards])
 
   return (
-    <div className='board flex gap-x-6 p-6 w-[100vw] bg-light-gray-bg dark:bg-v-dark-gray h-full'>
-      {currentBoard &&
-        currentBoard.columns.map((column) => {
-          incrementIconColor()
-          return (
-            <Column key={column._id} column={column} color={colorMap[color]} />
-          )
-        })}
-      <NewBoardButton />
-    </div>
+    <>
+      {currentBoard?.columns.length === 0 ? (
+        <div className='flex items-center justify-center flex-col h-[calc(100vh-97px)]'>
+          <h2 className='heading-l text-med-gray mb-8'>
+            This board is empty. Create a new column to get started
+          </h2>
+          <Button
+            text='+ Add New Column'
+            styling='primary-s max-w-[174px]'
+            disabled={false}
+          />
+        </div>
+      ) : (
+        <div className='board flex gap-x-6 p-6 w-[100vw] bg-light-gray-bg dark:bg-v-dark-gray h-full'>
+          {currentBoard &&
+            currentBoard.columns.map((column) => {
+              incrementIconColor()
+              return (
+                <Column
+                  key={column._id}
+                  column={column}
+                  color={colorMap[color]}
+                />
+              )
+            })}
+          <NewBoardButton />
+        </div>
+      )}
+    </>
   )
 }

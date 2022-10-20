@@ -5,7 +5,6 @@ import { AuthProvider } from './providers/AuthProvider'
 import ProtectedRoute from './components/ProtectedRoute'
 import Register from './pages/Register'
 import Board from './pages/Board'
-
 import NavigationOverlay from './Overlays/NavigationOverlay'
 
 export default function App() {
