@@ -1,10 +1,4 @@
-export interface ButtonProps {
-  styling: string
-  text: string
-  disabled: boolean
-  onClick?: (e: React.SyntheticEvent<HTMLButtonElement>) => void
-  type?: 'button' | 'submit' | 'reset' | undefined
-}
+import { ButtonProps } from '../Interfaces/ObjectInterfaces'
 
 export default function Button(props: ButtonProps) {
   const { styling, text, disabled, type, onClick } = props

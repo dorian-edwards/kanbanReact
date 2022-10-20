@@ -5,18 +5,10 @@ import { useAuth } from '../providers/AuthProvider'
 import BoardIcon from './BoardIcon'
 import NewBoardForm from './NewBoardForm'
 
-export interface BoardInterface {
-  id: string
-  title: string
-  userId: string
-  columns: [string] | []
-}
-
 export default function BoardsListing() {
   const { boards } = useAuth()
   const [fullscreenOpen, setFullscreenOpen] = useState<boolean>(false)
 
-  // todo add styling for hover effects
   return (
     <>
       <div className='boards-listing'>

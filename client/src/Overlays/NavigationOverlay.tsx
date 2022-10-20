@@ -14,6 +14,7 @@ import DesktopNavFull from '../components/DesktopNavFull'
 import MobileNav from '../components/MobileNav'
 import SidePanel from '../components/SidePanel'
 import LoggedOut from '../pages/LoggedOut'
+import ShowSidePanel from '../components/ShowSidePanel'
 
 export default function NavigationOverlay({
   children,
@@ -60,7 +61,7 @@ export default function NavigationOverlay({
             <div className='stage flex'>
               {sidePanel ? (
                 <>
-                  <SidePanel />
+                  <SidePanel toggle={toggleSidePanel} />
                   <div className='w-[79%] overflow-x-hidden flex-grow'>
                     <DesktopNavFull
                       currentBoard={currentBoard}
@@ -76,7 +77,10 @@ export default function NavigationOverlay({
                       currentBoard={currentBoard}
                       sidePanel={false}
                     />
-                    <main className='overflow-x-scroll h-full'>{children}</main>
+                    <main className='overflow-x-scroll h-full'>
+                      {children}
+                      <ShowSidePanel toggle={toggleSidePanel} />
+                    </main>
                   </div>
                 </>
               )}

@@ -9,7 +9,6 @@ const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 
 export default function RegistrationForm() {
   const { user, login } = useAuth()
-  const navigate = useNavigate()
 
   const [username, setUsername] = useState<string>('')
   const [email, setEmail] = useState<string>('')

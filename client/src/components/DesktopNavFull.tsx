@@ -31,7 +31,7 @@ export default function DesktopNavFull({
 
   return (
     <>
-      <nav className='desktop-nav flex h-[97px] sticky top-0 z-50 w-[100%]'>
+      <nav className='desktop-nav flex h-[97px] sticky top-0 z-40 w-[100%]'>
         <div className='top-bar flex'>
           {!sidePanel && (
             <div className='logo-wrapper-full h-full'>
