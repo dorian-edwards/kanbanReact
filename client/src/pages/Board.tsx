@@ -20,7 +20,7 @@ export default function Board() {
   const { boardId } = useParams()
 
   const [fullscreenOpen, setFullscreenOpen] = useState<boolean>(false)
-  const [columns, setColumns] = useState<ColumnInterface[] | []>([])
+  const [columns, setColumns] = useState<ColumnInterface[]>([])
   const [currentBoard, setCurrentBoard] = useState<BoardInterface | undefined>(
     undefined
   )
@@ -38,7 +38,7 @@ export default function Board() {
   useEffect(() => {
     const board = boards.find((board: BoardInterface) => board._id === boardId)
     if (board) {
-      setColumns(board.columns)
+      setColumns([...board.columns])
       return setCurrentBoard(board)
     }
   }, [boardId, boards])

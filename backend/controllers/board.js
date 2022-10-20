@@ -24,6 +24,7 @@ exports.createBoard = catchAsync(async (req, res, next) => {
   }
 
   await board.save()
+  await board.populate('columns')
   res.send(board)
 })
 

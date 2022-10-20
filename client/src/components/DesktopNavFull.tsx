@@ -49,7 +49,7 @@ export default function DesktopNavFull({
               <Button
                 styling='btn primary-l w-[164px] heading-m'
                 text='+ Add New Task'
-                disabled={false}
+                disabled={!currentBoard}
                 onClick={() => setFullscreenOpen(true)}
               />
               <button onClick={logout}>

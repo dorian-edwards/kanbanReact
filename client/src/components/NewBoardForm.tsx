@@ -46,7 +46,12 @@ export default function NewBoardForm({ close }: { close: () => void }) {
       withCredentials: true,
     })
 
-    updateBoards(data)
+    if (data) {
+      updateBoards(data)
+      setTitle('')
+      setColumnInputs([])
+      return close()
+    }
   }
 
   return (
