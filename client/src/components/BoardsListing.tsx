@@ -11,6 +11,9 @@ export default function BoardsListing() {
 
   return (
     <>
+      <Overlay open={fullscreenOpen}>
+        <NewBoardForm close={() => setFullscreenOpen(false)} />
+      </Overlay>
       <div className='boards-listing'>
         <h3 className='heading-s pl-8 mb-[19px] min-w-[150px]'>
           All Boards &#40;{boards?.length}&#41;
@@ -46,9 +49,6 @@ export default function BoardsListing() {
           </li>
         </ul>
       </div>
-      <Overlay open={fullscreenOpen}>
-        <NewBoardForm close={() => setFullscreenOpen(false)} />
-      </Overlay>
     </>
   )
 }

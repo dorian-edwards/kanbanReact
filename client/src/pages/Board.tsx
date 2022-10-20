@@ -1,15 +1,25 @@
+// Core imports
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useAuth } from '../providers/AuthProvider'
-import Column from '../components/Column'
 
+// import contexts
+import { useAuth } from '../providers/AuthProvider'
+
+// import interfaces
 import { BoardInterface } from '../Interfaces/ObjectInterfaces'
-import NewBoardButton from '../components/NewBoardButton'
+
+// import componentes
 import Button from '../components/Button'
+import Column from '../components/Column'
+import NewBoardButton from '../components/NewBoardButton'
+import Overlay from '../Overlays/Overlay'
+import NewColumnForm from '../components/NewColumnForm'
 
 export default function Board() {
   const { boards } = useAuth()
   const { boardId } = useParams()
+
+  const [fullscreenOpen, setFullscreenOpen] = useState<boolean>(false)
   const [currentBoard, setCurrentBoard] = useState<BoardInterface | undefined>(
     undefined
   )
@@ -31,6 +41,9 @@ export default function Board() {
 
   return (
     <>
+      <Overlay open={fullscreenOpen}>
+        <NewColumnForm />
+      </Overlay>
       {currentBoard?.columns.length === 0 ? (
         <div className='flex items-center justify-center flex-col h-[calc(100vh-97px)]'>
           <h2 className='heading-l text-med-gray mb-8'>
@@ -40,6 +53,7 @@ export default function Board() {
             text='+ Add New Column'
             styling='primary-s max-w-[174px]'
             disabled={false}
+            onClick={() => setFullscreenOpen(true)}
           />
         </div>
       ) : (
