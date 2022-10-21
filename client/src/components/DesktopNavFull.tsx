@@ -3,7 +3,6 @@ import { useState } from 'react'
 
 // import contexts
 import { useTheme } from '../providers/ThemeProvider'
-import { useAuth } from '../providers/AuthProvider'
 
 // import interfaces
 import { BoardInterface } from '../Interfaces/ObjectInterfaces'
@@ -57,15 +56,6 @@ export default function DesktopNavFull({
                 <button onClick={() => setEditPanelOpen(!editPanelOpen)}>
                   <img src={verticalEllipses} alt='vertical ellipsis' />
                 </button>
-                {editPanelOpen ? (
-                  <EditPanel
-                    target='Board'
-                    id={currentBoard?._id || ''}
-                    close={() => setEditPanelOpen(false)}
-                  />
-                ) : (
-                  ''
-                )}
               </div>
             </div>
           </div>
@@ -77,6 +67,16 @@ export default function DesktopNavFull({
           close={() => setFullscreenOpen(false)}
         />
       </Overlay>
+      {editPanelOpen ? (
+        <EditPanel
+          target='Board'
+          id={currentBoard?._id || ''}
+          close={() => setEditPanelOpen(false)}
+          currentBoard={currentBoard}
+        />
+      ) : (
+        ''
+      )}
     </>
   )
 }

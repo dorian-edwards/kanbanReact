@@ -163,7 +163,7 @@
 
   /* Overlay */
   .overlay-blur {
-    @apply backdrop-blur-[4rem];
+    @apply backdrop-blur-[1px];
   }
 }
 

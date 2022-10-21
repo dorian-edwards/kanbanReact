@@ -56,4 +56,5 @@ export interface EditPanelProps {
   target: string
   id: string
   close: () => void
+  currentBoard?: BoardInterface
 }
