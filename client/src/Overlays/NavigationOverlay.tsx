@@ -45,6 +45,7 @@ export default function NavigationOverlay({
   }, [id, boards])
 
   const toggleSidePanel = () => setSidePanel(!sidePanel)
+  const updateBoard = (board: BoardInterface): void => setCurrentBoard(board)
 
   return (
     <>

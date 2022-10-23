@@ -15,6 +15,7 @@ export default function EditPanel({
       <Overlay open={fullScreenOpen}>
         <EditBoard
           close={() => setFullScreenOpen(false)}
+          closeEditPanel={close}
           currentBoard={currentBoard}
         />
       </Overlay>

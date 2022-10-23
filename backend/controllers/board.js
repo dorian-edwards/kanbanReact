@@ -68,39 +68,55 @@ exports.getAllBoards = catchAsync(async (req, res, next) => {
   res.send(boards)
 })
 
-// while named update board this is really for column management...should I rename it then ???
 exports.updateBoard = catchAsync(async (req, res, next) => {
   const { title, columns } = req.body
-  const board = await Board.findById(req.params.id)
+  const { id } = req.params
 
-  const newColumns = []
-  const newColumnIds = []
-  const oldColumns = [...board.columns]
+  const board = await Board.findById(id)
+
+  if (!board) res.status(404).json(null)
+
+  // check if title needs to change
+  if (board.title !== title) board.title = title
+
+  // create a map
+
+  const newColumns = {}
 
   for (let column of columns) {
-    let res = await Column.findOne({ title: column })
-    if (!res)
-      res = await Column.create({
-        title: column,
+    if (!column.id) {
+      const newColumn = await Column.create({
+        title: column.title,
         tasks: [],
+        boardId: board.id,
+        userId: req.user.id,
       })
-
-    newColumns.push(res)
-    newColumnIds.push(res.id)
-  }
-
-  for (let id of oldColumns) {
-    if (!newColumnIds.includes(id.toString())) {
-      await Column.findByIdAndDelete(id)
+      if (newColumn) {
+        newColumns[newColumn.id] = true
+      }
+    } else {
+      const existingColumn = await Column.findById(column.id)
+      if (existingColumn.title !== column.title) {
+        existingColumn.title = column.title
+        await existingColumn.save()
+        newColumns[existingColumn.id] = true
+      } else {
+        newColumns[existingColumn.id] = true
+      }
     }
   }
 
-  const data = await Board.findByIdAndUpdate(req.params.id, {
-    title,
-    columns: newColumns,
-  })
+  for (let column of board.columns) {
+    if (!newColumns[column.toString()]) {
+      await Column.findByIdAndDelete(column)
+    }
+  }
 
-  res.json(data)
+  board.columns = Object.keys(newColumns)
+  await board.save()
+  await board.populate('columns')
+
+  res.send(board)
 })
 
 exports.deleteBoard = catchAsync(async (req, res, next) => {

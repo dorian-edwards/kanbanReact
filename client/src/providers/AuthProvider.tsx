@@ -35,8 +35,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   const updateBoards = (board: BoardInterface) => {
-    setBoards([...boards, board])
-    navigate('/home')
+    const currentBoard = boards.find((el) => board._id === el._id)
+    if (!currentBoard) {
+      setBoards([...boards, board])
+    } else {
+      const newBoards = boards.map((el) => (el._id === board._id ? board : el))
+      setBoards(newBoards)
+    }
+    navigate(`/home/${board._id}`)
   }
 
   useEffect(() => {

@@ -4,24 +4,38 @@ import { useAuth } from '../providers/AuthProvider'
 import InputField from '../inputs/InputField'
 import Button from './Button'
 import cross from '../assets/icon-cross.svg'
-import { BoardInterface } from '../Interfaces/ObjectInterfaces'
+import { BoardInterface, ColumnInterface } from '../Interfaces/ObjectInterfaces'
 
 const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 
 export interface EditBoardProps {
   close: () => void
+  closeEditPanel: () => void
   currentBoard: BoardInterface | undefined
 }
 
-export default function EditBoard({ currentBoard, close }: EditBoardProps) {
+export interface ColumnEditInputs {
+  id: string
+  title: string
+}
+
+export default function EditBoard({
+  currentBoard,
+  close,
+  closeEditPanel,
+}: EditBoardProps) {
   const [title, setTitle] = useState<string>('')
-  const [columnInputs, setColumnInputs] = useState<string[]>([])
+  const [columnInputs, setColumnInputs] = useState<ColumnEditInputs[]>([])
   const { updateBoards } = useAuth()
 
   useEffect(() => {
     if (currentBoard) {
       setTitle(currentBoard.title)
-      setColumnInputs(currentBoard.columns.map((column) => column.title))
+      setColumnInputs(
+        currentBoard.columns.map((column) => {
+          return { id: column._id, title: column.title }
+        })
+      )
     }
   }, [currentBoard])
 
@@ -34,12 +48,12 @@ export default function EditBoard({ currentBoard, close }: EditBoardProps) {
     index: number
   ): void => {
     const data = [...columnInputs]
-    data[index] = e.target.value
+    data[index].title = e.target.value
     setColumnInputs(data)
   }
 
   const createNewColumnInput = (): void => {
-    setColumnInputs([...columnInputs, ''])
+    setColumnInputs([...columnInputs, { id: '', title: '' }])
   }
 
   const deleteColumnInput = (index: number): void => {
@@ -50,21 +64,21 @@ export default function EditBoard({ currentBoard, close }: EditBoardProps) {
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const board = {
-      title,
-      columns: columnInputs,
-    }
+    const board = { title, columns: columnInputs }
 
-    const { data } = await axios.post(`${baseUrl}/board`, board, {
-      withCredentials: true,
-    })
-
+    const { data } = await axios.put(
+      `${baseUrl}/board/${currentBoard?._id}`,
+      board,
+      {
+        withCredentials: true,
+      }
+    )
     if (data) {
       updateBoards(data)
-      setTitle('')
-      setColumnInputs([])
+      closeEditPanel()
       return close()
     }
+    close()
   }
 
   return (
@@ -87,7 +101,7 @@ export default function EditBoard({ currentBoard, close }: EditBoardProps) {
         <h2 className='body-m text-med-gray mb-2 dark:text-white'>
           Board Columns
         </h2>
-        {columnInputs.map((column: string, index: number) => {
+        {columnInputs.map((column: ColumnEditInputs, index: number) => {
           return (
             <div
               className='column-inpt-control flex items-center justify-between mb-3 gap-x-4'
@@ -95,7 +109,7 @@ export default function EditBoard({ currentBoard, close }: EditBoardProps) {
             >
               <InputField
                 placeholder='e.g Done'
-                value={columnInputs[index]}
+                value={columnInputs[index].title}
                 type='text'
                 onChange={(e) => handleColumnInputChange(e, index)}
                 optionalStyling={'w-full'}
