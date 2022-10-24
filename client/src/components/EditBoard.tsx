@@ -61,6 +61,11 @@ export default function EditBoard({
     setColumnInputs(editedColumnInputs)
   }
 
+  const closeAll = () => {
+    close()
+    closeEditPanel()
+  }
+
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -86,7 +91,7 @@ export default function EditBoard({
       <form onSubmit={handleSubmit}>
         <div className='new-board-form-header flex justify-between items-center mb-6'>
           <h2 className='heading-l text-black dark:text-white'>Edit Board</h2>
-          <button type='button' onClick={close}>
+          <button type='button' onClick={closeAll}>
             <img src={cross} alt='cross icon' />
           </button>{' '}
         </div>
@@ -114,7 +119,7 @@ export default function EditBoard({
                 onChange={(e) => handleColumnInputChange(e, index)}
                 optionalStyling={'w-full'}
               />
-              <button onClick={() => deleteColumnInput(index)}>
+              <button type='button' onClick={() => deleteColumnInput(index)}>
                 <img src={cross} alt='x icon' className='block' />
               </button>
             </div>
