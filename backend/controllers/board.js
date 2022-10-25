@@ -114,7 +114,17 @@ exports.updateBoard = catchAsync(async (req, res, next) => {
 
   board.columns = Object.keys(newColumns)
   await board.save()
-  await board.populate('columns')
+  await board.populate({
+    path: 'columns',
+    populate: {
+      path: 'tasks',
+      model: 'Task',
+      populate: {
+        path: 'subtasks',
+        model: 'Subtask',
+      },
+    },
+  })
 
   res.send(board)
 })

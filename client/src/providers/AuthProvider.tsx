@@ -36,7 +36,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const updateBoards = (board: BoardInterface | string) => {
     if (typeof board === 'string') {
-      return setBoards(boards.filter((el) => el._id !== board))
+      const newBoards = boards.filter((el) => el._id !== board)
+      setBoards(newBoards)
+      return
     }
     const currentBoard = boards.find((el) => board._id === el._id)
     if (!currentBoard) {

@@ -28,7 +28,6 @@ const create = catchAsync(async (req, res, next) => {
   const existingUser = await User.findOne({ email, username })
 
   if (existingUser) {
-    console.log(existingUser)
     return res.status(400).json({
       status: 'Fail',
       errors: 'Email and/or username already in use',

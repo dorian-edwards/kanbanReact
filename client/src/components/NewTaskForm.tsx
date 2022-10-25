@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+
+import { useAuth } from '../providers/AuthProvider'
+
 import InputField from '../inputs/InputField'
 import TextArea from '../inputs/TextArea'
 import Button from './Button'
@@ -8,6 +12,8 @@ import chevronUp from '../assets/icon-chevron-up.svg'
 import cross from '../assets/icon-cross.svg'
 
 import { BoardInterface, ColumnInterface } from '../Interfaces/ObjectInterfaces'
+
+const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 
 // for now this seems to cover only title. It'll need some tweaking later
 const flashError = (): void => {
@@ -22,7 +28,6 @@ const flashError = (): void => {
     }, 3000)
   }
 }
-// ************************ End of Error Handling ************************ //
 export default function NewTaskForm({
   currentBoard,
   close,
@@ -38,9 +43,19 @@ export default function NewTaskForm({
     ColumnInterface | undefined
   >(undefined)
 
+  const { updateBoards } = useAuth()
+
   useEffect(() => {
     setSelectedColumn(currentBoard?.columns[0])
   }, [currentBoard])
+
+  const clear = () => {
+    setTitle('')
+    setDescription('')
+    setSubtaskInputs([])
+    setSelectedColumn(currentBoard?.columns[0])
+    close()
+  }
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTitle(e.target.value)
@@ -79,18 +94,36 @@ export default function NewTaskForm({
     toggleActive()
   }
 
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    // e.preventDefault()
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault()
     if (!title.trim()) {
       return flashError()
     }
+
+    // create new task
+    const newTask = {
+      title,
+      description,
+      subtasks: [...subtaskInputs],
+      status: selectedColumn?.title,
+    }
+
+    // get task object append to selectedColumns task array
+
+    const { data } = await axios.post(`${baseUrl}/task`, newTask, {
+      withCredentials: true,
+    })
+
+    selectedColumn?.tasks.push(data)
+    if (currentBoard) updateBoards(currentBoard)
+    close()
   }
 
   return (
     <div className='new-task-form-wrapper'>
       <div className='new-task-form-header flex justify-between items-center mb-6'>
         <h2 className='heading-l'>Add New Task</h2>
-        <button type='button' onClick={close}>
+        <button type='button' onClick={clear}>
           <img src={cross} alt='cross icon' />
         </button>{' '}
       </div>

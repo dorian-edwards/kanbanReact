@@ -5,12 +5,16 @@ export default function SubtaskSummary({
 }: {
   subtasks: SubtaskInterface[]
 }) {
-  const totalSubtasks = subtasks.length
   let completedTasks = 0
+  let totalSubtasks = 0
+  if (subtasks) {
+    totalSubtasks = subtasks.length
 
-  for (let subtask of subtasks) {
-    if (subtask.complete) completedTasks++
+    for (let subtask of subtasks) {
+      if (subtask.complete) completedTasks++
+    }
   }
+
   return (
     <>
       <p className='body-m text-med-gray'>
