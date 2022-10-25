@@ -10,7 +10,7 @@ export default function Column({
   color: string
 }) {
   return (
-    <div className='column-wrapper w-full max-w-[280px]'>
+    <div className='column-wrapper w-[280px] flex-shrink-0'>
       <div className='column-header flex gap-3 items-center mb-6'>
         <div className={`bauble w-[15px] h-[15px] rounded-full ${color}`}></div>
         <div className='column-title uppercase heading-s'>{column.title}</div>

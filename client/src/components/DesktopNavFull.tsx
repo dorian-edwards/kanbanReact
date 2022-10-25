@@ -69,7 +69,7 @@ export default function DesktopNavFull({
       </Overlay>
       {editPanelOpen ? (
         <EditPanel
-          target='Board'
+          target='board'
           id={currentBoard?._id || ''}
           close={() => setEditPanelOpen(false)}
           currentBoard={currentBoard}

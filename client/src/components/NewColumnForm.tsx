@@ -4,7 +4,7 @@ import { useAuth } from '../providers/AuthProvider'
 import InputField from '../inputs/InputField'
 import Button from './Button'
 import cross from '../assets/icon-cross.svg'
-import { ColumnInterface } from '../Interfaces/ObjectInterfaces'
+import { ColumnInterface, BoardInterface } from '../Interfaces/ObjectInterfaces'
 
 const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 
@@ -23,7 +23,7 @@ export default function NewColumnForm({
   updateColumns: (column: ColumnInterface) => void
 }) {
   const [title, setTitle] = useState<string>('')
-  const { user } = useAuth()
+  const { user, updateBoards } = useAuth()
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTitle(e.target.value)
@@ -45,7 +45,14 @@ export default function NewColumnForm({
     })
 
     if (data) {
-      updateColumns(data)
+      //updateColumns(data)
+      const { data } = await axios.get(`${baseUrl}/board/${board}`, {
+        withCredentials: true,
+      })
+
+      if (data) {
+        updateBoards(data.board)
+      }
     }
     setTitle('')
     return close()

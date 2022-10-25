@@ -9,7 +9,7 @@ export interface AuthContextInterface {
   logout: () => void
   user: User | null
   boards: BoardInterface[] | []
-  updateBoards: (data: BoardInterface) => void
+  updateBoards: (data: BoardInterface | string) => void
 }
 
 export interface ButtonProps {

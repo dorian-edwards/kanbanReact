@@ -2,6 +2,7 @@ import Overlay from '../Overlays/Overlay'
 import { EditPanelProps } from '../Interfaces/ObjectInterfaces'
 import { useState } from 'react'
 import EditBoard from './EditBoard'
+import DeleteConfirmation from './DeleteConfirmation'
 
 export default function EditPanel({
   target,
@@ -9,14 +10,24 @@ export default function EditPanel({
   close,
   currentBoard,
 }: EditPanelProps) {
-  const [fullScreenOpen, setFullScreenOpen] = useState<boolean>(false)
+  const [editOpen, setEditOpen] = useState<boolean>(false)
+  const [deleteOpen, setDeleteOpen] = useState<boolean>(false)
   return (
     <>
-      <Overlay open={fullScreenOpen}>
+      <Overlay open={editOpen}>
         <EditBoard
-          close={() => setFullScreenOpen(false)}
+          close={() => setEditOpen(false)}
           closeEditPanel={close}
           currentBoard={currentBoard}
+        />
+      </Overlay>
+      <Overlay open={deleteOpen}>
+        <DeleteConfirmation
+          type='board'
+          id={id}
+          title={currentBoard?.title}
+          close={() => setDeleteOpen(false)}
+          closeEditPanel={close}
         />
       </Overlay>
       <div className='edit-panel absolute w-[192px] p-4 bg-white rounded-lg top-[85px] right-[24px] z-40 shadow-md'>
@@ -24,14 +35,14 @@ export default function EditPanel({
           <li className='mb-4 body-l text-med-gray'>
             <button
               disabled={!id}
-              onClick={() => setFullScreenOpen(!fullScreenOpen)}
-            >{`Edit ${target}`}</button>
+              onClick={() => setEditOpen(!editOpen)}
+            >{`Edit ${target[0].toUpperCase() + target.slice(1)}`}</button>
           </li>
           <li className='body-l text-red'>
             <button
               disabled={!id}
-              onClick={() => setFullScreenOpen(!fullScreenOpen)}
-            >{`Delete ${target}`}</button>
+              onClick={() => setDeleteOpen(!deleteOpen)}
+            >{`Delete ${target[0].toUpperCase() + target.slice(1)}`}</button>
           </li>
         </ul>
       </div>
