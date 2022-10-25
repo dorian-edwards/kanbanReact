@@ -38,7 +38,7 @@ export default function DeleteConfirmation({
   }
 
   return (
-    <div className='confirmation-window bg-white w-full max-w-[480px] p-8 rounded-md'>
+    <div className='confirmation-window bg-white w-full max-w-[480px] p-8 rounded-md dark:bg-dark-gray'>
       <h2 className='heading-l text-red mb-6'>{`Delete this ${type}?`}</h2>
       <p className='body-l text-med-gray mb-6'>{`Are you sure you want to delete the ‘${title}’ board? This action will remove all columns and tasks and cannot be reversed.`}</p>
       <div className={`flex ${isMobile ? 'flex-col gap-y-4' : 'gap-x-3'}`}>
