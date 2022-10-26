@@ -108,7 +108,8 @@ exports.updateBoard = catchAsync(async (req, res, next) => {
 
   for (let column of board.columns) {
     if (!newColumns[column.toString()]) {
-      await Column.findByIdAndDelete(column)
+      const col = await Column.findById(column)
+      await col.deleteOne()
     }
   }
 

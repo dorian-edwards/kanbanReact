@@ -117,6 +117,7 @@ export default function NewTaskForm({
     selectedColumn?.tasks.push(data)
     if (currentBoard) updateBoards(currentBoard)
     close()
+    clear()
   }
 
   return (
