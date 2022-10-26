@@ -41,11 +41,12 @@ export default function NavigationOverlay({
       if (board) {
         setCurrentBoard(board)
       }
+    } else {
+      setCurrentBoard(undefined)
     }
   }, [id, boards])
 
   const toggleSidePanel = () => setSidePanel(!sidePanel)
-  const updateBoard = (board: BoardInterface): void => setCurrentBoard(board)
 
   return (
     <>
