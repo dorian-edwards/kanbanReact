@@ -14,12 +14,13 @@ import Column from '../components/Column'
 import Overlay from '../Overlays/Overlay'
 import NewColumnForm from '../components/NewColumnForm'
 import NewColumnButton from '../components/NewColumnButton'
+import FullTask from '../components/FullTask'
 
 export default function Board() {
   const { boards } = useAuth()
   const { boardId } = useParams()
 
-  const [fullscreenOpen, setFullscreenOpen] = useState<boolean>(false)
+  const [newColumnOpen, setNewColumnOpen] = useState<boolean>(false)
   const [columns, setColumns] = useState<ColumnInterface[]>([])
   const [currentBoard, setCurrentBoard] = useState<BoardInterface | undefined>(
     undefined
@@ -49,12 +50,15 @@ export default function Board() {
 
   return (
     <>
-      <Overlay open={fullscreenOpen}>
+      <Overlay open={newColumnOpen}>
         <NewColumnForm
           board={boardId}
-          close={() => setFullscreenOpen(false)}
+          close={() => setNewColumnOpen(false)}
           updateColumns={updateColumns}
         />
+      </Overlay>
+      <Overlay open={true}>
+        <FullTask />
       </Overlay>
       {columns.length === 0 ? (
         <div className='flex items-center justify-center flex-col h-[calc(100vh-97px)]'>
@@ -65,7 +69,7 @@ export default function Board() {
             text='+ Add New Column'
             styling='primary-s max-w-[174px]'
             disabled={false}
-            onClick={() => setFullscreenOpen(true)}
+            onClick={() => setNewColumnOpen(true)}
           />
         </div>
       ) : (
@@ -81,7 +85,7 @@ export default function Board() {
                 />
               )
             })}
-          <NewColumnButton onClick={() => setFullscreenOpen(true)} />
+          <NewColumnButton onClick={() => setNewColumnOpen(true)} />
         </div>
       )}
     </>
