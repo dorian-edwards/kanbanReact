@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { ColumnInterface, TaskInterface } from '../Interfaces/ObjectInterfaces'
 import Overlay from '../Overlays/Overlay'
 import FullTask from './FullTask'
@@ -12,10 +12,19 @@ export default function Column({
   color: string
 }) {
   const [taskOpen, setTaskOpen] = useState<boolean>(false)
+  const [taskToView, setTaskToView] = useState<TaskInterface | undefined>(
+    undefined
+  )
+
+  const viewTask = (task: TaskInterface) => {
+    setTaskToView(task)
+    setTaskOpen(true)
+  }
+
   return (
     <>
       <Overlay open={taskOpen} close={() => setTaskOpen(false)}>
-        <FullTask />
+        <FullTask task={taskToView} />
       </Overlay>
       <div className='column-wrapper w-[280px] flex-shrink-0'>
         <div className='column-header flex gap-3 items-center mb-6'>
@@ -30,7 +39,7 @@ export default function Column({
           <ul className='task-wrapper'>
             {column.tasks?.map((task: TaskInterface) => (
               <li key={task._id}>
-                <button type='button' onClick={() => setTaskOpen(true)}>
+                <button type='button' onClick={() => viewTask(task)}>
                   <Task task={task} />
                 </button>
               </li>

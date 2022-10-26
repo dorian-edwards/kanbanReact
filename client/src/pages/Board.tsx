@@ -14,7 +14,6 @@ import Column from '../components/Column'
 import Overlay from '../Overlays/Overlay'
 import NewColumnForm from '../components/NewColumnForm'
 import NewColumnButton from '../components/NewColumnButton'
-import FullTask from '../components/FullTask'
 
 export default function Board() {
   const { boards } = useAuth()

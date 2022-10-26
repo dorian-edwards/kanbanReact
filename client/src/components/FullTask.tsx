@@ -1,15 +1,7 @@
 import verticalEllipses from '../assets/icon-vertical-ellipsis.svg'
 import check from '../assets/icon-check.svg'
 import { useState } from 'react'
-import { SubtaskInterface } from '../Interfaces/ObjectInterfaces'
-
-const dummySubtask: SubtaskInterface = {
-  _id: '123',
-  content: 'I be listening to jazz yo',
-  complete: true,
-  parentTask: '1234',
-  userId: '1234',
-}
+import { TaskInterface } from '../Interfaces/ObjectInterfaces'
 
 export interface CheckInputProps {
   complete: boolean
@@ -44,7 +36,7 @@ export function Subtask({ _id, content, complete }: SubtaskProps) {
   }
 
   return (
-    <div className='subtask-wrapper bg-light-gray-bg rounded-[4px] p-4 flex gap-x-4 items-center'>
+    <div className='subtask-wrapper bg-light-gray-bg rounded-[4px] p-4 flex gap-x-4 items-center hover:bg-main-purple-opaque-hover'>
       <CheckInput complete={isComplete} toggleComplete={toggleComplete} />
       <p
         className={`body-m text-black ${
@@ -61,21 +53,41 @@ export function SubtaskListing() {
   return <Subtask _id='123' content='listening to jazz yo' complete={true} />
 }
 
-export default function FullTask() {
+export default function FullTask({
+  task,
+}: {
+  task: TaskInterface | undefined
+}) {
+  let completedTasks = 0
+  if (task) {
+    for (let subtask of task.subtasks) {
+      if (subtask.complete) completedTasks++
+    }
+  }
+
   return (
     <div className='task-wrapper w-full max-w-[480px] bg-white rounded-md p-8'>
-      <div className='task-heading flex justify-between items-center'>
-        <h2 className='heading-l mb-6'>Filler</h2>
+      <div className='task-heading flex justify-between items-center  mb-6'>
+        <h2 className='heading-l'>{task?.title || ''}</h2>
         <button type='button'>
           <img src={verticalEllipses} alt='vertical ellipses' />
         </button>
       </div>
-      <p className='body-l text-med-gray mb-6'>
-        Here is something to talk about
-      </p>
+      <p className='body-l text-med-gray mb-6'>{task?.description || ''}</p>
       <div className='subtask-wrapper'>
-        <h3 className='body-m text-med-gray mb-4'>{'Subtasks (2 of 3)'}</h3>
-        <SubtaskListing />
+        <h3 className='body-m text-med-gray mb-4'>{`Subtasks (${completedTasks} of ${
+          task?.subtasks.length || 0
+        })`}</h3>
+        <>
+          {task?.subtasks.map((subtask) => (
+            <Subtask
+              key={subtask._id}
+              _id={subtask._id}
+              content={subtask.content}
+              complete={subtask.complete}
+            />
+          ))}
+        </>
       </div>
     </div>
   )

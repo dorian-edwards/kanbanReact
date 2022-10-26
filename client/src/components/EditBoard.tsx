@@ -4,7 +4,7 @@ import { useAuth } from '../providers/AuthProvider'
 import InputField from '../inputs/InputField'
 import Button from './Button'
 import cross from '../assets/icon-cross.svg'
-import { BoardInterface, ColumnInterface } from '../Interfaces/ObjectInterfaces'
+import { BoardInterface } from '../Interfaces/ObjectInterfaces'
 
 const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 
