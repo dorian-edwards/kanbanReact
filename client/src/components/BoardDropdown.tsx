@@ -4,8 +4,6 @@ import { useAuth } from '../providers/AuthProvider'
 import chevronDown from '../assets/icon-chevron-down.svg'
 import chevronUp from '../assets/icon-chevron-up.svg'
 
-// Built for styling, will integrate column objects later when connecting to backend.
-
 export default function BoardDropdown({
   currentBoard,
 }: {

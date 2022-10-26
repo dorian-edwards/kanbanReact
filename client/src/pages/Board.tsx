@@ -21,6 +21,7 @@ export default function Board() {
   const { boardId } = useParams()
 
   const [newColumnOpen, setNewColumnOpen] = useState<boolean>(false)
+
   const [columns, setColumns] = useState<ColumnInterface[]>([])
   const [currentBoard, setCurrentBoard] = useState<BoardInterface | undefined>(
     undefined
@@ -56,9 +57,6 @@ export default function Board() {
           close={() => setNewColumnOpen(false)}
           updateColumns={updateColumns}
         />
-      </Overlay>
-      <Overlay open={true}>
-        <FullTask />
       </Overlay>
       {columns.length === 0 ? (
         <div className='flex items-center justify-center flex-col h-[calc(100vh-97px)]'>
