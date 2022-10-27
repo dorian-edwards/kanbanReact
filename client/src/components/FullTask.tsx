@@ -43,7 +43,12 @@ export default function FullTask({
           task?.subtasks.length || 0
         })`}</h3>
         <SubtaskListing task={task} />
-        <StatusDropDown selectedColumn={status} currentBoard={currentBoard} />
+        <h3 className='body-m text-med-gray mb-4'>Current Status</h3>
+        <StatusDropDown
+          selectedColumn={status}
+          currentBoard={currentBoard}
+          currentTask={task}
+        />
       </div>
     </div>
   )

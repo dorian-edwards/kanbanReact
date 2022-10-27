@@ -4,8 +4,7 @@ import Subtask from './Subtask'
 export default function SubtaskListing({ task }: { task: TaskInterface }) {
   return (
     <>
-      <h3 className='body-m text-med-gray mb-4'>Current Status</h3>
-      <div className='mb-6'>
+      <div className='mb-6 flex flex-col gap-y-2'>
         {task?.subtasks.map((subtask) => (
           <Subtask
             key={subtask._id}

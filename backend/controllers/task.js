@@ -54,10 +54,43 @@ exports.createTask = catchAsync(async (req, res, next) => {
 exports.update = catchAsync(async (req, res, next) => {
   const { id } = req.params
   const task = await Task.findById(id)
-
-  console.log(req.body)
-
   if (!task) return res.status(401).send(false)
+  const newTask = { ...req.body }
+
+  const originalColumn = await Column.findById(task.status)
+  const newColumn = await Column.findById(newTask.status)
+
+  task.status = newTask.status
+  originalColumn.tasks = originalColumn.tasks.filter(
+    (taskId) => taskId.toString() !== newTask._id
+  )
+
+  newColumn.tasks = [...newColumn.tasks, newTask._id]
+
+  await task.save()
+  await originalColumn.save()
+  await newColumn.save()
+
+  await task.populate({
+    path: 'status',
+    populate: {
+      path: 'boardId',
+      model: 'Board',
+      populate: {
+        path: 'columns',
+        model: 'Column',
+        populate: {
+          path: 'tasks',
+          model: 'Task',
+          populate: {
+            path: 'subtasks',
+            model: 'Subtask',
+          },
+        },
+      },
+    },
+  })
+  res.send(task)
 })
 
 exports.delete = catchAsync(async (req, res, next) => {

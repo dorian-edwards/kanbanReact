@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useAuth } from '../providers/AuthProvider'
+import axios from 'axios'
 import chevronDown from '../assets/icon-chevron-down.svg'
 import chevronUp from '../assets/icon-chevron-up.svg'
 import {
@@ -6,6 +8,8 @@ import {
   ColumnInterface,
   TaskInterface,
 } from '../Interfaces/ObjectInterfaces'
+
+const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 
 export interface StatusDropDownProps {
   currentBoard: BoardInterface
@@ -16,10 +20,25 @@ export interface StatusDropDownProps {
 export default function StatusDropDown({
   currentBoard,
   selectedColumn,
+  currentTask,
 }: StatusDropDownProps) {
   const [isActive, setIsActive] = useState<boolean>(false)
 
-  const handleColumnSelect = (column: ColumnInterface): void => {
+  const { updateBoards } = useAuth()
+
+  const handleColumnSelect = async (column: ColumnInterface) => {
+    if (currentTask) {
+      currentTask.status = column._id
+      const { data } = await axios.put(
+        `${baseUrl}/task/${currentTask?._id}`,
+        currentTask,
+        {
+          withCredentials: true,
+        }
+      )
+      console.log(data)
+      updateBoards(data.status.boardId)
+    }
     toggleActive()
   }
 
