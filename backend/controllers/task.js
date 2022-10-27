@@ -48,6 +48,27 @@ exports.createTask = catchAsync(async (req, res, next) => {
   column.tasks.push(task.id)
   await column.save()
   await task.save()
+
+  await task.populate({
+    path: 'status',
+    populate: {
+      path: 'boardId',
+      model: 'Board',
+      populate: {
+        path: 'columns',
+        model: 'Column',
+        populate: {
+          path: 'tasks',
+          model: 'Task',
+          populate: {
+            path: 'subtasks',
+            model: 'Subtask',
+          },
+        },
+      },
+    },
+  })
+
   res.send(task)
 })
 

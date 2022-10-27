@@ -30,7 +30,7 @@ export default function FullTask({
   }
 
   return (
-    <div className='task-wrapper w-full max-w-[480px] bg-white rounded-md p-8'>
+    <div className='task-wrapper w-full max-w-[480px] bg-white dark:bg-dark-gray dark:text-white rounded-md p-8'>
       <div className='task-heading flex justify-between items-center  mb-6'>
         <h2 className='heading-l'>{task?.title || ''}</h2>
         <button type='button'>

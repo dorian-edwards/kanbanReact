@@ -10,10 +10,10 @@ export default function Subtask({ _id, content, complete }: SubtaskProps) {
   }
 
   return (
-    <div className='subtask-wrapper bg-light-gray-bg rounded-[4px] p-4 flex gap-x-4 items-center hover:bg-main-purple-opaque-hover'>
+    <div className='subtask-wrapper bg-light-gray-bg dark:bg-v-dark-gray rounded-[4px] p-4 flex gap-x-4 items-center hover:bg-main-purple-opaque-hover'>
       <CheckInput complete={isComplete} toggleComplete={toggleComplete} />
       <p
-        className={`body-m text-black ${
+        className={`body-m text-black dark:text-white ${
           isComplete ? 'opacity-50 line-through' : ''
         }`}
       >

@@ -115,7 +115,8 @@ export default function NewTaskForm({
     })
 
     selectedColumn?.tasks.push(data)
-    if (currentBoard) updateBoards(currentBoard)
+    console.log(data)
+    updateBoards(data.status.boardId)
     close()
     clear()
   }

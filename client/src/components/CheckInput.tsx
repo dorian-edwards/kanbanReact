@@ -10,7 +10,9 @@ export default function CheckInput({
       type='button'
       onClick={toggleComplete}
       className={`w-4 h-4 rounded-sm ${
-        complete ? 'bg-main-purple' : 'bg-white'
+        complete
+          ? 'bg-main-purple'
+          : 'bg-white dark:bg-dark-gray border-solid border-[1px] border-input-idle'
       }  text-center`}
     >
       {complete && <img src={check} alt='white check' className='m-auto' />}

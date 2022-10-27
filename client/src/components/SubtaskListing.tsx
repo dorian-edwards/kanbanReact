@@ -2,6 +2,7 @@ import { TaskInterface } from '../Interfaces/ObjectInterfaces'
 import Subtask from './Subtask'
 
 export default function SubtaskListing({ task }: { task: TaskInterface }) {
+  console.log(task)
   return (
     <>
       <div className='mb-6 flex flex-col gap-y-2'>
