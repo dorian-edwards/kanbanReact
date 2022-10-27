@@ -77,6 +77,7 @@ export default function Board() {
               return (
                 <Column
                   key={column._id}
+                  currentBoard={currentBoard}
                   column={column}
                   color={colorMap[color]}
                 />

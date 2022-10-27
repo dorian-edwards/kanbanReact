@@ -50,6 +50,7 @@ export interface ColumnInterface {
   tasks: TaskInterface[]
   boardId: string
   userId: string
+  currentBoard?: BoardInterface
 }
 
 export interface EditPanelProps {
@@ -57,4 +58,15 @@ export interface EditPanelProps {
   id: string
   close: () => void
   currentBoard?: BoardInterface
+}
+
+export interface CheckInputProps {
+  complete: boolean
+  toggleComplete: () => void
+}
+
+export interface SubtaskProps {
+  _id: string
+  content: string
+  complete: boolean
 }

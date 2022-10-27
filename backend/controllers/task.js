@@ -55,6 +55,8 @@ exports.update = catchAsync(async (req, res, next) => {
   const { id } = req.params
   const task = await Task.findById(id)
 
+  console.log(req.body)
+
   if (!task) return res.status(401).send(false)
 })
 

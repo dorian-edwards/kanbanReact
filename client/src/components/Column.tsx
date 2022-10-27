@@ -1,5 +1,9 @@
 import { useState } from 'react'
-import { ColumnInterface, TaskInterface } from '../Interfaces/ObjectInterfaces'
+import {
+  BoardInterface,
+  ColumnInterface,
+  TaskInterface,
+} from '../Interfaces/ObjectInterfaces'
 import Overlay from '../Overlays/Overlay'
 import FullTask from './FullTask'
 import Task from './Task'
@@ -7,8 +11,10 @@ import Task from './Task'
 export default function Column({
   column,
   color,
+  currentBoard,
 }: {
   column: ColumnInterface
+  currentBoard: BoardInterface
   color: string
 }) {
   const [taskOpen, setTaskOpen] = useState<boolean>(false)
@@ -24,7 +30,9 @@ export default function Column({
   return (
     <>
       <Overlay open={taskOpen} close={() => setTaskOpen(false)}>
-        <FullTask task={taskToView} />
+        {taskToView && (
+          <FullTask task={taskToView} currentBoard={currentBoard} />
+        )}
       </Overlay>
       <div className='column-wrapper w-[280px] flex-shrink-0'>
         <div className='column-header flex gap-3 items-center mb-6'>
