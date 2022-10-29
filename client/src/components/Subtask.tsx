@@ -1,12 +1,29 @@
 import { useState } from 'react'
+import axios from 'axios'
+import { useAuth } from '../providers/AuthProvider'
 import { SubtaskProps } from '../Interfaces/ObjectInterfaces'
 import CheckInput from './CheckInput'
 
-export default function Subtask({ _id, content, complete }: SubtaskProps) {
-  const [isComplete, setIsComplete] = useState<boolean>(complete)
+const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 
-  const toggleComplete = () => {
+export default function Subtask({
+  _id,
+  content,
+  complete,
+  setCompleted,
+}: SubtaskProps) {
+  const [isComplete, setIsComplete] = useState<boolean>(complete)
+  const { updateBoards } = useAuth()
+
+  const toggleComplete = async () => {
+    const { data } = await axios.put(
+      `${baseUrl}/subtask/${_id}/toggle`,
+      {},
+      { withCredentials: true }
+    )
+    setCompleted(!isComplete ? 1 : -1)
     setIsComplete(!isComplete)
+    updateBoards(data.parentTask.status.boardId)
   }
 
   return (

@@ -69,4 +69,5 @@ export interface SubtaskProps {
   _id: string
   content: string
   complete: boolean
+  setCompleted: (num: number) => void
 }

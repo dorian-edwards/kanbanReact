@@ -36,7 +36,6 @@ export default function StatusDropDown({
           withCredentials: true,
         }
       )
-      console.log(data)
       updateBoards(data.status.boardId)
     }
     toggleActive()

@@ -22,13 +22,6 @@ export default function FullTask({
     setStatus(column)
   }, [task.status, currentBoard.columns])
 
-  let completedTasks = 0
-  if (task) {
-    for (let subtask of task.subtasks) {
-      if (subtask.complete) completedTasks++
-    }
-  }
-
   return (
     <div className='task-wrapper w-full max-w-[480px] bg-white dark:bg-dark-gray dark:text-white rounded-md p-8'>
       <div className='task-heading flex justify-between items-center  mb-6'>
@@ -39,10 +32,7 @@ export default function FullTask({
       </div>
       <p className='body-l text-med-gray mb-6'>{task?.description || ''}</p>
       <div className='subtask-wrapper'>
-        <h3 className='body-m text-med-gray mb-4'>{`Subtasks (${completedTasks} of ${
-          task?.subtasks.length || 0
-        })`}</h3>
-        <SubtaskListing task={task} />
+        <SubtaskListing subtasks={task.subtasks} />
         <h3 className='body-m text-med-gray mb-4'>Current Status</h3>
         <StatusDropDown
           selectedColumn={status}

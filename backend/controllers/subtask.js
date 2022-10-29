@@ -46,6 +46,30 @@ exports.toggleComplete = catchAsync(async (req, res, next) => {
 
   subtask.complete = !subtask.complete
   await subtask.save()
+  await subtask.populate({
+    path: 'parentTask',
+    model: 'Task',
+    populate: {
+      path: 'status',
+      model: 'Column',
+      populate: {
+        path: 'boardId',
+        model: 'Board',
+        populate: {
+          path: 'columns',
+          model: 'Column',
+          populate: {
+            path: 'tasks',
+            model: 'Task',
+            populate: {
+              path: 'subtasks',
+              model: 'Subtask',
+            },
+          },
+        },
+      },
+    },
+  })
   res.send(subtask)
 })
 
