@@ -69,7 +69,9 @@ export default function NavigationOverlay({
                       currentBoard={currentBoard}
                       sidePanel={sidePanel}
                     />
-                    <main className='overflow-x-scroll h-full'>{children}</main>
+                    <main className='overflow-x-scroll min-h-[calc(100%-97px)]'>
+                      {children}
+                    </main>
                   </div>
                 </>
               ) : (
@@ -79,7 +81,7 @@ export default function NavigationOverlay({
                       currentBoard={currentBoard}
                       sidePanel={false}
                     />
-                    <main className='overflow-x-scroll h-full'>
+                    <main className='overflow-x-scroll min-h-[calc(100%-97px)]'>
                       {children}
                       <ShowSidePanel toggle={toggleSidePanel} />
                     </main>

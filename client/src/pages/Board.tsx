@@ -70,7 +70,7 @@ export default function Board() {
           />
         </div>
       ) : (
-        <div className='board flex gap-x-6 p-6 w-[100vw] bg-light-gray-bg dark:bg-v-dark-gray h-full'>
+        <div className='board flex gap-x-6 p-6 w-[100vw] bg-light-gray-bg dark:bg-v-dark-gray h-[calc(100vh-97px)]'>
           {currentBoard &&
             columns.map((column) => {
               incrementIconColor()

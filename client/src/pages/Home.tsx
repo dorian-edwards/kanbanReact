@@ -23,7 +23,7 @@ export default function Home() {
             <Overlay open={fullscreenOpen}>
               <NewBoardForm close={() => setFullscreenOpen(false)} />
             </Overlay>
-            <div className='flex items-center justify-center h-full w-full'>
+            <div className='flex items-center justify-center min-h-[calc(100vh-97px)] w-full'>
               <div>
                 <p className='heading-l text-med-gray mb-8'>
                   Create a board to get started
