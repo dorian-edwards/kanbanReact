@@ -58,6 +58,7 @@ export interface EditPanelProps {
   id: string
   close: () => void
   currentBoard?: BoardInterface
+  position?: string
 }
 
 export interface CheckInputProps {
