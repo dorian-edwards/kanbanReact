@@ -5,7 +5,6 @@ import {
   TaskInterface,
 } from '../Interfaces/ObjectInterfaces'
 import Overlay from '../Overlays/Overlay'
-import EditTask from './EditTask'
 import FullTask from './FullTask'
 import Task from './Task'
 
@@ -22,10 +21,6 @@ export default function Column({
   const [taskToView, setTaskToView] = useState<TaskInterface | undefined>(
     undefined
   )
-  const [taskEditOpen, setTaskEditOpen] = useState<boolean>(false)
-  const [taskToEdit, setTaskToEdit] = useState<TaskInterface | undefined>(
-    undefined
-  )
 
   const viewTask = (task: TaskInterface) => {
     setTaskToView(task)
@@ -38,9 +33,6 @@ export default function Column({
         {taskToView && (
           <FullTask task={taskToView} currentBoard={currentBoard} />
         )}
-      </Overlay>
-      <Overlay open={taskEditOpen} close={() => setTaskEditOpen(false)}>
-        {taskToEdit && <EditTask />}
       </Overlay>
       <div className='column-wrapper w-[280px] flex-shrink-0'>
         <div className='column-header flex gap-3 items-center mb-6'>

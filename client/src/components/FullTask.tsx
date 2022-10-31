@@ -49,6 +49,7 @@ export default function FullTask({
         <EditPanel
           target='task'
           id={task._id}
+          task={task}
           close={() => setEditPanelOpen(false)}
           position={`${!isMobile ? 'right-[-65px]' : ''}`}
         />
