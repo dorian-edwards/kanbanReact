@@ -1,4 +1,4 @@
-import { Link, useParams, Outlet, Navigate } from 'react-router-dom'
+import { useParams, Outlet, Navigate } from 'react-router-dom'
 
 // import contexts
 import { useAuth } from '../providers/AuthProvider'
