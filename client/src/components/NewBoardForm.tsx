@@ -34,6 +34,12 @@ export default function NewBoardForm({ close }: { close: () => void }) {
     setColumnInputs(editedColumnInputs)
   }
 
+  const handleCancel = () => {
+    setTitle('')
+    setColumnInputs([])
+    return close()
+  }
+
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -61,7 +67,7 @@ export default function NewBoardForm({ close }: { close: () => void }) {
           <h2 className='heading-l text-black dark:text-white'>
             Add New Board
           </h2>
-          <button type='button' onClick={close}>
+          <button type='button' onClick={handleCancel}>
             <img src={cross} alt='cross icon' />
           </button>{' '}
         </div>
@@ -89,7 +95,7 @@ export default function NewBoardForm({ close }: { close: () => void }) {
                 onChange={(e) => handleColumnInputChange(e, index)}
                 optionalStyling={'w-full'}
               />
-              <button onClick={() => deleteColumnInput(index)}>
+              <button onClick={() => deleteColumnInput(index)} type='button'>
                 <img src={cross} alt='x icon' className='block' />
               </button>
             </div>
