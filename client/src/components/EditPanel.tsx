@@ -9,6 +9,7 @@ export default function EditPanel({
   id,
   close,
   currentBoard,
+  position,
 }: EditPanelProps) {
   const [editOpen, setEditOpen] = useState<boolean>(false)
   const [deleteOpen, setDeleteOpen] = useState<boolean>(false)
@@ -30,7 +31,11 @@ export default function EditPanel({
           closeEditPanel={close}
         />
       </Overlay>
-      <div className='edit-panel absolute w-[192px] p-4 bg-white rounded-lg top-[85px] right-[24px] z-40 shadow-md'>
+      <div
+        className={`edit-panel absolute w-[192px] p-4 bg-white rounded-lg top-[85px] ${
+          position ? position : 'right-[24px]'
+        } z-40 shadow-md`}
+      >
         <ul>
           <li className='mb-4 body-l text-med-gray'>
             <button

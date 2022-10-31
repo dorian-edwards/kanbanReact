@@ -67,15 +67,13 @@ export default function DesktopNavFull({
           close={() => setFullscreenOpen(false)}
         />
       </Overlay>
-      {editPanelOpen ? (
+      {editPanelOpen && (
         <EditPanel
           target='board'
           id={currentBoard?._id || ''}
           close={() => setEditPanelOpen(false)}
           currentBoard={currentBoard}
         />
-      ) : (
-        ''
       )}
     </>
   )
