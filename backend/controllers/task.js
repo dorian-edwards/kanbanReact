@@ -2,6 +2,7 @@ const catchAsync = require('../utils/catchAsync')
 const Task = require('../models/Task')
 const Column = require('../models/Column')
 const Subtask = require('../models/Subtask')
+const Board = require('../models/Board')
 
 exports.getTask = catchAsync(async (req, res, next) => {
   const { id } = req.params
@@ -160,11 +161,23 @@ exports.delete = catchAsync(async (req, res, next) => {
 
   const { status: taskId } = task
   const column = await Column.findById(taskId)
+  const board = await Board.findById(column.boardId)
 
   column.tasks = column.tasks.filter((taskId) => taskId._id !== task.id)
 
   await task.deleteOne()
   await column.save()
 
-  res.status(204).send(true)
+  await board.populate({
+    path: 'columns',
+    populate: {
+      path: 'tasks',
+      model: 'Task',
+      populate: {
+        path: 'subtasks',
+        model: 'Subtask',
+      },
+    },
+  })
+  res.send(board)
 })

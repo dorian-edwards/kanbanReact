@@ -22,7 +22,6 @@ columnSchema.pre(
   'deleteOne',
   { document: true, query: false },
   async function () {
-    console.log('clearing tasks')
     const tasks = await Task.find({ status: this.id })
     for (let task of tasks) {
       await task.deleteOne()
