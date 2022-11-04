@@ -52,6 +52,7 @@ export default function FullTask({
           task={task}
           close={() => setEditPanelOpen(false)}
           position={`${!isMobile ? 'right-[-65px]' : ''}`}
+          currentBoard={currentBoard}
         />
       )}
     </div>

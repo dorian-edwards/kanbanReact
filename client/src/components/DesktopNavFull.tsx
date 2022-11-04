@@ -61,7 +61,7 @@ export default function DesktopNavFull({
           </div>
         </div>
       </nav>
-      <Overlay open={fullscreenOpen}>
+      <Overlay open={fullscreenOpen} close={() => setFullscreenOpen(false)}>
         <NewTaskForm
           currentBoard={currentBoard}
           close={() => setFullscreenOpen(false)}

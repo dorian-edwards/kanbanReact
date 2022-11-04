@@ -5,13 +5,25 @@ export interface OverlayProps {
   children?: ReactNode
   blur?: boolean
   close?: () => void
+  closeOther?: () => void
 }
 
-export default function Overlay({ open, children, blur, close }: OverlayProps) {
+export default function Overlay({
+  open,
+  children,
+  blur,
+  close,
+  closeOther,
+}: OverlayProps) {
   const toggleScreen = (e: React.MouseEvent) => {
     const { id } = e.target as HTMLElement
     if (!id) return
-    if (id === 'overlay' && close) return close()
+    if (id === 'overlay' && close) {
+      if (closeOther) {
+        closeOther()
+      }
+      return close()
+    }
   }
   return (
     <div

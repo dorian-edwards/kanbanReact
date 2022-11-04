@@ -17,7 +17,11 @@ export default function EditPanel({
   const [deleteOpen, setDeleteOpen] = useState<boolean>(false)
   return (
     <>
-      <Overlay open={editOpen}>
+      <Overlay
+        open={editOpen}
+        close={() => setEditOpen(false)}
+        closeOther={close}
+      >
         {target === 'board' && (
           <EditBoard
             close={() => setEditOpen(false)}
@@ -25,9 +29,20 @@ export default function EditPanel({
             currentBoard={currentBoard}
           />
         )}
-        {target === 'task' && <EditTask />}
+        {target === 'task' && (
+          <EditTask
+            close={() => setEditOpen(false)}
+            closeEditPanel={close}
+            task={task}
+            currentBoard={currentBoard}
+          />
+        )}
       </Overlay>
-      <Overlay open={deleteOpen}>
+      <Overlay
+        open={deleteOpen}
+        close={() => setDeleteOpen(false)}
+        closeOther={close}
+      >
         {target === 'board' && (
           <DeleteConfirmation
             type='board'

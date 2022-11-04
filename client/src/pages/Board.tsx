@@ -50,7 +50,7 @@ export default function Board() {
 
   return (
     <>
-      <Overlay open={newColumnOpen}>
+      <Overlay open={newColumnOpen} close={() => setNewColumnOpen(false)}>
         <NewColumnForm
           board={boardId}
           close={() => setNewColumnOpen(false)}

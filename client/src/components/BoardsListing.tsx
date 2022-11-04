@@ -11,7 +11,7 @@ export default function BoardsListing() {
 
   return (
     <>
-      <Overlay open={fullscreenOpen}>
+      <Overlay open={fullscreenOpen} close={() => setFullscreenOpen(false)}>
         <NewBoardForm close={() => setFullscreenOpen(false)} />
       </Overlay>
       <div className='boards-listing'>

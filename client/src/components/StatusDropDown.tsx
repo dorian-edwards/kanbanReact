@@ -12,7 +12,7 @@ import {
 const baseUrl = process.env.REACT_APP_BASE_URL_DEV
 
 export interface StatusDropDownProps {
-  currentBoard: BoardInterface
+  currentBoard?: BoardInterface
   selectedColumn?: ColumnInterface
   currentTask?: TaskInterface
 }
@@ -42,7 +42,6 @@ export default function StatusDropDown({
   }
 
   const toggleActive = () => setIsActive(!isActive)
-
   return (
     <div className={`status-dropdown mb-6`}>
       <div

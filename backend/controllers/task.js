@@ -81,13 +81,53 @@ exports.update = catchAsync(async (req, res, next) => {
   const originalColumn = await Column.findById(task.status)
   const newColumn = await Column.findById(newTask.status)
 
-  task.status = newTask.status
-  originalColumn.tasks = originalColumn.tasks.filter(
-    (taskId) => taskId.toString() !== newTask._id
-  )
+  if (originalColumn.id !== newColumn.id) {
+    task.status = newTask.status
+    originalColumn.tasks = originalColumn.tasks.filter(
+      (taskId) => taskId.toString() !== newTask._id
+    )
 
-  newColumn.tasks = [...newColumn.tasks, newTask._id]
+    newColumn.tasks = [...newColumn.tasks, newTask._id]
+  }
 
+  if (task.title !== newTask.title.trim()) task.title = newTask.title.trim()
+
+  if (task.description !== newTask.description.trim())
+    task.description = newTask.description.trim()
+
+  const newSubtasks = []
+  const newSubtaskMap = {}
+
+  if (newTask.subtaskInputs) {
+    for (let subtask of newTask.subtaskInputs) {
+      console.log(subtask)
+      if (!subtask.id) {
+        const newSubtask = await Subtask.create({
+          content: subtask.content,
+          complete: false,
+          parentTask: task._id,
+          userId: req.user.id,
+        })
+
+        newSubtasks.push(newSubtask._id)
+        newSubtaskMap[newSubtask._id.toString()] = true
+      } else {
+        const originalSubtask = await Subtask.findById(subtask.id)
+        if (originalSubtask.content !== subtask.content)
+          originalSubtask.content = subtask.content
+        await originalSubtask.save()
+        newSubtasks.push(originalSubtask._id)
+        newSubtaskMap[originalSubtask._id.toString()] = true
+      }
+    }
+
+    for (let oldSubtask of task.subtasks) {
+      if (!newSubtaskMap[oldSubtask._id.toString()])
+        await Subtask.findByIdAndDelete(oldSubtask._id)
+    }
+
+    task.subtasks = newSubtasks
+  }
   await task.save()
   await originalColumn.save()
   await newColumn.save()
