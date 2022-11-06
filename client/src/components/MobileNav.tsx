@@ -46,7 +46,7 @@ export default function Nav({
           <Button
             styling='add-task-mobile'
             text={'+'}
-            disabled={currentBoard?.columns.length === 0}
+            disabled={currentBoard?.columns.length === 0 || !currentBoard}
             onClick={(e) => console.log(e)}
           />
           <button onClick={() => setEditPanelOpen(!editPanelOpen)}>
