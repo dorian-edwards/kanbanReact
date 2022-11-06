@@ -49,7 +49,7 @@ export default function DesktopNavFull({
               <Button
                 styling='btn primary-l w-[164px] heading-m'
                 text='+ Add New Task'
-                disabled={!currentBoard}
+                disabled={currentBoard?.columns.length === 0}
                 onClick={() => setFullscreenOpen(true)}
               />
               <div className='relative'>

@@ -59,7 +59,7 @@ export default function Board() {
       </Overlay>
       {columns.length === 0 ? (
         <div className='flex items-center justify-center flex-col h-[calc(100vh-97px)]'>
-          <h2 className='heading-l text-med-gray mb-8 text-center'>
+          <h2 className='heading-l text-med-gray mb-8 text-center px-3'>
             This board is empty. Create a new column to get started
           </h2>
           <Button

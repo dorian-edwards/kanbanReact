@@ -15,8 +15,8 @@ export default function BoardsListing() {
         <NewBoardForm close={() => setFullscreenOpen(false)} />
       </Overlay>
       <div className='boards-listing'>
-        <h3 className='heading-s pl-8 mb-[19px] min-w-[150px]'>
-          All Boards &#40;{boards?.length}&#41;
+        <h3 className='heading-s pl-8 mb-[19px] min-w-[150px] uppercase'>
+          {`All boards (${boards?.length})`}
         </h3>
         <ul>
           {boards?.map((board, index) => (
