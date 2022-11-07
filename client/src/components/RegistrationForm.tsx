@@ -5,7 +5,7 @@ import InputField from '../inputs/InputField'
 import Button from './Button'
 import { useAuth } from '../providers/AuthProvider'
 
-const baseUrl = '/'
+const baseUrl = 'https://kanban.cyclic.app'
 
 export default function RegistrationForm() {
   const { user, login } = useAuth()

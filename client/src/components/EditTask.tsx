@@ -13,7 +13,7 @@ import StatusDropDown from './StatusDropDown'
 import TextArea from '../inputs/TextArea'
 import { useNavigate } from 'react-router-dom'
 
-const baseUrl = '/'
+const baseUrl = 'https://kanban.cyclic.app'
 
 export interface EditTaskProps {
   close: () => void

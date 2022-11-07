@@ -4,7 +4,7 @@ import { useAuth } from '../providers/AuthProvider'
 import { SubtaskProps } from '../Interfaces/ObjectInterfaces'
 import CheckInput from './CheckInput'
 
-const baseUrl = '/'
+const baseUrl = 'https://kanban.cyclic.app'
 
 export default function Subtask({
   _id,

@@ -4,7 +4,7 @@ import Button from './Button'
 import { useAuth } from '../providers/AuthProvider'
 import { useTheme } from '../providers/ThemeProvider'
 
-const baseUrl = '/'
+const baseUrl = 'https://kanban.cyclic.app'
 
 export interface DeleteConfirmationProps {
   type: string

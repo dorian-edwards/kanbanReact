@@ -6,7 +6,7 @@ import Button from './Button'
 import cross from '../assets/icon-cross.svg'
 import { BoardInterface } from '../Interfaces/ObjectInterfaces'
 
-const baseUrl = '/'
+const baseUrl = 'https://kanban.cyclic.app'
 
 export interface EditBoardProps {
   close: () => void

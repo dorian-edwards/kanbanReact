@@ -14,7 +14,7 @@ import {
   User,
 } from '../Interfaces/ObjectInterfaces'
 
-const baseUrl = '/'
+const baseUrl = 'https://kanban.cyclic.app'
 
 const AuthContext = createContext<AuthContextInterface | undefined>(undefined)
 

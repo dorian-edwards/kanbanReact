@@ -9,7 +9,7 @@ import {
   TaskInterface,
 } from '../Interfaces/ObjectInterfaces'
 
-const baseUrl = '/'
+const baseUrl = 'https://kanban.cyclic.app'
 
 export interface StatusDropDownProps {
   currentBoard?: BoardInterface
