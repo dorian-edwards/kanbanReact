@@ -59,7 +59,7 @@ app.use('/board', checkAuth, boardRouter)
 app.use('/task', checkAuth, taskRouter)
 app.use('/subtask', checkAuth, subtaskRouter)
 app.use('/column', checkAuth, columnRouter)
-app.use('/*', checkAuth, (req, res) => {
+app.use('/*', (req, res) => {
   res.sendFile('index.html')
 })
 
