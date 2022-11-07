@@ -54,15 +54,13 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-//
-app.get('/', (req, res) => {
-  res.send('Hello World')
-})
-
 app.use('/auth', authRouter)
 app.use('/board', checkAuth, boardRouter)
 app.use('/task', checkAuth, taskRouter)
 app.use('/subtask', checkAuth, subtaskRouter)
 app.use('/column', checkAuth, columnRouter)
+app.use('/*', checkAuth, (req, res) => {
+  res.send('/')
+})
 
 module.exports = app
