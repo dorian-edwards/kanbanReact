@@ -5,7 +5,7 @@ const {
   },
   model,
 } = require('mongoose')
-const Subtask = require('../models/Subtask')
+const Subtask = require('./SubTask')
 
 const taskSchema = new Schema({
   title: {

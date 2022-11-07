@@ -1,7 +1,7 @@
 const catchAsync = require('../utils/catchAsync')
 const Task = require('../models/Task')
 const Column = require('../models/Column')
-const Subtask = require('../models/Subtask')
+const Subtask = require('../models/SubTask')
 const Board = require('../models/Board')
 
 exports.getTask = catchAsync(async (req, res, next) => {

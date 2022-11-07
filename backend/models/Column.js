@@ -5,8 +5,8 @@ const {
   },
   model,
 } = require('mongoose')
-const Task = require('../models/Task')
-const Board = require('../models/Board')
+const Task = require('./Task')
+const Board = require('./Board')
 
 const columnSchema = new Schema({
   title: {

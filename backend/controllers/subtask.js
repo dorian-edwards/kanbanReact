@@ -1,4 +1,4 @@
-const Subtask = require('../models/Subtask')
+const Subtask = require('../models/SubTask')
 const Task = require('../models/Task')
 const catchAsync = require('../utils/catchAsync')
 
