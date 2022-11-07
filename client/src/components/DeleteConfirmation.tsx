@@ -4,7 +4,7 @@ import Button from './Button'
 import { useAuth } from '../providers/AuthProvider'
 import { useTheme } from '../providers/ThemeProvider'
 
-const baseUrl = process.env.REACT_APP_BASE_URL_DEV
+const baseUrl = '/'
 
 export interface DeleteConfirmationProps {
   type: string

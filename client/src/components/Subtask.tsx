@@ -4,7 +4,7 @@ import { useAuth } from '../providers/AuthProvider'
 import { SubtaskProps } from '../Interfaces/ObjectInterfaces'
 import CheckInput from './CheckInput'
 
-const baseUrl = process.env.REACT_APP_BASE_URL_DEV
+const baseUrl = '/'
 
 export default function Subtask({
   _id,

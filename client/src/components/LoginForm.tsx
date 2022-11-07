@@ -5,7 +5,7 @@ import InputField from '../inputs/InputField'
 import Button from './Button'
 import { useAuth } from '../providers/AuthProvider'
 
-const baseUrl = process.env.REACT_APP_BASE_URL_DEV
+const baseUrl = '/'
 
 export default function LoginForm() {
   const { login } = useAuth()

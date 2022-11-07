@@ -5,7 +5,7 @@ import InputField from '../inputs/InputField'
 import Button from './Button'
 import cross from '../assets/icon-cross.svg'
 
-const baseUrl = process.env.REACT_APP_BASE_URL_DEV
+const baseUrl = '/'
 
 export default function NewBoardForm({ close }: { close: () => void }) {
   const [title, setTitle] = useState<string>('')

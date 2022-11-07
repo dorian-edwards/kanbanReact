@@ -14,7 +14,7 @@ import {
   User,
 } from '../Interfaces/ObjectInterfaces'
 
-const baseUrl = process.env.REACT_APP_BASE_URL_DEV
+const baseUrl = '/'
 
 const AuthContext = createContext<AuthContextInterface | undefined>(undefined)
 

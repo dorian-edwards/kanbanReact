@@ -13,7 +13,7 @@ import cross from '../assets/icon-cross.svg'
 
 import { BoardInterface, ColumnInterface } from '../Interfaces/ObjectInterfaces'
 
-const baseUrl = process.env.REACT_APP_BASE_URL_DEV
+const baseUrl = '/'
 
 // for now this seems to cover only title. It'll need some tweaking later
 const flashError = (): void => {

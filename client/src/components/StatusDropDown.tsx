@@ -9,7 +9,7 @@ import {
   TaskInterface,
 } from '../Interfaces/ObjectInterfaces'
 
-const baseUrl = process.env.REACT_APP_BASE_URL_DEV
+const baseUrl = '/'
 
 export interface StatusDropDownProps {
   currentBoard?: BoardInterface

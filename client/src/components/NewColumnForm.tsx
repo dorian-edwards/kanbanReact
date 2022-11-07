@@ -6,7 +6,7 @@ import Button from './Button'
 import cross from '../assets/icon-cross.svg'
 import { ColumnInterface, BoardInterface } from '../Interfaces/ObjectInterfaces'
 
-const baseUrl = process.env.REACT_APP_BASE_URL_DEV
+const baseUrl = '/'
 
 export interface NewColumnInterface {
   title: string
