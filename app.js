@@ -43,7 +43,8 @@ app.use(
     origin: [
       'http://localhost:3000',
       'http://localhost:5000',
-      'https://intense-eyrie-46657.herokuapp.com/',
+      'https://uptight-hare-robe.cyclic.app',
+      'https://kanban-100hours.herokuapp.com',
     ],
     credentials: true,
     allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type, Accept'],
