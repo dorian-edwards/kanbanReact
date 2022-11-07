@@ -59,7 +59,7 @@ export default function RegistrationForm() {
 
       clearInput()
 
-      const { data } = await axios.post(`${baseUrl}auth/register`, user, {
+      const { data } = await axios.post(`${baseUrl}/auth/register`, user, {
         withCredentials: true,
       })
 
