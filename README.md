@@ -39,7 +39,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- [Solution](https://www.frontendmentor.io/solutions/fullstack-kanban-workflow-management-app-O8yM3aeElN)
 - [Live Site](https://kanban.cyclic.app/)
 - [Github](https://github.com/dorian-edwards/kanbanReact/tree/main)
 
