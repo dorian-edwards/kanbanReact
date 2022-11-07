@@ -5,6 +5,7 @@ const cors = require('cors')
 const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+const path = require('path')
 
 // Middleware imports
 const checkAuth = require('./middleware/checkAuth')
@@ -60,7 +61,7 @@ app.use('/task', checkAuth, taskRouter)
 app.use('/subtask', checkAuth, subtaskRouter)
 app.use('/column', checkAuth, columnRouter)
 app.use('/*', (req, res) => {
-  res.sendFile('index.html')
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
 module.exports = app
