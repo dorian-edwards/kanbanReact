@@ -60,7 +60,7 @@ app.use('/task', checkAuth, taskRouter)
 app.use('/subtask', checkAuth, subtaskRouter)
 app.use('/column', checkAuth, columnRouter)
 app.use('/*', checkAuth, (req, res) => {
-  res.render('index.html')
+  res.sendFile('index.html')
 })
 
 module.exports = app
