@@ -46,6 +46,7 @@ app.use(
       'http://localhost:5000',
       'https://uptight-hare-robe.cyclic.app',
       'https://kanban-100hours.herokuapp.com',
+      'https://kanban-100hours.onrender.com',
     ],
     credentials: true,
     allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type, Accept'],
